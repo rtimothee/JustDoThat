@@ -7,11 +7,11 @@ class Utilisateur(models.Model):
     user = models.ForeignKey(User, unique=True)
     
     #Ajout de nos champs perso
-    avatar = models.URLField()
-    points = models.IntegerField()
-    dateNaissance = models.DateField()
-    pays = models.CharField(max_length=45)
-    sexeM = models.BooleanField()
+    avatar = models.URLField(null=False)
+    points = models.IntegerField(null=False)
+    dateNaissance = models.DateField(null=False)
+    pays = models.CharField(max_length=45, null=False)
+    sexeM = models.BooleanField(null=False)
     
     #def __unicode__(self):
     #    return "%s %s" % (self.user.username, self.points)
@@ -19,9 +19,9 @@ class Utilisateur(models.Model):
 
 #---------------------------MESSAGE PRIVE-----------------------------    
 class MessagePrive(models.Model):
-    message = models.TextField(max_length=45)
-    dateMessage = models.DateField()
-    lu = models.BooleanField()
+    message = models.TextField(max_length=45, null=False)
+    dateMessage = models.DateField(null=False)
+    lu = models.BooleanField(null=False)
     emeteur = models.ForeignKey('Utilisateur', related_name='messagePrive_emeteur') 
     destinataire = models.ForeignKey('Utilisateur', related_name='messagePrive_destinataire') 
     
@@ -31,11 +31,11 @@ class MessagePrive(models.Model):
 
 #------------------------------BADGE--------------------------------    
 class Badge(models.Model):
-    titre = models.CharField(max_length=45)
+    titre = models.CharField(max_length=45, null=False)
     description = models.TextField(max_length=45)
-    photo = models.URLField()
-    dateBadge = models.DateField()
-    notification = models.BooleanField()
+    photo = models.URLField(null=False)
+    dateBadge = models.DateField(null=False)
+    notification = models.BooleanField(null=False)
     
     def __unicode__(self):
         return "%s %s" % (self.pseudo, self.points)

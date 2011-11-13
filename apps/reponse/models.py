@@ -4,11 +4,11 @@ from JustDoThat.apps.defi.models import Defi
 
 #-------------------------------REPONSE--------------------------------    
 class Reponse(models.Model):
-    slug = models.SlugField(max_length=100)
+    slug = models.SlugField(max_length=100,null=False)
     message = models.TextField()
-    date_reponse = models.DateField()
-    photo = models.URLField()
-    notification = models.BooleanField()
+    date_reponse = models.DateField(null=False)
+    photo = models.URLField(null=False)
+    notification = models.BooleanField(null=False)
     defi = models.ForeignKey(Defi)
     utilisateur = models.ForeignKey(Utilisateur)
     
@@ -18,10 +18,10 @@ class Reponse(models.Model):
 
 #-----------------------------COMMENTAIRE------------------------------    
 class Commenaire(models.Model):
-    message = models.TextField()
-    date_commentaire = models.DateField()
-    moderation = models.BooleanField()
-    notification = models.BooleanField()
+    message = models.TextField(null=False)
+    date_commentaire = models.DateField(null=False)
+    moderation = models.BooleanField(null=False)
+    notification = models.BooleanField(null=False)
     reponse = models.ForeignKey('Reponse')
     utilisateur = models.ForeignKey(Utilisateur)
     
@@ -31,7 +31,7 @@ class Commenaire(models.Model):
     
 #-------------------------------NOTER---------------------------------    
 class Noter(models.Model):
-    note = models.BooleanField()
+    note = models.BooleanField(null=False)
     reponse = models.ForeignKey('Reponse')
     utilisateur = models.ForeignKey(Utilisateur)
     
