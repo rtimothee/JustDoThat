@@ -1,20 +1,20 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 #-------------------------------UTILISATEUR--------------------------------    
 class Utilisateur(models.Model):
-    slug = models.SlugField(max_length=100)
-    pseudo = models.CharField(max_length=45)
-    nom = models.CharField(max_length=45)
-    prenom = models.CharField(max_length=45)
-    mail = models.EmailField()
+    #User_Auth de Django
+    user = models.ForeignKey(User, unique=True)
+    
+    #Ajout de nos champs perso
     avatar = models.URLField()
     points = models.IntegerField()
     dateNaissance = models.DateField()
     pays = models.CharField(max_length=45)
     sexeM = models.BooleanField()
     
-    def __unicode__(self):
-        return "%s %s" % (self.pseudo, self.points)
+    #def __unicode__(self):
+    #    return "%s %s" % (self.user.username, self.points)
 
 
 #---------------------------MESSAGE PRIVE-----------------------------    
