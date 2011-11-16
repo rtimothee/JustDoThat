@@ -2,7 +2,7 @@
 
 {% block log %}
 	{% if user.is_authenticated %}
-		<p>tu es connecté</p>
+		<p>tu es connecté <a href='/logout/'>Se déconnecter</a></p>
 	{% else %}
   		{% if erreur %}
     		<p class="error">{{erreur}}</p>
