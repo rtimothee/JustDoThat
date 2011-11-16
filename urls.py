@@ -9,6 +9,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     (r'^admin/', include(admin.site.urls)),
+    (r'', include('JustDoThat.apps.utilisateur.urls')),
 )
 
 urlpatterns += patterns('',
