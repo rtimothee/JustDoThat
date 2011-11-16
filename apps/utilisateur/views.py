@@ -22,14 +22,14 @@ def login_view(request):
           return HttpResponseRedirect('/')
       else:
         # disabled account
-        return render_to_response('registration/login.html', {'next':'./', 'erreur' : 'compte désactivé.'})
+        return render_to_response('utilisateur/login.html', {'next':'./', 'erreur' : 'compte désactivé.'})
     
     else:
       # invalid login
-      return render_to_response('registration/login.html', {'next':'./', 'erreur' : 'Login ou mot de passe invalide.'})
+      return render_to_response('utilisateur/login.html', {'next':'./', 'erreur' : 'Login ou mot de passe invalide.'})
 
   else:
-      return render_to_response('registration/login.html', {'next':'./'})
+      return render_to_response('utilisateur/login.html', {'next':'./'})
   
 def logout_view(request):
     auth.logout(request)
