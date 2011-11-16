@@ -22,11 +22,11 @@ class MessagePrive(models.Model):
     message = models.TextField(max_length=45, null=False)
     dateMessage = models.DateField(null=False)
     lu = models.BooleanField(null=False)
-    emeteur = models.ForeignKey('Utilisateur', related_name='messagePrive_emeteur') 
-    destinataire = models.ForeignKey('Utilisateur', related_name='messagePrive_destinataire') 
+    emeteur = models.ForeignKey(User, related_name='messagePrive_emeteur') 
+    destinataire = models.ForeignKey(User, related_name='messagePrive_destinataire') 
     
     def __unicode__(self):
-        return "%s %s" % (self.pseudo, self.points)
+        return "%s %s" % (self.message, self.emeteur)
 
 
 #------------------------------BADGE--------------------------------    
@@ -38,13 +38,13 @@ class Badge(models.Model):
     notification = models.BooleanField(null=False)
     
     def __unicode__(self):
-        return "%s %s" % (self.pseudo, self.points)
+        return "%s %s" % (self.titre, self.description)
     
     
 #------------------------------GAGNER--------------------------------    
 class Gagner(models.Model):
     badge = models.ForeignKey('Badge') 
-    utilisateur = models.ForeignKey('Utilisateur') 
+    utilisateur = models.ForeignKey(User) 
     
     def __unicode__(self):
-        return "%s %s" % (self.pseudo, self.points)
+        return "%s %s" % (self.badge, self.utilisateur)

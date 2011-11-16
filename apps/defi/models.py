@@ -1,5 +1,5 @@
 from django.db import models
-from JustDoThat.apps.utilisateur.models import Utilisateur
+from django.contrib.auth.models import User
 
 
 #-------------------------------DEFI--------------------------------    
@@ -12,7 +12,7 @@ class Defi(models.Model):
     photo = models.URLField(null=False)
     difficulte = models.IntegerField(null=False)
     categorie = models.ForeignKey('Categorie')
-    createur = models.ForeignKey(Utilisateur)
+    createur = models.ForeignKey(User)
     
     
     def __unicode__(self):
@@ -33,7 +33,7 @@ class Categorie(models.Model):
 #------------------------------RELEVER--------------------------------    
 class Relever(models.Model):
     defi = models.ForeignKey('Defi')
-    utilisateur = models.ForeignKey(Utilisateur)
+    utilisateur = models.ForeignKey(User)
     
     
     def __unicode__(self):

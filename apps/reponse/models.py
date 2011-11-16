@@ -1,5 +1,5 @@
 from django.db import models
-from JustDoThat.apps.utilisateur.models import Utilisateur
+from django.contrib.auth.models import User
 from JustDoThat.apps.defi.models import Defi
 
 #-------------------------------REPONSE--------------------------------    
@@ -10,7 +10,7 @@ class Reponse(models.Model):
     photo = models.URLField(null=False)
     notification = models.BooleanField(null=False)
     defi = models.ForeignKey(Defi)
-    utilisateur = models.ForeignKey(Utilisateur)
+    utilisateur = models.ForeignKey(User)
     
     def __unicode__(self):
         return "%s %s" % (self.message, self.date_reponse)
@@ -23,7 +23,7 @@ class Commenaire(models.Model):
     moderation = models.BooleanField(null=False)
     notification = models.BooleanField(null=False)
     reponse = models.ForeignKey('Reponse')
-    utilisateur = models.ForeignKey(Utilisateur)
+    utilisateur = models.ForeignKey(User)
     
     def __unicode__(self):
         return "%s %s" % (self.message, self.reponse)
@@ -33,7 +33,7 @@ class Commenaire(models.Model):
 class Noter(models.Model):
     note = models.BooleanField(null=False)
     reponse = models.ForeignKey('Reponse')
-    utilisateur = models.ForeignKey(Utilisateur)
+    utilisateur = models.ForeignKey(User)
     
     def __unicode__(self):
         return "%s %s" % (self.note, self.reponse)
