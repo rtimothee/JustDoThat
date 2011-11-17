@@ -7,5 +7,6 @@ urlpatterns = patterns('',
   url(r'^logout/$',  logout_view, name="logout"),
   #url(r'^login/$',  login),
   #url(r'^logout/$', logout),
+  url(r'^delete/(?P<pseudo>[\w-]+)$', delete_account, name='delete_account'),
 )
 

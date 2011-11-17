@@ -17,7 +17,7 @@ class Reponse(models.Model):
     
 
 #-----------------------------COMMENTAIRE------------------------------    
-class Commenaire(models.Model):
+class Commentaire(models.Model):
     message = models.TextField(null=False)
     date_commentaire = models.DateField(null=False)
     moderation = models.BooleanField(null=False)
