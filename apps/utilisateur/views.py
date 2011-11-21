@@ -47,42 +47,13 @@ def delete_account (request, pseudo):
     if request.method == 'GET' :
         if request.GET['confirm'] == 'True':
             #MAJ des défis
-            try : defi = Defi.objects.get(createur=user)
+            try : defi = Defi.objects.filter(createur=user).update(createur=User.objects.get(username='Anonymous'))
             except Defi.DoesNotExist : pass
-            else :  
-                defi.createur = User.objects.get(username='Anonymous')
-                defi.save()
-            #suppression des liens
-            try : relever = Relever.objects.get(utilisateur=user)
-            except Relever.DoesNotExist : pass
-            else : relever.delete()
-            
-            #suppression commentaires
-            try : com = Commentaire.Objects.get(utilisateur=user)
-            except Commentaire.DoesNotExist : pass
-            else : com.delete()
-            #suppression reponse
-            try : reponse = Reponse.objects.get(utilisateur=user)
-            except Reponse.DoesNotExist : pass
-            else :reponse.delete()
-
-            #suppression Messages prives
-            try : msg = MessagePrive.objects.get(emeteur=user)
-            except MessagePrive.DoesNotExist : pass
-            else : msg.delete()
-            try : msg = MessagePrive.objects.get(destinataire=user)
-            except MessagePrive.DoesNotExist : pass
-            else : msg.delete()
-
-            #suppression Badges
-            try : badge = Gagner.Objects.get(utilisateur=user)
-            except Gagner.DoesNotExist : pass
-            else : badge.delete()
-            
-            #suppression Utilisateur
-            utilisateur = Utilisateur.Objects.get(user=user)
-            utilisateur.delete()
+            #suppression de l'utilisateur en Cascade
             user.delete()
+            
+            #redirection vers l'accueil
+            return HttpResponseRedirect('/')
         
         
     return render_to_response('utilisateur/delete_account.html', {'user':user})
