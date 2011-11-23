@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.conf import settings
 
 #-------------------------------UTILISATEUR--------------------------------    
 class Utilisateur(models.Model):
@@ -7,7 +8,7 @@ class Utilisateur(models.Model):
     user = models.ForeignKey(User, unique=True)
     
     #Ajout de nos champs perso
-    avatar = models.URLField(null=False)
+    avatar = models.ImageField(upload_to=settings.IMAGE_UPLOAD_PATH, null=False)
     points = models.IntegerField(null=False)
     dateNaissance = models.DateField(null=False)
     pays = models.CharField(max_length=45, null=False)
@@ -34,6 +35,8 @@ class Badge(models.Model):
     titre = models.CharField(max_length=45, null=False)
     description = models.TextField(max_length=45)
     photo = models.URLField(null=False)
+    dateBadge = models.DateField(null=False)
+    notification = models.BooleanField(null=False)
     
     def __unicode__(self):
         return "%s %s" % (self.titre, self.description)
@@ -43,8 +46,6 @@ class Badge(models.Model):
 class Gagner(models.Model):
     badge = models.ForeignKey('Badge') 
     utilisateur = models.ForeignKey(User) 
-    dateBadge = models.DateField(null=False)
-    notification = models.BooleanField(null=False)
     
     def __unicode__(self):
         return "%s %s" % (self.badge, self.utilisateur)

@@ -18,7 +18,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',   # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': 'IMAC3_ProjetDjango',           # Or path to database file if using sqlite3.
         'USER': 'root',                         # Not used with sqlite3.
-        'PASSWORD': 'root',                     # Not used with sqlite3.
+        'PASSWORD': '',                     # Not used with sqlite3.
         'HOST': '',                             # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                             # Set to empty string for default. Not used with sqlite3.
     }
@@ -46,6 +46,9 @@ DATABASES = {
 # system time zone.
 TIME_ZONE = 'Europe/Paris'
 
+
+
+
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'fr-fr'
@@ -68,6 +71,8 @@ MEDIA_ROOT = os.path.join(PROJECT_PATH, 'media/')
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
 MEDIA_URL = '/media/'
+
+IMAGE_UPLOAD_PATH = os.path.join(MEDIA_ROOT, 'files/')
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
