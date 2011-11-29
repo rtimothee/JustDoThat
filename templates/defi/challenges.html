@@ -1,0 +1,30 @@
+{% extends "layout/base.html" %}
+
+{% block content %}
+	<ul>
+		{% for defi in defis %}
+			<li class="challenge">
+				<a href="/display_challenge/{{defi.id}}/" title="{{defi.titre}}">{{ defi.titre }}</a> 
+			<ul>
+				<p>Difficulty : {{ defi.difficulte }} </p>
+			</ul>
+			<ul>
+				<p>Time Left : {{ defi.timeleft }} </p>
+			</ul>
+			<ul>
+				<p>Number of challengers : {{ defi.nbreleve }} </p>
+			</ul>
+
+			<ul class="modif_challenge">
+				<a href="/modif_challenge/{{defi.id}}/" title="{{defi.titre}}">Modify</a> 
+			</ul>
+			<ul class="delete_challenge">
+				<a href="/delete_challenge/{{defi.id}}/" title="{{defi.titre}}">Delete</a> 
+			</ul>
+			</li>
+			<br />
+		{% endfor %}
+	</ul>
+	
+	<p><a href="/create_challenge/" title="{{defi.titre}}">Create a challenge</a> </p>
+{% endblock content %}

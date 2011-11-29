@@ -1,0 +1,27 @@
+{% extends "layout/base.html" %}
+
+{% block content %}
+	<h2>{{ defi.titre }}</h2>
+	<img src='{{ defi.photo }}' alt='' />
+	<ul>
+		<li>Category : {{ category }}</li>
+		<li>Description : {{ defi.description }}</li>
+		<li>Difficulty : {{ difficulty }}</li>		
+		<li>Beginning : {{ defi.debut }}</li>	
+		{% if end %}
+		<li>Time Left: {{ time_left }}</li>
+		<p><a href='#'>Take up the challenge</a></p>
+		{% else %}
+		<p>Challenge over</p>
+		{% endif %}		
+	</ul>
+<h3>Challengers</h3>	
+	<ul>
+		{% for user in users %}
+			<li class="user">
+				<p> <a href='#'>{{ user}}</a> </p>
+			</li>
+			<br />
+		{% endfor %}
+	</ul>
+{% endblock content %}

@@ -1,0 +1,16 @@
+{% extends "layout/base.html" %}
+
+{% block title %}Create a challenge{% endblock %}
+
+{% block content %}
+	{% if modif %}
+	 <h1>Modify a challenge</h1>
+	{% else %}
+	  <h1>Create a challenge</h1>
+	{% endif %}
+	   <form action="" method="post" enctype="multipart/form-data"> {% csrf_token %}
+
+	    {{ defi_form.as_p }}
+    <p><input type="submit" value="Create" /></p>
+  </form>
+{% endblock %}
