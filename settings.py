@@ -143,6 +143,7 @@ INSTALLED_APPS = (
     'JustDoThat.apps.defi',
     'JustDoThat.apps.utilisateur',
     'JustDoThat.apps.reponse',
+    'JustDoThat.apps.main',
 
 )
 

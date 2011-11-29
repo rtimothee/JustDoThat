@@ -7,6 +7,6 @@ urlpatterns = patterns('',
   url(r'^delete_challenge/(?P<int>[\w-]+)/$',  delete_challenge_view, name="delete_challenge"),
   url(r'^create_challenge/$',  create_challenge_view, name="create_challenge"),
   url(r'^display_challenge/(?P<int>[\w-]+)/$',  display_challenge_view, name="display_challenge"),
-  url(r'^challenges/$',  challenges_view, name="challenges"),
+  url(r'^list_challenges/$',  challenges_view, name="list_challenges"),
 )
 
