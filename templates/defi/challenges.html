@@ -4,7 +4,7 @@
 	<ul>
 		{% for defi in defis %}
 			<li class="challenge">
-				<a href="/display_challenge/{{defi.id}}/" title="{{defi.titre}}">{{ defi.titre }}</a> 
+				<a href="/challenges/display_challenge/{{defi.id}}/" title="{{defi.titre}}">{{ defi.titre }}</a> 
 			<ul>
 				<p>Difficulty : {{ defi.difficulte }} </p>
 			</ul>
@@ -16,15 +16,15 @@
 			</ul>
 
 			<ul class="modif_challenge">
-				<a href="/modif_challenge/{{defi.id}}/" title="{{defi.titre}}">Modify</a> 
+				<a href="/challenges/modif_challenge/{{defi.id}}/" title="{{defi.titre}}">Modify</a> 
 			</ul>
 			<ul class="delete_challenge">
-				<a href="/delete_challenge/{{defi.id}}/" title="{{defi.titre}}">Delete</a> 
+				<a href="/challenges/delete_challenge/{{defi.id}}/" title="{{defi.titre}}">Delete</a> 
 			</ul>
 			</li>
 			<br />
 		{% endfor %}
 	</ul>
 	
-	<p><a href="/create_challenge/" title="{{defi.titre}}">Create a challenge</a> </p>
+	<p><a href="/challenges/create_challenge/" title="{{defi.titre}}">Create a challenge</a> </p>
 {% endblock content %}

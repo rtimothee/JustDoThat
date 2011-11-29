@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 # Create your views here.
 from JustDoThat.apps.utilisateur.models import *
+from JustDoThat.apps.defi.models import *
+from JustDoThat.apps.reponse.models import *
 from JustDoThat.apps.utilisateur.forms import *
 from django.contrib import auth
 from django.http import HttpResponseRedirect
@@ -60,3 +62,20 @@ def register_view(request):
         utilisateur_form = UtilisateurForm()
         
     return render_to_response("utilisateur/register.html", {'user_form': user_form, 'utilisateur_form': utilisateur_form,})
+
+#----------------------- SUPPRESSION COMPTE --------------------
+def delete_account (request, pseudo):
+    user = User.objects.get(username=pseudo)
+    if request.method == 'GET' :
+        if request.GET['confirm'] == 'True':
+            #MAJ des défis
+            try : defi = Defi.objects.filter(createur=user).update(createur=User.objects.get(username='Anonymous'))
+            except Defi.DoesNotExist : pass
+            #suppression de l'utilisateur en Cascade
+            user.delete()
+            
+            #redirection vers l'accueil
+            return HttpResponseRedirect('/')
+        
+        
+    return render_to_response('utilisateur/delete_account.html', {'user':user})

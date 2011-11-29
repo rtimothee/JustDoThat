@@ -24,7 +24,7 @@ def modif_challenge_view(request, int):
 		defi_form = DefiForm(request.POST, instance = defi)  
 		if defi_form.is_valid(): 
 			defi_form.save()
-			return HttpResponseRedirect('/challenges/') 
+			return HttpResponseRedirect('/challenges/list_challenges/') 
 
 	else: 
 		defi_form = DefiForm(instance = defi) 
@@ -88,7 +88,7 @@ def create_challenge_view(request):
 					new_defi.createur_id = request.user.id
 					new_defi.save()
 					
-					return HttpResponseRedirect("/challenges/")
+					return HttpResponseRedirect("/challenges/list_challenges/")
     else:
         defi_form = DefiForm()
         
