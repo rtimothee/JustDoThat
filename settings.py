@@ -171,4 +171,6 @@ LOGGING = {
 }
 
 #On precise que Utilisateur fait partie de User_Auth qui permettra la connexion
-AUTH_PROFILE_MODULE = "JustDoThat.utilisateur"
+AUTH_PROFILE_MODULE = 'utilisateur.Utilisateur'
+
+

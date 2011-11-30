@@ -11,14 +11,17 @@
 	<h2>Defis</h2>
 	<div>
 		{% for defi in defis %}
-			<p>{{defi.titre}}</p>
+			<p>{{defi.titre}} ({{defi.categorie.nom}})</p>
 		{% endfor %}
 	</div>
 	
 	<h2>Utilisateur</h2>
 	<div>
 		{% for utilisateur in utilisateurs %}
-			<p>{{utilisateur.username}}</p>
+			<p>
+				{{utilisateur.username}} 
+				{{utilisateur.get_profile.points}}
+			</p>
 		{% endfor %}
 	</div>
 </div>
