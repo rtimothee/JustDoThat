@@ -1,9 +1,25 @@
 {% extends "layout/base.html" %}
 
-{% block recherche %}
+{% block content %}
 <div>
-	<form action="results/" method="get">{% csrf_token %}
-	<p>{{ form }}<input type="submit" value="Ok" /></p>
+	<form action="" method="get">
+		{{form.as_p}}
+		<input type="submit" value="Recherche"/>
 	</form>
 </div>
-{% endblock recherche %}
+<div>
+	<h2>Defis</h2>
+	<div>
+		{% for defi in defis %}
+			<p>{{defi.titre}}</p>
+		{% endfor %}
+	</div>
+	
+	<h2>Utilisateur</h2>
+	<div>
+		{% for utilisateur in utilisateurs %}
+			<p>{{utilisateur.username}}</p>
+		{% endfor %}
+	</div>
+</div>
+{% endblock content %}

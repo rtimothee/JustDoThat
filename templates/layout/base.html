@@ -8,7 +8,33 @@
   </head>
   <body>
   	<div id="body">
-	  	<div id="head">{% block log %}{% endblock log%} {% block recherche %}{% endblock recherche %}</div>
+	  	<div id="head">
+	  		<div id="log">
+	  			{% if user.is_authenticated %}
+				<p>tu es connecté <a href='/logout/'>Se déconnecter</a></p>
+				{% else %}
+  					{% if erreur %}
+    				<p class="error">{{erreur}}</p>
+  					{% endif %}
+
+  				<form action="" method="post">
+    				<label for="username">Login :</label>
+    				<input type="text" name="username" value="" id="username">
+    				<label for="password">Mot de passe :</label>
+    				<input type="password" name="password" value="" id="password">
+
+    				<input type="submit" value="login" />
+    				<input type="hidden" name="next" value="{{ next|escape }}" />
+  				</form>
+				{% endif %}
+	  		</div> 
+	  		
+	  		<div id="search">
+	  			<form action="/search/results/" method="get">
+					<p><input type="text" name="demande" value="" id="demande"><input type="submit" value="Ok" /></p>
+				</form>
+	  		</div>
+	  	</div>
 	  	<div id="content">{% block content %}{% endblock content %}</div>
 	  	<div id="footer"></div>
   	</div>
