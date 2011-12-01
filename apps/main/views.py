@@ -9,6 +9,8 @@ from datetime import *
 from django.shortcuts import render_to_response
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
+def index (request):
+    return render_to_response('main/index.html', context_instance=RequestContext(request))# Create your views here.
 
 def recherche (request):
     if request.method == 'GET':
