@@ -1,0 +1,28 @@
+{% extends "layout/base.html" %}
+
+{% block content %}
+	
+	{{  profile.user.username }}
+	
+	{# Dans le doute, l'email je me r'apelle plus si on l'affiche #}
+	{{  profile.user.email }}
+	
+	{# c'est juste l'url de l'img #}
+	{{  profile.avatar }}
+	
+	{{  profile.points }}
+	
+	{# Je suggère une petite difference sur la date de naissance pour afficher l'âge et pas forcement la date entiere#}
+	{{  profile.dateNaissance }}
+	
+	{{  profile.pays }}
+	
+	{# Je suggère un IF sur la valeur du sexeM pour déterminer si masculin ou feminin#}
+	{{  profile.sexeM }}
+	
+    {% for b in badges %}
+    	{{ b.badge.photo }}
+        {{ b.badge.titre }}
+    {% endfor %}
+	
+{% endblock %}

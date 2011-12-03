@@ -7,9 +7,11 @@ from django.db.models import Q
 from django.template import RequestContext
 from datetime import datetime
 
+
 from datetime import *
 from django.shortcuts import render_to_response
 
+<<<<<<< HEAD
 
 def recherche (request):
     if request.method == 'GET':
@@ -47,3 +49,20 @@ def recherche_av (request):
     '''
     return render_to_response('main/recherche.html', context_instance=RequestContext(request))# Create your views here.
 
+=======
+def recherche (request):
+    if request.method == 'GET':
+            form = Rechercheform(request.GET)
+            if form.is_valid():
+                requete = form.cleaned_data['demande']
+                #requetes
+                utilisateurs = User.objects.filter(username__icontains=requete)
+                defis = Defi.objects.filter(Q(titre__icontains=requete) | Q(description__icontains=requete) | Q(createur__in = utilisateurs))
+                #rediriger vers la page de resultats
+                return render_to_response('main/resultats.html', {'defis':defis, 'utilisateurs':utilisateurs})
+    else:
+        form = Rechercheform()
+        
+    return render_to_response('main/recherche.html', {'form':form}, context_instance=RequestContext(request))# Create your views here.
+
+>>>>>>> origin/master
