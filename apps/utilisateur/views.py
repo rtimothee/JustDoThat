@@ -11,7 +11,7 @@ from django.contrib.auth.views import login, logout
 from django.shortcuts import render_to_response
 from JustDoThat.apps.utilisateur.tools import handle_uploaded_file
 
-
+#------------------------LOGIN---------------------------------------------------------------------
 def login_view(request):
 
   if request.method == 'POST':
@@ -40,6 +40,7 @@ def logout_view(request):
     # Redirect to a success page.
     return HttpResponseRedirect('/')
 
+#-----------------------------------INSCRIPTION--------------------------------------------
 def register_view(request):
     if request.method == 'POST':
         #recupération des informations du formulaire
@@ -79,3 +80,36 @@ def delete_account (request, pseudo):
         
         
     return render_to_response('utilisateur/delete_account.html', {'user':user})
+
+#-----------------------AFFICHAGE PROFIL------------------------------------
+def display_profile(request):
+    current_user_profile = Utilisateur.objects.get(user=request.user.id)
+    badges = Gagner.objects.filter(utilisateur=request.user).all()
+    
+    return render_to_response('utilisateur/profile.html', {'profile':current_user_profile, 'badges':badges,})
+
+#-----------------------EDITION PROFIL------------------------------------
+def edit_profile(request):
+    current_user_profile = Utilisateur.objects.get(user=request.user.id)
+    
+    if request.method == 'POST':
+        #recupération des informations du formulaire
+        user_form = UserForm(request.POST, instance=request.user)
+        utilisateur_form = UtilisateurForm(request.POST, request.FILES, instance=current_user_profile)
+        
+        #si les infos sont valides
+        if user_form.is_valid() and utilisateur_form.is_valid():
+                #fonction gèrant l'upload de l'avatar
+                handle_uploaded_file(request.FILES['avatar'])
+                #creation du nouvel utilisateur
+                new_user = Utilisateur(**utilisateur_form.cleaned_data)
+                new_user.user = user_form.save()
+                new_user.save()
+                
+                return HttpResponseRedirect("/")
+    else:
+        #creation des formulaires
+        user_form = UserForm(instance=request.user)
+        utilisateur_form = UtilisateurForm(instance=current_user_profile)
+        
+    return render_to_response("utilisateur/edit_profile.html", {'user_form': user_form, 'utilisateur_form': utilisateur_form,})
