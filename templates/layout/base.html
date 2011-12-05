@@ -9,36 +9,126 @@
     <title>Just do that</title>            
   </head>
   <body>
-  	<div id="body">
-	  	<div id="head">
-	  		<div id="log">
-	  			{% if user.is_authenticated %}
-				<p>tu es connecté <a href='/logout/'>Se déconnecter</a></p>
-				{% else %}
-  					{% if erreur %}
-    				<p class="error">{{erreur}}</p>
-  					{% endif %}
+	<div id="everything">
 
-  				<form action="" method="post">
-    				<label for="username">Login :</label>
-    				<input type="text" name="username" value="" id="username">
-    				<label for="password">Mot de passe :</label>
-    				<input type="password" name="password" value="" id="password">
-
-    				<input type="submit" value="login" />
-    				<input type="hidden" name="next" value="{{ next|escape }}" />
-  				</form>
-				{% endif %}
-	  		</div> 
-	  		
-	  		<div id="search">
-	  			<form action="/search/results/" method="get">
-					<p><input type="text" name="demande" value="" id="demande"><input type="submit" value="Ok" /></p>
-				</form>
-	  		</div>
+		<div id="header01">
+			
+			<div id="header">
+		        
+		        <div id="h_top">
+		            <div id="h_logo">	
+		            	<a href="#"><img src="../media/images/logo.png" alt="Logo" /></a>
+		            </div>    
+		            
+		            <div id="h_connexion">
+		                <!--<form action="" method="post">
+							<input id="" name="" type="text" size="15" /> <input id="" name="" type="text" size="15" /> <button onclick="">OK</button>
+						</form> 
+						<a href="#">forgotten password ?</a> <a href="#">S’inscrire</a>-->
+						<div id="log">
+				  			{% if user.is_authenticated %}
+							<p>tu es connecté <a href='/logout/'>Se déconnecter</a></p>
+							{% else %}
+			  					{% if erreur %}
+			    				<p class="error">{{erreur}}</p>
+			  					{% endif %}
+			
+			  				<form action="" method="post">
+			    				<div id="login_input">
+			    					<p><label for="username">Login :</label><br/>
+			    					<input type="text" name="username" value="" id="username" size="15"></p>
+			    				</div>
+			    				
+			    				<div id="password_input">
+			    					<p><label for="password">Password :</label><br>
+			    					<input type="password" name="password" value="" id="password" size="15">
+			    					<input type="submit" value="login" /></p>
+			    				</div>
+			    				
+			    				
+			    				<input type="hidden" name="next" value="{{ next|escape }}" />
+			  				</form>
+							{% endif %}
+							<a href="#">forgotten password ?</a> <a href="#">S’inscrire</a>
+				  		</div> 
+		            </div>
+		        </div>
+		        
+		    </div>
+		    
+		    <div id="menu">
+		    	<div id="m_content">
+		    		<ul id="menuLeft">
+		    			<li><img src="../media/images/btn_home.png" alt="" /><a href="#">HOME</a></li>
+		    			<li><img src="../media/images/btn_challenge.png" alt="" /><a href="#">CHALLENGE</a></li>
+		    			<li><img src="../media/images/btn_community.png" alt="" /><a href="#">COMMUNITY</a></li>
+		    		</ul>
+		    		
+		    			<!--<form action="" method="post" id="SearchForm">
+		    				<input id="" name="" type="text" /> <button onclick="">Search</button>
+		    				<a href="#"><img src="../media/images/challenge_btn.png" alt="" /></a>
+		    			</form>-->
+		    			
+		    			<div id="SearchForm">
+				  			<form action="/search/results/" method="get">
+								<input type="text" name="demande" value="" id="demande"> <input type="submit" value="Ok" />
+								<a href="#"><img src="../media/images/challenge_btn.png" alt="" /></a>
+							</form>
+				  		</div>
+		    			
+		    	</div>
+		    	
+		    	<!--<div id="challenge_btn_div">
+		    		<a><img src="images/challenge_btn.png"/></a>
+		    	</div>-->
+		    </div>
+		  	
+		</div>
+	  	
+	  	<div id="content">
+	  		{% block content %}{% endblock content %}
 	  	</div>
-	  	<div id="content">{% block content %}{% endblock content %}</div>
-	  	<div id="footer"></div>
-  	</div>
+	  	
+	  	<div id="footer">
+	    
+	    	<div id="ft_content">
+	    
+		    	<div id="ft_left">
+		    		<a href=""><img src="../media/images/ft_logo.png" alt="" /></a>
+		    		<p>Our goal? Ensure that you have fun by challenging your friends through the most incredible challenges.</p>
+		    		<a href=""><img src="../media/images/ft_facebook.png" alt="" /></a> <a href=""><img src="../media/images/ft_twitter.png" alt="" /></a>
+		    	</div>
+		    	
+		    	<div id="ft_right">
+		    		<div id="ft_r_01">
+		    			<h3>Sitemap</h3>
+		    			<ul>
+		    				<li><a href="#">HOME</a></li>
+		    				<li><a href="#">CHALLENGE</a></li>
+		    				<li><a href="#">COMMUNITY</a></li>
+		    			</ul>
+		    		</div>
+		    		<div id="ft_r_02">
+		    			<h3>Help</h3>
+		    			<ul>
+		    				<li><a href="#">RULES</a></li>
+		    				<li><a href="#">HELP</a></li>
+		    				<li><a href="#">CONTACT US</a></li>
+		    			</ul>
+		    		</div>
+		    		<div id="ft_r_03">
+		    			<h3>Legal Info</h3>
+		    			<ul>
+		    				<li><a href="#">ABOUT</a></li>
+		    				<li><a href="#">CONFIDENTIALITY</a></li>
+		    				<li><a href="#">GENERAL CONDITIONS</a></li>
+		    				<li><a href="#">LEGAL TERMS</a></li>
+		    			</ul>
+		    		</div>
+		    	</div>
+		    </div>
+	    	
+	    </div>
+	</div>
   </body>
 </html>
