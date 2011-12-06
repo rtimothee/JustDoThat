@@ -27,13 +27,13 @@
 						<a href="#">forgotten password ?</a> <a href="#">S’inscrire</a>-->
 						<div id="log">
 				  			{% if user.is_authenticated %}
-							<p>tu es connecté <a href='/logout/'>Se déconnecter</a></p>
+							<p>tu es connecté <a href='/user/logout/'>Se déconnecter</a></p>
 							{% else %}
 			  					{% if erreur %}
 			    				<p class="error">{{erreur}}</p>
 			  					{% endif %}
 			
-			  				<form action="" method="post">
+			  				<form action="/user/login/" method="post">
 			    				<div id="login_input">
 			    					<p><label for="username">Login :</label><br/>
 			    					<input type="text" name="username" value="" id="username" size="15"></p>
@@ -42,14 +42,15 @@
 			    				<div id="password_input">
 			    					<p><label for="password">Password :</label><br>
 			    					<input type="password" name="password" value="" id="password" size="15">
+			    					<input type="hidden" name="next" value="{{request.path}}">
 			    					<input type="submit" value="login" /></p>
+			    					
 			    				</div>
-			    				
-			    				
-			    				<input type="hidden" name="next" value="{{ next|escape }}" />
-			  				</form>
-							{% endif %}
+			    							    				
+			  				</form><br/>
 							<a href="#">forgotten password ?</a> <a href="#">S’inscrire</a>
+							{% endif %}
+							
 				  		</div> 
 		            </div>
 		        </div>

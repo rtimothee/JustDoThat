@@ -22,20 +22,17 @@ def login_view(request):
       if user.is_active:
         login(request, user)
         # success
-        if request.POST['next']:
-          return HttpResponseRedirect(request.POST['next'])
-        else:
-          return HttpResponseRedirect('/')
+        return HttpResponseRedirect('/user/profile/'+request.POST['username'])
       else:
         # disabled account
-        return render_to_response('utilisateur/login.html', {'next':'./', 'erreur' : 'compte désactivé.', 'user':request.user})
+        return render_to_response(request.POST['next'], {'erreur' : 'compte désactivé.', 'user':request.user})
     
     else:
       # invalid login
-      return render_to_response('utilisateur/login.html', {'next':'./', 'erreur' : 'Login ou mot de passe invalide.', 'user':request.user})
+      return render_to_response(request.POST['next'], {'erreur' : 'Login ou mot de passe invalide.', 'user':request.user})
 
   else:
-      return render_to_response('utilisateur/login.html', {'next':'./', 'user':request.user})
+      return render_to_response(request.POST['next'], {'user':request.user})
   
 def logout_view(request):
     auth.logout(request)
