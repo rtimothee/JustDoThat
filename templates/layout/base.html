@@ -17,7 +17,7 @@
 		        
 		        <div id="h_top">
 		            <div id="h_logo">	
-		            	<a href="#"><img src="../media/images/logo.png" alt="Logo" /></a>
+		            	<a href="#"><img src="{{ MEDIA_URL }}images/logo.png" alt="Logo" /></a>
 		            </div>    
 		            
 		            <div id="h_connexion">
@@ -29,10 +29,6 @@
 				  			{% if user.is_authenticated %}
 							<p>tu es connecté <a href='/user/logout/'>Se déconnecter</a></p>
 							{% else %}
-			  					{% if erreur %}
-			    				<p class="error">{{erreur}}</p>
-			  					{% endif %}
-			
 			  				<form action="/user/login/" method="post">
 			    				<div id="login_input">
 			    					<p><label for="username">Login :</label><br/>
@@ -60,9 +56,9 @@
 		    <div id="menu">
 		    	<div id="m_content">
 		    		<ul id="menuLeft">
-		    			<li><img src="../media/images/btn_home.png" alt="" /><a href="#">HOME</a></li>
-		    			<li><img src="../media/images/btn_challenge.png" alt="" /><a href="#">CHALLENGE</a></li>
-		    			<li><img src="../media/images/btn_community.png" alt="" /><a href="#">COMMUNITY</a></li>
+		    			<li><img src="{{ MEDIA_URL }}images/btn_home.png" alt="" /><a href="#">HOME</a></li>
+		    			<li><img src="{{ MEDIA_URL }}images/btn_challenge.png" alt="" /><a href="#">CHALLENGE</a></li>
+		    			<li><img src="{{ MEDIA_URL }}images/btn_community.png" alt="" /><a href="#">COMMUNITY</a></li>
 		    		</ul>
 		    		
 		    			<!--<form action="" method="post" id="SearchForm">
@@ -73,7 +69,7 @@
 		    			<div id="SearchForm">
 				  			<form action="/search/results/" method="get">
 								<input type="text" name="demande" value="" id="demande"> <input type="submit" value="Ok" />
-								<a href="#"><img src="../media/images/challenge_btn.png" alt="" /></a>
+								<a href="#"><img src="{{ MEDIA_URL }}images/challenge_btn.png" alt="" /></a>
 							</form>
 				  		</div>
 		    			
@@ -95,9 +91,9 @@
 	    	<div id="ft_content">
 	    
 		    	<div id="ft_left">
-		    		<a href=""><img src="../media/images/ft_logo.png" alt="" /></a>
+		    		<a href=""><img src="{{ MEDIA_URL }}images/ft_logo.png" alt="" /></a>
 		    		<p>Our goal? Ensure that you have fun by challenging your friends through the most incredible challenges.</p>
-		    		<a href=""><img src="../media/images/ft_facebook.png" alt="" /></a> <a href=""><img src="../media/images/ft_twitter.png" alt="" /></a>
+		    		<a href=""><img src="{{ MEDIA_URL }}images/ft_facebook.png" alt="" /></a> <a href=""><img src="{{ MEDIA_URL }}images/ft_twitter.png" alt="" /></a>
 		    	</div>
 		    	
 		    	<div id="ft_right">

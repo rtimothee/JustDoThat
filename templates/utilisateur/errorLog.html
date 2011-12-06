@@ -1,0 +1,19 @@
+{% extends "layout/base.html" %}
+
+{% block content %}
+	{{erreur}}
+	<form action="/user/login/" method="post">
+		<div id="login_input">
+			<p><label for="username">Login :</label><br/>
+			<input type="text" name="username" value="" id="username" size="15"></p>
+		</div>
+			    				
+		<div id="password_input">
+			<p><label for="password">Password :</label><br>
+			<input type="password" name="password" value="" id="password" size="15">
+			<input type="hidden" name="next" value="{{next}}">
+			<input type="submit" value="login" /></p>
+		</div>
+	</form><br/>
+	<a href="#">forgotten password ?</a> <a href="#">S’inscrire</a>
+{% endblock content %}

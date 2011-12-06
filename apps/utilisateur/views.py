@@ -22,17 +22,17 @@ def login_view(request):
       if user.is_active:
         login(request, user)
         # success
-        return HttpResponseRedirect('/user/profile/'+request.POST['username'])
+        return HttpResponseRedirect(request.POST['next'])
       else:
         # disabled account
-        return render_to_response(request.POST['next'], {'erreur' : 'compte désactivé.', 'user':request.user})
+        return render_to_response('utilisateur/errorLog.html', {'erreur' : 'compte désactivé.', 'user':request.user, 'next':request.POST['next']},context_instance=RequestContext(request))
     
     else:
       # invalid login
-      return render_to_response(request.POST['next'], {'erreur' : 'Login ou mot de passe invalide.', 'user':request.user})
-
+      return render_to_response('utilisateur/errorLog.html', {'erreur' : 'Login ou mot de passe invalide.', 'user':request.user, 'next':request.POST['next']},context_instance=RequestContext(request))
   else:
-      return render_to_response(request.POST['next'], {'user':request.user})
+      #return HttpResponseRedirect('/')
+      return render_to_response('utilisateur/errorLog.html',context_instance=RequestContext(request))
   
 def logout_view(request):
     auth.logout(request)
@@ -61,7 +61,7 @@ def register_view(request):
         user_form = UserForm()
         utilisateur_form = UtilisateurForm()
         
-    return render_to_response("utilisateur/register.html", {'user_form': user_form, 'utilisateur_form': utilisateur_form,})
+    return render_to_response("utilisateur/register.html", {'user_form': user_form, 'utilisateur_form': utilisateur_form,}, context_instance=RequestContext(request))
 
 #----------------------- SUPPRESSION COMPTE --------------------
 def delete_account (request, pseudo):
@@ -78,7 +78,7 @@ def delete_account (request, pseudo):
             return HttpResponseRedirect('/')
         
         
-    return render_to_response('utilisateur/delete_account.html', {'user':user})
+    return render_to_response('utilisateur/delete_account.html', {'user':user}, context_instance=RequestContext(request))
 
 #-----------------------AFFICHAGE PROFIL------------------------------------
 def display_profile(request, pseudo):
@@ -86,7 +86,7 @@ def display_profile(request, pseudo):
     # On recupere le user du profil a afficher
     try: user_to_display = User.objects.get(username=pseudo)
     except User.DoesNotExist:
-        return render_to_response('utilisateur/profile.html', {'requested_user':pseudo, 'error':"Sorry, no profile was found for",}  )
+        return render_to_response('utilisateur/profile.html', {'requested_user':pseudo, 'error':"Sorry, no profile was found for",},  context_instance=RequestContext(request))
 
     # On recupere badges remportes par le user du profil
     tmp_gagner = Gagner.objects.filter(utilisateur=user_to_display)
@@ -131,7 +131,7 @@ def edit_profile(request):
             user_form = UserForm(instance=request.user)
             utilisateur_form = UtilisateurForm(instance=request.user.get_profile())
             
-        return render_to_response("utilisateur/edit_profile.html", {'user_form': user_form, 'utilisateur_form': utilisateur_form,})
+        return render_to_response("utilisateur/edit_profile.html", {'user_form': user_form, 'utilisateur_form': utilisateur_form,}, context_instance=RequestContext(request))
     
     else:
-        return render_to_response("utilisateur/edit_profile.html", {'error': "You must login to edit your profile",})
+        return render_to_response("utilisateur/edit_profile.html", {'error': "You must login to edit your profile",}, context_instance=RequestContext(request))
