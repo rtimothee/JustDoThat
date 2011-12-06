@@ -10,6 +10,8 @@ from django.views.generic.simple import direct_to_template
 from django.contrib.auth.views import login, logout
 from django.shortcuts import render_to_response
 from JustDoThat.apps.utilisateur.tools import handle_uploaded_file
+from django.template import RequestContext
+from compiler.pycodegen import EXCEPT
 
 #------------------------LOGIN---------------------------------------------------------------------
 def login_view(request):
@@ -82,34 +84,57 @@ def delete_account (request, pseudo):
     return render_to_response('utilisateur/delete_account.html', {'user':user})
 
 #-----------------------AFFICHAGE PROFIL------------------------------------
-def display_profile(request):
-    current_user_profile = Utilisateur.objects.get(user=request.user.id)
-    badges = Gagner.objects.filter(utilisateur=request.user).all()
+def display_profile(request, pseudo):
     
-    return render_to_response('utilisateur/profile.html', {'profile':current_user_profile, 'badges':badges,})
+    # On recupere le user du profil a afficher
+    try: user_to_display = User.objects.get(username=pseudo)
+    except User.DoesNotExist:
+        return render_to_response('utilisateur/profile.html', {'requested_user':pseudo, 'error':"Sorry, no profile was found for",}  )
 
+    # On recupere badges remportes par le user du profil
+    tmp_gagner = Gagner.objects.filter(utilisateur=user_to_display)
+    badges = []
+    for g in tmp_gagner :
+        badges.append(Badge.objects.get(id=g.badge.id))
+        
+    # On recupere les défis releves par le user du profil
+    tmp_releves = Relever.objects.filter(utilisateur=user_to_display)
+    defis_releves = []  
+    for r in tmp_releves :
+        defis_releves.append(Defi.objects.get(id=r.defi.id))
+    
+    # On recupere les défis crees par le user du profil
+    defis_crees = Defi.objects.filter(createur=user_to_display)
+    
+    return render_to_response('utilisateur/profile.html', {'badges':badges, 'user_to_display':user_to_display, 'defis_releves':defis_releves, 'defis_crees':defis_crees}, context_instance=RequestContext(request))
+
+        
 #-----------------------EDITION PROFIL------------------------------------
 def edit_profile(request):
-    current_user_profile = Utilisateur.objects.get(user=request.user.id)
     
-    if request.method == 'POST':
-        #recupération des informations du formulaire
-        user_form = UserForm(request.POST, instance=request.user)
-        utilisateur_form = UtilisateurForm(request.POST, request.FILES, instance=current_user_profile)
-        
-        #si les infos sont valides
-        if user_form.is_valid() and utilisateur_form.is_valid():
-                #fonction gèrant l'upload de l'avatar
-                handle_uploaded_file(request.FILES['avatar'])
-                #creation du nouvel utilisateur
-                new_user = Utilisateur(**utilisateur_form.cleaned_data)
-                new_user.user = user_form.save()
-                new_user.save()
-                
-                return HttpResponseRedirect("/")
+    if request.user.is_authenticated(): 
+    
+        if request.method == 'POST':
+            #recupération des informations du formulaire
+            user_form = UserForm(request.POST, instance=request.user)
+            utilisateur_form = UtilisateurForm(request.POST, request.FILES, instance=request.user.get_profile())
+            
+            #si les infos sont valides
+            if user_form.is_valid() and utilisateur_form.is_valid():
+                    #fonction gèrant l'upload de l'avatar
+                    handle_uploaded_file(request.FILES['avatar'])
+                    #creation du nouvel utilisateur
+                    new_user = Utilisateur(**utilisateur_form.cleaned_data)
+                    new_user.user = user_form.save()
+                    new_user.save()
+                    
+                    return HttpResponseRedirect("/")
+        else:
+            #creation des formulaires
+            user_form = UserForm(instance=request.user)
+            utilisateur_form = UtilisateurForm(instance=request.user.get_profile())
+            
+        return render_to_response("utilisateur/edit_profile.html", {'user_form': user_form, 'utilisateur_form': utilisateur_form,})
+    
     else:
-        #creation des formulaires
-        user_form = UserForm(instance=request.user)
-        utilisateur_form = UtilisateurForm(instance=current_user_profile)
-        
-    return render_to_response("utilisateur/edit_profile.html", {'user_form': user_form, 'utilisateur_form': utilisateur_form,})
+        return render_to_response("utilisateur/edit_profile.html", {'error': "You must login to edit your profile",})
