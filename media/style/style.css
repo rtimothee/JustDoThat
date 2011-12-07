@@ -149,7 +149,13 @@ body {
  * Corps 
  * */
 
-#content{
+#content {
+	min-height:300px;
+	margin:auto;
+	width:1000px;
+}
+
+#home_content{
     min-height:1450px;
 }
 
