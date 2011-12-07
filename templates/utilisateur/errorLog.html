@@ -1,7 +1,9 @@
 {% extends "layout/base.html" %}
 
 {% block content %}
-	{{erreur}}
+	<!--Si erreur s'affiche ici à encadrer de div-->
+	<div class="erreur_log">{{erreur}}</div>
+	
 	<form action="/user/login/" method="post">
 		<div id="login_input">
 			<p><label for="username">Login :</label><br/>

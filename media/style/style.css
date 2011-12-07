@@ -468,3 +468,11 @@ body {
 	text-shadow: 1px 1px 1px #666666;
 	margin-bottom:0px;
 }
+
+
+
+
+
+.erreur_log {
+	background-color:blue;
+}
