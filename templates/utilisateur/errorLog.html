@@ -2,20 +2,25 @@
 
 {% block content %}
 	<!--Si erreur s'affiche ici à encadrer de div-->
+<div id="block_connexion_erreur_log">	
+	<h2>Log in</h2>
 	<div class="erreur_log">{{erreur}}</div>
 	
-	<form action="/user/login/" method="post">
-		<div id="login_input">
+	<form action="/user/login/" method="post" class="form_connect">
+		<div class="login_input">
 			<p><label for="username">Login :</label><br/>
 			<input type="text" name="username" value="" id="username" size="15"></p>
 		</div>
 			    				
-		<div id="password_input">
+		<div class="password_input">
 			<p><label for="password">Password :</label><br>
 			<input type="password" name="password" value="" id="password" size="15">
 			<input type="hidden" name="next" value="{{next}}">
 			<input type="submit" value="login" /></p>
 		</div>
 	</form><br/>
-	<a href="#">forgotten password ?</a> <a href="#">S’inscrire</a>
+	<div class="data_connect">
+		<a href="#">Forgotten password ?</a> <a href="#">Sign in</a>
+	</div>
+</div>
 {% endblock content %}

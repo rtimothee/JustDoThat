@@ -2,50 +2,59 @@
 
 {% block content %}
 	
-	{# si le profil demandé n'existe pas#}
+	
+<div id="profile">
+	
+	<div id="top_profile"></div>	
+		
+	<!-- si le profil demandé n'existe pas -->
 	{% if error %}
 		{{ error }}
 		<strong>{{ requested_user }}</strong>
 	{% else %}
-		{{ user.id }}
-		{{user_to_display.id}}
-		{# si le user connecté est le même que le profil affiché, il peut modifier son profil#}
+	
+	<div id="profile_left">
+		<!--{{ user.id }}
+		{{user_to_display.id}}-->
+		
+		<!-- l'url de l'img -->
+		<div id="profile_avatar">
+			{{  user_to_display.get_profile.avatar }}
+		</div>
+		<!-- Pseudo de la personne -->
+		<h3 class="profile_pseudo">{{  user_to_display.get_profile.user.username }}</h3>
+		
+		<!-- si le user connecté est le même que le profil affiché, il peut modifier son profil-->
 		{% ifequal user.id user_to_display.id %}
 			<a  id="edit_profile_link" href="/user/edit-profile">Edit my profile</a><br/>
 		{% endifequal %}
 		
-		{# Pseudo de la personne #}
-		{{  user_to_display.get_profile.user.username }}
-		<br/>
-		
-		{# Dans le doute, l'email je me r'apelle plus si on l'affiche #}
+		<!-- Dans le doute, l'email je me r'apelle plus si on l'affiche -->
 		{{  user_to_display.get_profile.user.email }}
 		<br/>
 		
-		{# l'url de l'img #}
-		{{  user_to_display.get_profile.avatar }}
-		<br/>
-		
-		{# Nombre de points #}
+		<!-- Nombre de points -->
 		{{  user_to_display.get_profile.points }}
 		<br/>
 		
-		{# Je suggère une petite soustraction sur la date de naissance et la date actuelle pour afficher l'âge et pas forcement la date entiere#}
+		<!-- Je suggère une petite soustraction sur la date de naissance et la date actuelle pour afficher l'âge et pas forcement la date entiere -->
 		{{  user_to_display.get_profile.dateNaissance }}
 		<br/>
 		
-		{# Pays d'origine #}
+		<!-- Pays d'origine -->
 		{{  user_to_display.get_profile.pays }}
 		<br/>
 		
-		{# un IF pour déterminer si masculin ou feminin, j'ai mis du texte, je sais pas encore si ce sera un picto mais l'idée est là#}
+		<!-- un IF pour déterminer si masculin ou feminin, j'ai mis du texte, je sais pas encore si ce sera un picto mais l'idée est là-->
 		{% if user_to_display.get_profile.sexeM %}
 			<p>Masculin</p>
 		{% else %}
 			<p>Feminin</p>
 		{% endif %}
 		
-		{# Liste des defis releves #}
+	</div>
+	<div id="profile_center">	
+		<!-- Liste des defis releves -->
 	    {% for d_rel in defis_releves %}
 	        {{ d_rel.titre }}
 			{{ d_rel.description }}
@@ -58,7 +67,7 @@
 	        <br/>
 	    {% endfor %}
 	    
-		{# Liste des defis crees #}
+		<!-- Liste des defis crees -->
 	    {% for d_cre in defis_crees %}
 	        {{ d_cre.titre }}
 			{{ d_cre.description }}
@@ -70,12 +79,20 @@
 			{{ d_cre.categorie }}
 	        <br/>
 	    {% endfor %}
-	    
-		{# Liste des badges remportés #}
+	</div>
+	<div id="profile_right">    
+		<!-- Liste des badges remportés -->
 	    {% for b in badges %}
 	    	{{ b.photo }}
 	        {{ b.titre }}
 	        <br/>
 	    {% endfor %}
+	</div>
+
+	<div id="bottom_profile"></div>
+
 	{% endif %}
+
+</div>
+
 {% endblock %}

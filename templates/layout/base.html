@@ -17,7 +17,7 @@
 		        
 		        <div id="h_top">
 		            <div id="h_logo">	
-		            	<a href="#"><img src="{{ MEDIA_URL }}images/logo.png" alt="Logo" /></a>
+		            	<a href="http://localhost:8000/index/"><img src="{{ MEDIA_URL }}images/logo.png" alt="Logo" /></a>
 		            </div>    
 		            
 		            <div id="h_connexion">
@@ -27,24 +27,37 @@
 						<a href="#">forgotten password ?</a> <a href="#">S’inscrire</a>-->
 						<div id="log">
 				  			{% if user.is_authenticated %}
-							<p>tu es connecté <a href='/user/logout/'>Se déconnecter</a></p>
+				  			<div id="member_logue">
+								<!--<ul>
+									<li><a href="#">Community</a></li>
+									<li><a href="#">Challenges</a></li>
+									<li><a href="#">Dear !</a></li>
+									
+								</ul>-->
+								<ul>
+									<li><a href="http://localhost:8000/user/profile/{{user.username}}">{{ user.username }}</a></li>
+									<li><a href='/user/logout/'>Log out</a></li>
+								</ul>
+							</div>
 							{% else %}
-			  				<form action="/user/login/" method="post">
-			    				<div id="login_input">
-			    					<p><label for="username">Login :</label><br/>
-			    					<input type="text" name="username" value="" id="username" size="15"></p>
-			    				</div>
-			    				
-			    				<div id="password_input">
-			    					<p><label for="password">Password :</label><br>
-			    					<input type="password" name="password" value="" id="password" size="15">
-			    					<input type="hidden" name="next" value="{{request.path}}">
-			    					<input type="submit" value="login" /></p>
-			    					
-			    				</div>
-			    							    				
-			  				</form><br/>
-							<a href="#">forgotten password ?</a> <a href="#">S’inscrire</a>
+							<div id="member_non_logue">
+				  				<form action="/user/login/" method="post" class="form_connect">
+				    				<div class="login_input">
+				    					<p><label for="username">Login :</label><br/>
+				    					<input type="text" name="username" value="" id="username" size="15"></p>
+				    				</div>
+				    				
+				    				<div class="password_input">
+				    					<p><label for="password">Password :</label><br>
+				    					<input type="password" name="password" value="" id="password" size="15">
+				    					<input type="hidden" name="next" value="{{request.path}}">
+				    					<input type="submit" value="login" /></p>
+				    					
+				    				</div>
+				    							    				
+				  				</form>
+				  				<p><a href="#">Forgotten password ?</a> <a href="#">Sign in</a></p>
+							</div>
 							{% endif %}
 							
 				  		</div> 
@@ -57,7 +70,7 @@
 		    	<div id="m_content">
 		    		<ul id="menuLeft">
 		    			<li><img src="{{ MEDIA_URL }}images/btn_home.png" alt="" /><a href="#">HOME</a></li>
-		    			<li><img src="{{ MEDIA_URL }}images/btn_challenge.png" alt="" /><a href="#">CHALLENGE</a></li>
+		    			<li><img src="{{ MEDIA_URL }}images/btn_challenge.png" alt="" /><a href="#">CHALLENGES</a></li>
 		    			<li><img src="{{ MEDIA_URL }}images/btn_community.png" alt="" /><a href="#">COMMUNITY</a></li>
 		    		</ul>
 		    		

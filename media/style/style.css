@@ -56,20 +56,37 @@ body {
 	font-size:12px;
 	text-decoration:none;
 }
+#h_connexion a:hover {
+	color:#CCCCCC;
+	font-size:12px;
+	text-decoration:underline;
+}
 
-#h_connexion li{
+#h_connexion #member_non_logue li{
 	display:inline;
 }
 
-#login_input {
+#h_connexion #member_logue {
+	width:250px;
+	float:right;
+	text-align:right;	
+	margin-top:20px;
+}
+
+#h_connexion #member_logue li {
+	list-style:none;
+	margin-left:20px;
+	display:inline;
+}
+.login_input {
 	float:left;
 	width:135px;
-	height:60px;
+	height:50px;
 }
-#password_input {
+.password_input {
 	float:left;
 	width:175px;
-	height:60px;
+	height:50px;
 }
 #menu {
     height:50px;
@@ -125,7 +142,7 @@ body {
 	width:450px;
 	float:left;
 	margin-top:9px;
-	margin-left:100px;
+	margin-left:90px;
 	
 }
 #SearchForm img
@@ -471,8 +488,118 @@ body {
 
 
 
-
+/*
+ *  LOG : errorLog.html
+ */
 
 .erreur_log {
-	background-color:blue;
+	width:300px;
+	margin-top:10px;
+	padding:5px;
+	background-color:#ffcccc;
+	font-size:13px;
+	color:#ff3f00;
+	font-weight:bold;
+}
+.form_connect {
+	font-size:13px;
+}
+.data_connect {
+	width:300px;
+	height:15px;
+	font-size:12px;
+}
+.data_connect a {
+	color:#444;
+	text-decoration:none;
+}
+
+.data_connect a:hover {
+	color:#444;
+	text-decoration:underline;
+}
+
+.form_connect {
+	height:50px;
+	width:320px;
+	font-weight:bold;
+}
+
+.form_connect input {
+	margin-top:3px;
+}
+
+#block_connexion_erreur_log {
+	width:310px;
+	background-color:#f7f7f7;
+	padding:10px;
+	margin:auto;
+	margin-top:100px;
+	border:#CCC solid 1px;
+}
+
+#block_connexion_erreur_log h2 {
+	padding:0px;
+	margin:0px;
+	font-size:18px;
+	color:#16717e;
+}
+ 
+#block_connexion_erreur_log .form_connect {
+ 	color:#444;
+}
+
+
+
+
+
+/*
+ * 	PROFILE
+ *
+ */
+#profile {
+
+}
+#top_profile {
+	width:1000px;
+	height:30px;
+}
+#profile_left {
+	float:left;
+	width:189px;
+	min-height:300px;
+	border-right:#B5B5B5 1px solid;
+}
+
+#profile_left .profile_pseudo {
+	font-size:24px;
+	color:#2695a0;
+	margin:0px;
+	padding:0px;
+	font-weight:bold;
+}
+
+#profile_left #profile_avatar {
+	width:170px;
+	height:180px;
+	background-image:url(../images/profile_avatar.png);
+}
+
+#profile_center {
+	float:left;	
+	width:580px;
+	min-height:300px;
+	background-color:red;
+}
+#profile_right {
+	width:230px;
+	min-height:300px;
+	background-color:green;
+	float:left;
+}
+#bottom_profile {
+	width:1000px;
+	height:50px;
+	background-color:yellow;
+	clear:both;
 }
