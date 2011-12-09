@@ -182,7 +182,7 @@ body {
     margin:auto;
     margin-top:30px;
     box-shadow: 1px 1px 4px #666;
-    background-image:url(../images/diapo.png);
+    background-image:url(../images/pattern_back.png);
 }
 
 #ct_diapo_headline {
@@ -566,9 +566,11 @@ body {
 }
 #profile_left {
 	float:left;
-	width:189px;
+	width:188px;
 	min-height:300px;
 	border-right:#B5B5B5 1px solid;
+	font-size:14px;
+	color:#444444;
 }
 
 #profile_left .profile_pseudo {
@@ -587,19 +589,85 @@ body {
 
 #profile_center {
 	float:left;	
-	width:580px;
+	width:570px;
+	margin-left:20px;
 	min-height:300px;
-	background-color:red;
 }
+#profile_center #profile_trophies_back {
+	width:548px;
+	height:178px;
+	background-image:url(../images/pattern_back.png);
+	box-shadow: 1px 1px 5px #AAA;
+	padding-top:14px;
+}
+#profile_center #profile_trophies {
+	width:519px;
+	height:162px;
+	margin-left:14px;
+	background-color:white;
+	border:1px solid #CCC;
+}
+
+#profile_center #profile_trophies_headline {
+	width:144px;
+	height:44px;
+	position:absolute;
+	top:240px;
+	background-image:url(../images/profile_trophies_headline.png);
+	color:white;
+}
+#profile_center #profile_trophies_headline h2 {
+	font-size:18px;
+	margin-top:12px;
+	margin-left:15px;
+	text-shadow: 1px 1px 1px #666666;
+}
+
 #profile_right {
-	width:230px;
+	width:220px;
 	min-height:300px;
-	background-color:green;
 	float:left;
 }
+#profile_right #profile_badge_back {
+	width:217px;
+	height:348px;
+	background-image:url(../images/pattern_back.png);
+	box-shadow: 1px 1px 5px #AAA;
+	padding-top:12px;
+}
+#profile_right #profile_badge {
+	width:191px;
+	height:333px;
+	margin-left:12px;
+	border:1px solid #CCC;
+	background-color:white;
+}
+#profile_right #profile_badge_headline {
+	width:140px;
+	height:45px;
+	position:absolute;
+	top:240px;
+	background-image:url(../images/profile_badge_headline.png);
+	color:white;
+}
+#profile_right #profile_badge_headline h2 {
+	font-size:18px;
+	margin-top:12px;
+	margin-left:15px;
+	text-shadow: 1px 1px 1px #666666;
+}
+#profile_trophies p {
+	font-size:18px;
+	font-weight:bold;
+	color:#e0423f;
+	text-align:right;
+	padding-right:15px;
+}
+
+
+
 #bottom_profile {
 	width:1000px;
-	height:50px;
-	background-color:yellow;
+	height:10px;
 	clear:both;
 }

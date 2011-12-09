@@ -19,7 +19,7 @@
 		
 		<!-- l'url de l'img -->
 		<div id="profile_avatar">
-			{{  user_to_display.get_profile.avatar }}
+			<img src="{{  user_to_display.get_profile.avatar }}" />
 		</div>
 		<!-- Pseudo de la personne -->
 		<h3 class="profile_pseudo">{{  user_to_display.get_profile.user.username }}</h3>
@@ -30,30 +30,46 @@
 		{% endifequal %}
 		
 		<!-- Dans le doute, l'email je me r'apelle plus si on l'affiche -->
-		{{  user_to_display.get_profile.user.email }}
-		<br/>
-		
-		<!-- Nombre de points -->
-		{{  user_to_display.get_profile.points }}
-		<br/>
+		<p>Email: {{  user_to_display.get_profile.user.email }}</p>
 		
 		<!-- Je suggère une petite soustraction sur la date de naissance et la date actuelle pour afficher l'âge et pas forcement la date entiere -->
-		{{  user_to_display.get_profile.dateNaissance }}
+		<p>Born on: {{  user_to_display.get_profile.dateNaissance }}<br />
+				
+		<!-- un IF pour déterminer si masculin ou feminin, j'ai mis du texte, je sais pas encore si ce sera un picto mais l'idée est là-->
+		{% if user_to_display.get_profile.sexeM %}
+			Sex: Male
+		{% else %}
+			Sex: Female
+		{% endif %}
 		<br/>
 		
 		<!-- Pays d'origine -->
-		{{  user_to_display.get_profile.pays }}
-		<br/>
+		Lives in: {{ user_to_display.get_profile.pays }}
+		</p>
 		
-		<!-- un IF pour déterminer si masculin ou feminin, j'ai mis du texte, je sais pas encore si ce sera un picto mais l'idée est là-->
-		{% if user_to_display.get_profile.sexeM %}
-			<p>Masculin</p>
-		{% else %}
-			<p>Feminin</p>
-		{% endif %}
+		<p><a href=""><img src="{{ MEDIA_URL }}images/ft_facebook.png" alt="" /></a> <a href=""><img src="{{ MEDIA_URL }}images/ft_twitter.png" alt="" /></a> <a href=""><img src="{{ MEDIA_URL }}images/profile_btn_message.png" alt="" /></a></p>
+		
 		
 	</div>
 	<div id="profile_center">	
+		
+		<div id="profile_trophies_back">
+			<div id="profile_trophies_headline">
+				<h2>TROPHIES</h2>
+			</div>
+			
+			<div id="profile_trophies">
+				
+				<!-- Nombre de points -->
+				<p>{{  user_to_display.get_profile.points }} POINTS</p>
+		
+			</div>
+			
+		</div>
+		
+		
+		
+		
 		<!-- Liste des defis releves -->
 	    {% for d_rel in defis_releves %}
 	        {{ d_rel.titre }}
@@ -80,7 +96,18 @@
 	        <br/>
 	    {% endfor %}
 	</div>
-	<div id="profile_right">    
+	<div id="profile_right">   
+		
+		<div id="profile_badge_back">
+			<div id="profile_badge_headline">
+				<h2>BADGES</h2>
+			</div>
+			<div id="profile_badge">
+				
+			</div>
+			
+		</div>
+		 
 		<!-- Liste des badges remportés -->
 	    {% for b in badges %}
 	    	{{ b.photo }}
