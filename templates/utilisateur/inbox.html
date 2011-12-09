@@ -1,0 +1,15 @@
+{% extends "layout/base.html" %}
+
+{% block content %}
+	<ul>
+		{% for message in messages %}
+			<li class="challenge">
+				<a href="/user/conversation/{{message.emeteur}}/" title="{{message.emeteur}}">{{ message.emeteur }}</a> 
+
+				<a href="" title="">{{ message.message }}</a> 
+			
+			</li>
+			<br />
+		{% endfor %}
+	</ul>
+{% endblock content %}

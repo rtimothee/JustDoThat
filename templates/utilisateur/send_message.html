@@ -1,0 +1,12 @@
+{% extends "layout/base.html" %}
+
+{% block title %}Send a message{% endblock %}
+
+{% block content %}
+  <h1>Send a message</h1>
+
+  <form action="" method="post" enctype="multipart/form-data"> {% csrf_token %}
+      {{ message_form.as_p }}
+      <input type="submit" value="Send the message">
+  </form>
+{% endblock %}

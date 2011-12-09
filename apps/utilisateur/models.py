@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.conf import settings
+from datetime import datetime, date
 
 #-------------------------------UTILISATEUR--------------------------------    
 class Utilisateur(models.Model):
@@ -20,14 +21,14 @@ class Utilisateur(models.Model):
 
 #---------------------------MESSAGE PRIVE-----------------------------    
 class MessagePrive(models.Model):
-    message = models.TextField(max_length=45, null=False)
-    dateMessage = models.DateField(null=False)
-    lu = models.BooleanField(null=False)
-    emeteur = models.ForeignKey(User, related_name='messagePrive_emeteur') 
-    destinataire = models.ForeignKey(User, related_name='messagePrive_destinataire') 
+	dateMessage = models.DateTimeField(null=False,  default=datetime.today())
+	lu = models.BooleanField(null=False, default=0)
+	emeteur = models.ForeignKey(User, related_name='messagePrive_emeteur') 
+	destinataire = models.ForeignKey(User, related_name='messagePrive_destinataire') 
+	message = models.TextField(max_length=45, null=False)
     
-    def __unicode__(self):
-        return "%s %s" % (self.message, self.emeteur)
+	def __unicode__(self):
+		return "%s %s" % (self.message, self.emeteur)
 
 
 #------------------------------BADGE--------------------------------    

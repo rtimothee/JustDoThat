@@ -85,7 +85,7 @@ def create_challenge_view(request):
 					new_defi = Defi(**defi_form.cleaned_data)
 					new_defi.slug = slugify(new_defi.titre)
 					#creation du nouveau défi avec comme créateur l'utilisateur connecté
-					new_defi.createur_id = request.user.id
+					new_defi.createur = request.user.id
 					new_defi.save()
 					
 					return HttpResponseRedirect("/challenges/list_challenges/")
