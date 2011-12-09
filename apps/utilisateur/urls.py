@@ -6,7 +6,7 @@ urlpatterns = patterns('',
   url(r'^login/$',  login_view, name="login"),
   url(r'^logout/$',  logout_view, name="logout"),
   url(r'^register/$',  register_view, name="register"),
-  url(r'^delete/(?P<pseudo>[\w-]+)$', delete_account, name='delete_account'),
+  url(r'^delete_account/$', delete_account, name='delete_account'),
   url(r'^profile/(?P<pseudo>[\w-]+)',  display_profile, name="profile"),
   url(r'^edit-profile/$',  edit_profile, name="edit_profile"),
 )

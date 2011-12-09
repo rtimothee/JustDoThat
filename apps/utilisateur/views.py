@@ -64,21 +64,24 @@ def register_view(request):
     return render_to_response("utilisateur/register.html", {'user_form': user_form, 'utilisateur_form': utilisateur_form,}, context_instance=RequestContext(request))
 
 #----------------------- SUPPRESSION COMPTE --------------------
-def delete_account (request, pseudo):
-    user = User.objects.get(username=pseudo)
-    if request.method == 'GET' :
-        if request.GET['confirm'] == 'True':
-            #MAJ des défis
-            try : defi = Defi.objects.filter(createur=user).update(createur=User.objects.get(username='Anonymous'))
-            except Defi.DoesNotExist : pass
-            #suppression de l'utilisateur en Cascade
-            user.delete()
+def delete_account (request):
+    if request.user.is_authenticated(): 
+        user = request.user
+        if request.GET.get('confirm'):
+            if request.GET['confirm'] == 'True':
+                #MAJ des défis
+                try : defi = Defi.objects.filter(createur=user).update(createur=User.objects.get(username='Anonymous'))
+                except Defi.DoesNotExist : pass
+                #suppression de l'utilisateur en Cascade
+                user.delete()
             
-            #redirection vers l'accueil
-            return HttpResponseRedirect('/')
+                #redirection vers l'accueil
+                return HttpResponseRedirect('/')
+            else : return render_to_response('utilisateur/delete_account.html', {'user':user}, context_instance=RequestContext(request))
+        else : return render_to_response('utilisateur/delete_account.html', {'user':user}, context_instance=RequestContext(request))
         
-        
-    return render_to_response('utilisateur/delete_account.html', {'user':user}, context_instance=RequestContext(request))
+    else :
+        return render_to_response('utilisateur/error.html', {'user':user, 'error':'Access denied'}, context_instance=RequestContext(request))
 
 #-----------------------AFFICHAGE PROFIL------------------------------------
 def display_profile(request, pseudo):
