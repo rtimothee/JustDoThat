@@ -15,8 +15,8 @@ class Utilisateur(models.Model):
     pays = models.CharField(max_length=45, null=False)
     sexeM = models.BooleanField(null=False)
     
-    #def __unicode__(self):
-    #    return "%s %s" % (self.user.username, self.points)
+    def __unicode__(self):
+        return "%s %s" % (self.user.username, self.points)
 
 
 #---------------------------MESSAGE PRIVE-----------------------------    

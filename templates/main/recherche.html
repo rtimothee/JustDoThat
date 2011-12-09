@@ -1,9 +1,85 @@
 {% extends "layout/base.html" %}
 
-{% block recherche %}
+{% block content %}
+<script type="text/javascript" src="{{ MEDIA_URL }}js/jsuri-1.1.1.min.js"></script>
+<script type="text/javascript">
+	function changeValueGet(variable, contenu){
+		var uri = new Uri(window.location);
+		uri.replaceQueryParam(variable, contenu);
+		//Reload
+		window.location = uri.toString();  
+	}
+</script>
 <div>
-	<form action="results/" method="get">{% csrf_token %}
-	<p>{{ form }}<input type="submit" value="Ok" /></p>
+	<form action="" method="get">
+		{{form.as_p}}
+		<input type="submit" value="Recherche"/>
 	</form>
 </div>
-{% endblock recherche %}
+<div>
+	<h2>Defis</h2><br/>
+	{% if defis %}
+		<p>
+			Tri par : Nom <a href="#" onclick="changeValueGet('triDefi', 'Ncr')"> &lsaquo; </a> / <a href="#" onclick="changeValueGet('triDefi', 'Ndecr')"> &rsaquo; </a>
+			Date <a href="#" onclick="changeValueGet('triDefi', 'Dcr')"> &lsaquo; </a> / <a href="#" onclick="changeValueGet('triDefi', 'Ddecr')"> &rsaquo; </a>
+		</p>
+		<div>
+			{% for defi in defis.object_list %}
+				<p>{{defi.titre}} ({{defi.categorie.nom}})</p>
+			{% endfor %}
+		</div>
+		<div class="pagination">
+    		<span class="step-links">
+    	    	{% if defis.has_previous %}
+     	       	<a href="#" onclick="changeValueGet('pageD', '{{ defis.previous_page_number }}')">previous</a>
+     	   		{% endif %}
+
+        		<span class="current">
+        	    	Page {{ defis.number }} of {{ defis.paginator.num_pages }}.
+       	 		</span>
+
+        		{% if defis.has_next %}
+            	<a href="#" onclick="changeValueGet('pageD', '{{ defis.next_page_number }}')">next</a>
+        		{% endif %}
+    		</span>
+		</div>
+	{% else %}
+		<p>0 results</p>
+	{% endif %}
+	
+	
+	
+	<h2>Utilisateur</h2>
+	{% if utilisateurs %}
+		<p>
+			Tri par : Nom <a href="#" onclick="changeValueGet('triUser', 'Ncr')">  &lsaquo; </a> / <a href="#" onclick="changeValueGet('triUser', 'Ndecr')"> &rsaquo; </a>
+		</p>
+		<div>
+			{% for utilisateur in utilisateurs.object_list %}
+				<p>
+					{{utilisateur.username}} 
+					{{utilisateur.get_profile.points}}
+				</p>
+			{% endfor %}
+		</div>
+		<div class="pagination">
+    		<span class="step-links">
+        		{% if utilisateurs.has_previous %}
+            	<a href="#" onclick="changeValueGet('pageU', '{{ utilisateurs.previous_page_number }}')">previous</a>
+        		{% endif %}
+
+        		<span class="current">
+        	    	Page {{ utilisateurs.number }} of {{ utilisateurs.paginator.num_pages }}.
+        		</span>
+
+        		{% if utilisateurs.has_next %}
+            	<a href="#" onclick="changeValueGet('pageU', '{{ utilisateurs.next_page_number }}')">next</a>
+        		{% endif %}
+    		</span>
+		</div>
+	{% else %}
+		<p>0 results</p>
+	{% endif %}
+	
+</div>
+{% endblock content %}

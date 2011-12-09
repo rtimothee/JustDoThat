@@ -8,7 +8,9 @@ urlpatterns = patterns('',
   url(r'^register/$',  register_view, name="register"),
   url(r'^send_message/(?P<pseudo>[\w-]+)$',  send_message_view, name="send_message"),
   url(r'^inbox/$',  inbox_view, name="inbox"),
-  url(r'^conversation/(?P<pseudo>[\w-]+)$',  conversation_view, name="outbox"),
-  url(r'^delete/(?P<pseudo>[\w-]+)$', delete_account, name='delete_account'),
+  url(r'^conversation/(?P<pseudo>[\w-]+)/$',  conversation_view, name="outbox"),
+  url(r'^delete_account/$', delete_account, name='delete_account'),
+  url(r'^profile/(?P<pseudo>[\w-]+)',  display_profile, name="profile"),
+  url(r'^edit-profile/$',  edit_profile, name="edit_profile"),
 )
 
