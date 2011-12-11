@@ -36,6 +36,29 @@ DATABASES = {
     }
 }'''
 
+#Config BDD Marlene
+'''DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',   # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'IMAC3_ProjetDjango',           # Or path to database file if using sqlite3.
+        'USER': 'root',                         # Not used with sqlite3.
+        'PASSWORD': 'root',                     # Not used with sqlite3.
+        'HOST': '/Applications/MAMP/tmp/mysql/mysql.sock',                             # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': '3306',                             # Set to empty string for default. Not used with sqlite3.
+    }
+}'''
+
+#PROD !!!!!! -> ne pas supprimer
+'''DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'justdothat_bdd',
+        'USER': 'justdothat',
+        'PASSWORD': 'djangoforever',
+        'HOST': 'mysql.alwaysdata.com',
+    }
+}'''
+
 #ajoute votre config BDD
 '''DATABASES = {
     'default': {
@@ -86,6 +109,13 @@ MEDIA_URL = '/media/'
 
 IMAGE_UPLOAD_PATH = 'profile_pics'
 
+
+#PROD !!!
+#MEDIA_URL = 'http://justdothat.alwaysdata.net/media/'
+
+
+IMAGE_UPLOAD_PATH = os.path.join(MEDIA_ROOT, 'files/')
+>>>>>>> origin/master
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files

@@ -4,6 +4,7 @@ from django.forms.extras.widgets import SelectDateWidget
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from JustDoThat.apps.utilisateur.models import Utilisateur
+from JustDoThat.apps.utilisateur.models import MessagePrive
 from datetime import date
 
 class UserForm(UserCreationForm):
@@ -54,3 +55,11 @@ class UtilisateurForm(ModelForm):
 #            user.save()
 #        return user
 
+class MessageForm(ModelForm):
+    class Meta:
+        model = MessagePrive
+        exclude = ('dateMessage', 'lu', 'emeteur', 'destinataire',)
+		
+	def __init__(self,pseudo, *args, **kwargs):
+		super(MessageForm, self).__init__(*args, **kwargs)
+		self.fields['destinataire'] = CharField(max_length=45, null=False)
