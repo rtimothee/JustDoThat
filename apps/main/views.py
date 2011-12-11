@@ -6,11 +6,46 @@ from django.contrib.auth.models import User
 from django.db.models import Q
 from django.template import RequestContext
 from datetime import *
+from operator import itemgetter, attrgetter
 from django.shortcuts import render_to_response
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
+def compfreq(elem1,elem2):
+    if elem1[1]<elem2[1]:
+        return -1
+    if elem1[1]>elem2[1]:
+        return 1
+    return 0
+
 def index (request):
-    return render_to_response('main/index.html', context_instance=RequestContext(request))# Create your views here.
+	best_challengers = []
+	i = 0
+	for i in range(8): 
+		best_challengers.append(Utilisateur.objects.all().order_by("-points")[i])
+		i += 1
+
+
+	challenges = Defi.objects.all()
+	releves = []
+	best_challenges = []
+	best_challenges_final = []
+	populars = []
+	for c in challenges:
+		releves.append(c.nbreleve)
+	best_challenges = sorted(zip(challenges, releves))
+	best_challenges.sort(lambda x,y: cmp(x[1],y[1]), reverse=True)
+
+
+
+ 
+	# best_challenges.sort(compfreq, reverse=True)
+
+	j = 0
+	for j in range(4): 
+		best_challenges_final.append(best_challenges[j])
+		j += 4
+
+	return render_to_response('main/index.html', {'best_challenges': best_challenges_final, 'most_popular': populars, 'best_challengers': best_challengers}, context_instance=RequestContext(request))# Create your views here.
 
 def recherche (request):
     if request.method == 'GET':
