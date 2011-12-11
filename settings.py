@@ -113,9 +113,7 @@ IMAGE_UPLOAD_PATH = 'profile_pics'
 #PROD !!!
 #MEDIA_URL = 'http://justdothat.alwaysdata.net/media/'
 
-
-IMAGE_UPLOAD_PATH = os.path.join(MEDIA_ROOT, 'files/')
->>>>>>> origin/master
+IMAGE_UPLOAD_PATH = 'profile_pics'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
