@@ -12,10 +12,25 @@ class UserForm(UserCreationForm):
         model = User
         fields = ('username', 'email', )
 
+class EditUserForm(UserCreationForm):
+
+    class Meta:
+        model = User
+        fields = ('username', 'email', )
+    
+    def __init__(self, *args, **kwargs):
+        super(EditUserForm, self).__init__(*args, **kwargs)
+        instance = getattr(self, 'instance', None)
+        if instance and instance.id:
+            self.fields['username'].widget.attrs['readonly'] = True
+    
+    def clean_username(self):
+        return self.instance.username
+
 class UtilisateurForm(ModelForm):
     class Meta:
         model = Utilisateur
-        exclude = ('user',)
+        exclude = ('user', 'points',)
         
     #surcharge du constructeur pour changer l'affichage de la date de naissance
     def __init__(self, *args, **kwargs):
