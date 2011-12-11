@@ -11,7 +11,7 @@ class Defi(models.Model):
 	description = models.TextField(null=False)
 	debut = models.DateField(null=False, default=date.today())
 	fin = models.DateField(null=False)
-	photo = models.ImageField(upload_to=settings.IMAGE_UPLOAD_PATH, null=False, default="toto.jpeg")
+	photo = models.ImageField(upload_to=settings.IMAGE_UPLOAD_PATH, null=False)
 	liste = ((1,'Easy'), (2,'Normal'),(3,'Hard'), (4,'Very Hard'))    
 	difficulte = models.IntegerField(null=False, max_length=1, choices=liste)
 	categorie = models.ForeignKey('Categorie')

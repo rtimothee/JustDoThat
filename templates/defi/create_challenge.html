@@ -3,6 +3,9 @@
 {% block title %}Create a challenge{% endblock %}
 
 {% block content %}
+	{% if error %}
+		{{ error }}
+	{% else %}
 	{% if modif %}
 	 <h1>Modify a challenge</h1>
 	{% else %}
@@ -13,4 +16,5 @@
 	    {{ defi_form.as_p }}
     <p><input type="submit" value="Create" /></p>
   </form>
+	{% endif %}
 {% endblock %}

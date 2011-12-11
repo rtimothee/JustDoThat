@@ -12,11 +12,13 @@ from django.contrib.auth.views import login, logout
 from django.shortcuts import render_to_response
 from JustDoThat.apps.defi.tools import handle_uploaded_file
 from datetime import date
+from django.template import RequestContext
+from compiler.pycodegen import EXCEPT
 
 def challenges_view(request):
 	defis = Defi.objects.all()
 			
-	return render_to_response('defi/challenges.html', {'defis': defis})
+	return render_to_response('defi/challenges.html', {'defis': defis}, context_instance=RequestContext(request))
 	
 def modif_challenge_view(request, int):
 	defi  = Defi.objects.get(id=int)
@@ -30,11 +32,10 @@ def modif_challenge_view(request, int):
 		defi_form = DefiForm(instance = defi) 
 	
 	modif = True
-	return render_to_response('defi/create_challenge.html', {'defi_form': defi_form, 'modif': modif})
+	return render_to_response('defi/create_challenge.html', {'defi_form': defi_form, 'modif': modif}, context_instance=RequestContext(request))
   
 def display_challenge_view(request, int):
 		defi = Defi.objects.get(id=int)
-		
 		releves = Relever.objects.filter(defi = defi.id)
 		users = []
 		
@@ -64,7 +65,7 @@ def display_challenge_view(request, int):
 		if defi.difficulte == 4:
 			difficulte = 'Very Hard'
 
-		return render_to_response('defi/display_challenge.html', {'defi': defi, 'difficulty': difficulte, 'category':category.nom, 'users':users})
+		return render_to_response('defi/display_challenge.html', {'defi': defi, 'difficulty': difficulte, 'category':category.nom, 'users':users}, context_instance=RequestContext(request))
 
   
 def delete_challenge_view(request, int):
@@ -85,11 +86,11 @@ def create_challenge_view(request):
 					new_defi = Defi(**defi_form.cleaned_data)
 					new_defi.slug = slugify(new_defi.titre)
 					#creation du nouveau défi avec comme créateur l'utilisateur connecté
-					new_defi.createur_id = request.user.id
+					new_defi.createur = request.user
 					new_defi.save()
 					
 					return HttpResponseRedirect("/challenges/list_challenges/")
     else:
         defi_form = DefiForm()
         
-    return render_to_response("defi/create_challenge.html", {'defi_form': defi_form,})
+    return render_to_response("defi/create_challenge.html", {'defi_form': defi_form,}, context_instance=RequestContext(request))

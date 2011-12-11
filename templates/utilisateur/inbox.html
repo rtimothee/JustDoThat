@@ -1,0 +1,41 @@
+{% extends "layout/base.html" %}
+
+{% block content %}
+<script type="text/javascript" src="{{ MEDIA_URL }}js/jsuri-1.1.1.min.js"></script>
+<script type="text/javascript">
+
+	function changeValueGet(variable, contenu){
+		var uri = new Uri(window.location);
+		uri.replaceQueryParam(variable, contenu);
+		//Reload
+		window.location = uri.toString();  
+	}
+</script>
+	<ul>
+		{% for last_message in last_messages.object_list %}
+			<li class="challenge">
+				<a href="/user/conversation/{{ last_message.emeteur}}/" title="{{ last_message.emeteur}}">{{ last_message.emeteur}} {{ last_message.dateMessage}}
+				<br/>
+				{{ last_message.message }}</a> 
+			
+			</li>
+			<br />
+		{% endfor %}
+	</ul>
+	
+		<div class="pagination">
+    		<span class="step-links">
+        		{% if last_messages.has_previous %}
+            	<a href="#" onclick="changeValueGet('pageM', '{{ last_messages.previous_page_number }}')">previous</a>
+        		{% endif %}
+
+        		<span class="current">
+        	    	Page {{ last_messages.number }} of {{ last_messages.paginator.num_pages }}.
+        		</span>
+
+        		{% if last_messages.has_next %}
+            	<a href="#" onclick="changeValueGet('pageM', '{{ last_messages.next_page_number }}')">next</a>
+        		{% endif %}
+    		</span>
+		</div>
+{% endblock content %}

@@ -1,0 +1,44 @@
+{% extends "layout/base.html" %}
+
+{% block content %}
+<script type="text/javascript" src="{{ MEDIA_URL }}js/jsuri-1.1.1.min.js"></script>
+<script type="text/javascript">
+
+	function changeValueGet(variable, contenu){
+		var uri = new Uri(window.location);
+		uri.replaceQueryParam(variable, contenu);
+		//Reload
+		window.location = uri.toString();  
+	}
+</script>
+	<ul>
+		{% for message in messages.object_list %}
+			<li class="challenge">
+				<a href="/user/conversation/{{message.emeteur}}/" title="{{message.emeteur}}">{{ message.emeteur }} {{ message.dateMessage }}</a> 
+				
+				<a href="" title="">{{ message.message }}</a> 
+			
+			</li>
+			<br />
+		{% endfor %}
+	</ul>
+	<div class="pagination">
+    		<span class="step-links">
+        		{% if messages.has_previous %}
+            	<a href="#" onclick="changeValueGet('pageM', '{{ messages.previous_page_number }}')">previous</a>
+        		{% endif %}
+
+        		<span class="current">
+        	    	Page {{ messages.number }} of {{ messages.paginator.num_pages }}.
+        		</span>
+
+        		{% if messages.has_next %}
+            	<a href="#" onclick="changeValueGet('pageM', '{{ messages.next_page_number }}')">next</a>
+        		{% endif %}
+    		</span>
+		</div>
+	 <form action="" method="post" enctype="multipart/form-data"> {% csrf_token %}
+      {{ message_form.as_p }}
+      <input type="submit" value="Send the message">
+  </form>
+{% endblock content %}

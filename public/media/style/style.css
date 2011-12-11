@@ -15,10 +15,6 @@ body {
 	margin:0 auto;
     font-family:Trebuchet MS;
 }
-a img {
-	text-decoration:none;
-	border:none
-}
 
 #everything {
     background-image:url(../images/background.png);
@@ -107,8 +103,7 @@ a img {
 
 #m_content ul {
 	margin-top:6px;
-	padding-left:0;
-	margin-left:0;
+	padding-left:0px;
 }
 #m_content li {
 	display:inline;
@@ -144,7 +139,7 @@ a img {
 }
 #SearchForm
 {
-	width:440px;
+	width:450px;
 	float:left;
 	margin-top:9px;
 	margin-left:90px;
@@ -319,7 +314,7 @@ a img {
 #ct_challengers{
 	float:left;
 	width:650px;
-	height:300px;
+	min-height:300px;
 }
 
 #ct_challengers_headline {
@@ -374,7 +369,7 @@ a img {
 #ct_follow{
 	float:left;
 	width:230px;
-	height:300px;
+	min-height:300px;
 	margin-left:70px;
 }
 #ct_follow_headline {
@@ -432,9 +427,7 @@ a img {
 /* 
  * Footer 
  * */
-.clear {
-	clear:both;
-}
+
 #footer{
 	margin-top:20px;
     min-height:200px;
@@ -477,7 +470,6 @@ a img {
 	list-style-type: none; 
 	border-left:white 1px solid;
 	padding-left:10px;
-	margin-left:0;
 	font-size:14px;
 }
 #ft_right li {
@@ -618,7 +610,7 @@ a img {
 
 #profile_center #profile_trophies_headline {
 	width:144px;
-	height:42px;
+	height:44px;
 	position:absolute;
 	top:240px;
 	background-image:url(../images/profile_trophies_headline.png);
@@ -630,63 +622,6 @@ a img {
 	margin-left:15px;
 	text-shadow: 1px 1px 1px #666666;
 }
-#profile_trophies .points_profile {
-	font-size:18px;
-	font-weight:bold;
-	color:#e0423f;
-	text-align:right;
-	padding-right:15px;
-}
-#profile_center .trophie_div {
-	width:89px;
-	height:97px;
-	float:left;
-	margin-left:12px;
-}
-#profile_center .trophie_div p {
-	color:#b5b5b5;
-	font-size:12px;
-	padding:0;
-	margin:0;
-	margin-top:2px;
-}
-#profile_center img {
-	padding:5px;
-}
-#profile_center span {
-	vertical-align:top;
-}
-#profile_center #trophie_gold {
-	
-}
-#profile_center #trophie_silver {
-	
-}
-#profile_center #trophie_bronze {
-	
-}
-#profile_center #trophie_taken {
-	
-}
-#profile_center #trophie_given {
-	
-}
-.trophie_left {
-	float:left;
-	width:55px;
-}
-.number_right {
-	float:left;
-	margin-top:25px;
-}
-.trophie_border {
-	border-bottom:1px solid #CCC;
-	height:75px;
-}
-
-
-
-
 
 #profile_right {
 	width:220px;
@@ -721,7 +656,13 @@ a img {
 	margin-left:15px;
 	text-shadow: 1px 1px 1px #666666;
 }
-
+#profile_trophies p {
+	font-size:18px;
+	font-weight:bold;
+	color:#e0423f;
+	text-align:right;
+	padding-right:15px;
+}
 
 
 
