@@ -24,7 +24,6 @@ def index (request):
 		# best_challengers.append(Utilisateur.objects.all().order_by("-points")[i])
 		# i += 1
 
-
 	# challenges = Defi.objects.all()
 	# releves = []
 	# best_challenges = []
