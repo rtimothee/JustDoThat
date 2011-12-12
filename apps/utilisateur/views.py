@@ -9,10 +9,10 @@ from django.http import HttpResponseRedirect
 from django.views.generic.simple import direct_to_template
 from django.contrib.auth.views import login, logout
 from django.shortcuts import render_to_response
-from JustDoThat.apps.utilisateur.tools import handle_uploaded_file
 from django.template import RequestContext
 from compiler.pycodegen import EXCEPT
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 
 #------------------------LOGIN---------------------------------------------------------------------
 def login_view(request):
@@ -49,14 +49,12 @@ def register_view(request):
         
         #si les infos sont valides
         if user_form.is_valid() and utilisateur_form.is_valid():
-                #fonction gèrant l'upload de l'avatar
-                handle_uploaded_file(request.FILES['avatar'])
-                #creation du nouvel utilisateur
-                new_user = Utilisateur(**utilisateur_form.cleaned_data)
-                new_user.user = user_form.save()
-                new_user.save()
-                
-                return HttpResponseRedirect("/")
+            #creation du nouvel utilisateur
+            new_user = Utilisateur(**utilisateur_form.cleaned_data)
+            new_user.user = user_form.save()
+            new_user.save()
+            
+            return HttpResponseRedirect("/")
     else:
         #creation des formulaires
         user_form = UserForm()
@@ -202,22 +200,22 @@ def edit_profile(request):
     
         if request.method == 'POST':
             #recupération des informations du formulaire
-            user_form = UserForm(request.POST, instance=request.user)
+            user_form = EditUserForm(request.POST, instance=request.user)
             utilisateur_form = UtilisateurForm(request.POST, request.FILES, instance=request.user.get_profile())
             
             #si les infos sont valides
             if user_form.is_valid() and utilisateur_form.is_valid():
-                    #fonction gèrant l'upload de l'avatar
-                    handle_uploaded_file(request.FILES['avatar'])
+                user_form.save()
+                utilisateur_form.save()
                     #creation du nouvel utilisateur
-                    new_user = Utilisateur(**utilisateur_form.cleaned_data)
-                    new_user.user = user_form.save()
-                    new_user.save()
+#                    new_user = Utilisateur(**utilisateur_form.cleaned_data)
+#                    new_user.user = user_form.save()
+#                    new_user.save()
                     
-                    return HttpResponseRedirect("/")
+                return HttpResponseRedirect("/")
         else:
             #creation des formulaires
-            user_form = UserForm(instance=request.user)
+            user_form = EditUserForm(instance=request.user)
             utilisateur_form = UtilisateurForm(instance=request.user.get_profile())
             
         return render_to_response("utilisateur/edit_profile.html", {'user_form': user_form, 'utilisateur_form': utilisateur_form,}, context_instance=RequestContext(request))

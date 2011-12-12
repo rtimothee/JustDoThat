@@ -1,0 +1,673 @@
+@charset "utf-8";
+/* CSS Document */
+
+@font-face {
+    font-family: Trebuchet-MS-Bold;
+    src: url(../font/Trebuchet-MS-Bold.ttf);
+}
+
+@font-face {
+    font-family: Just-Way;
+    src: url(../font/JustTheWayYouAre.ttf);
+}
+
+body {
+	margin:0 auto;
+    font-family:Trebuchet MS;
+}
+
+#everything {
+    background-image:url(../images/background.png);
+}
+
+/* 
+ * Header 
+ * */
+
+#header01 {
+	background-image:url(../images/nav.png);
+
+}
+#header{
+	background-image:url(../images/header_sansBleu.png);
+	background-repeat:repeat-x;
+	height:140px;
+}
+#h_top{
+	width:1000px;
+    height:200px;
+	margin:auto;
+}
+
+#h_logo {
+    width:690px;
+    float:left;
+}
+
+#h_connexion{
+	color:#CCCCCC;
+	font-size:13px;
+	margin-top:20px;
+    width:310px;
+	float:left;
+}
+#h_connexion a {
+	color:#CCCCCC;
+	font-size:12px;
+	text-decoration:none;
+}
+#h_connexion a:hover {
+	color:#CCCCCC;
+	font-size:12px;
+	text-decoration:underline;
+}
+
+#h_connexion #member_non_logue li{
+	display:inline;
+}
+
+#h_connexion #member_logue {
+	width:250px;
+	float:right;
+	text-align:right;	
+	margin-top:20px;
+}
+
+#h_connexion #member_logue li {
+	list-style:none;
+	margin-left:20px;
+	display:inline;
+}
+.login_input {
+	float:left;
+	width:135px;
+	height:50px;
+}
+.password_input {
+	float:left;
+	width:175px;
+	height:50px;
+}
+#menu {
+    height:50px;
+    margin: 0;
+}
+
+#m_content {
+	width:1000px;
+    height:40px;
+	margin:auto;
+    font-size:20px;
+    color:white;
+}
+
+#m_content ul {
+	margin-top:6px;
+	padding-left:0px;
+}
+#m_content li {
+	display:inline;
+    /*filter:progid:DXImageTransform.Microsoft.Shadow(color='#aaaaaa', Direction=135, Strength=12);
+    zoom: 1;*/
+    /*box-shadow: 8px 8px 12px #555; */
+    text-shadow: 1px 1px 1px #666666;
+    padding-right:10px;
+}
+
+#m_content li img {
+	margin-bottom:-3px;
+}
+
+#m_content li a {
+	text-decoration:none;
+	padding:4px;
+	padding-left:6px;
+	padding-right:6px;
+	color:white;
+	margin-left:3px;
+}
+
+#m_content li a:hover {
+	background-image:url(../images/back_btn.png);
+	/*background-color:#2a9fa9;
+	box-shadow: 1px 1px 1px #666666;*/
+	padding:4px;
+	padding-left:6px;
+	padding-right:6px;
+	text-decoration:none;
+	color:white;
+}
+#SearchForm
+{
+	width:450px;
+	float:left;
+	margin-top:9px;
+	margin-left:90px;
+	
+}
+#SearchForm img
+{
+	float:right;
+}
+#menuLeft
+{
+	float: left;
+}
+
+#challenge_btn_div {
+
+}
+
+
+
+
+
+/* 
+ * Corps 
+ * */
+
+#content {
+	min-height:300px;
+	margin:auto;
+	width:1000px;
+}
+
+#home_content{
+    min-height:1450px;
+}
+
+#ct_diaporama {
+    width:1000px;
+    height:351px;
+    margin:auto;
+    margin-top:30px;
+    box-shadow: 1px 1px 4px #666;
+    background-image:url(../images/pattern_back.png);
+}
+
+#ct_diapo_headline {
+	height:60px;
+	width:150px;
+	position:absolute;
+	top:270px;
+	background-image:url(../images/head_diapo.png);
+	color:white;
+}
+
+#ct_register_btn {
+
+}
+
+#ct_diapo_headline h2 {
+	font-size:20px;
+	margin-left: 15px;
+	margin-top:15px;
+    text-shadow: 1px 1px 1px #000;
+}
+
+#ct_challenges{
+    width:1000px;
+	min-height:350px;
+	margin:auto;
+    margin-top:50px;
+}
+
+#ct_best_challenges{
+	float:left;
+	width:470px;
+	min-height:560px;
+}
+
+
+#ct_challenges_challenges {
+	margin-top:10px;	
+}
+
+.ct_challenges_challenge {
+	width:220px;
+	height:210px;
+	background-image:url(../images/challenge_back.png);
+	background-repeat:no-repeat;
+	float:left;
+	font-size:14px;
+	margin-top:15px;
+	color:#444444;
+}
+.ct_challenges_challenge h3 {
+	margin:0;
+	margin-top:3px;
+	margin-left:10px;
+}
+.ct_challenges_challenge p {
+	margin:0;
+	font-size:12px;
+	color:#a0b919;
+	font-weight:bold;
+	margin-left:10px;
+}
+.ct_challenges_challenge img {
+	margin-top:10px;
+	margin-left:10px;
+}
+.ct_challenges_challenge p img {
+	margin-left:0px;
+	margin-top:-2px;
+}
+.ct_challenge_data {
+	vertical-align:top;
+}
+.marginRight {
+	margin-right:27px;
+}
+
+
+#ct_best_challenges_headline {
+	background-image:url(../images/ct_header_challenges.png);
+	width:470px;
+	height:57px;
+	color:white;
+}
+
+#ct_best_challenges_headline h2 {
+	font-size:24px;
+	margin-left: 130px;
+    text-shadow: 1px 1px 1px #000;
+    padding-top:14px;
+    margin-top:0;
+}
+
+/* -- */
+
+#ct_most_popular{
+	float:left;
+	width:470px;
+	min-height:300px;
+	margin-left:55px;
+}
+#ct_most_popular_headline {
+	background-image:url(../images/ct_header_challenges_popular.png);
+	width:470px;
+	height:57px;
+	color:white;
+}
+
+#ct_most_popular_headline h2 {
+	font-size:24px;
+	margin-left: 120px;
+    text-shadow: 1px 1px 1px #000;
+    padding-top:14px;
+    margin-top:0;
+}
+
+
+/* -- */
+
+#ct_challengers_follow{
+	width:1000px;
+    margin:auto;
+    margin-top:10px;
+    height:300px;
+}
+
+/**/ 
+	
+#ct_challengers{
+	float:left;
+	width:650px;
+	min-height:300px;
+}
+
+#ct_challengers_headline {
+	background-image:url(../images/ct_header_challengers.png);
+	width:650px;
+	height:58px;
+	color:white;
+}
+
+#ct_challengers_headline h2 {
+	font-size:24px;
+	margin-left: 225px;
+    text-shadow: 1px 1px 1px #000;
+    padding-top:14px;
+    margin-top:0;
+}
+
+#ct_challengers_users {
+	margin-top:20px;
+}
+.ct_challengers_user {
+	width:140px;
+	height:195px;
+	background-image:url(../images/challenger_back.png);
+	background-repeat:no-repeat;
+	float:left;
+	margin-left:17px;
+	margin-top:15px;
+	font-size:14px;
+	color:#444444;
+}
+.ct_challengers_user h3 {
+	margin-bottom:0;
+	margin-left:1px;
+}
+.ct_challengers_user p {
+	padding:0;
+	margin:0;
+	font-size:12px;
+	color:#a0b919;
+	font-weight:bold;
+	margin-left:1px;
+}
+.ct_challengers_user img {
+	margin-top:10px;
+	margin-left:10px;
+}
+
+
+/* -- */
+
+#ct_follow{
+	float:left;
+	width:230px;
+	min-height:300px;
+	margin-left:70px;
+}
+#ct_follow_headline {
+	background-image:url(../images/ct_header_follow.png);
+	width:230px;
+	height:58px;
+	color:white;
+}
+
+#ct_follow_headline h2 {
+	font-size:24px;
+	margin-left: 45px;
+    text-shadow: 1px 1px 1px #000;
+    padding-top:14px;
+    margin-top:0;
+}
+
+#ct_follow_users {
+	margin-top:20px;
+}
+.ct_follow_user {
+	width:220px;
+	height:195px;
+	background-image:url(../images/follow_back.png);
+	background-repeat:no-repeat;
+	float:left;
+	margin-left:2px;
+	font-size:14px;
+	margin-top:15px;
+	color:#444444;
+}
+.ct_follow_user h3 {
+	margin-bottom:0;
+	margin-left:1px;
+}
+.ct_follow_user p {
+	padding:0;
+	margin:0;
+	font-size:12px;
+	color:#a0b919;
+	font-weight:bold;
+	margin-left:1px;
+}
+.ct_follow_user img {
+	margin-top:10px;
+	margin-left:10px;
+}
+
+
+
+
+
+
+
+/* 
+ * Footer 
+ * */
+
+#footer{
+	margin-top:20px;
+    min-height:200px;
+    background-image:url(../images/ft_background.png);
+}
+#ft_content {
+    width:1000px;
+    margin:auto;
+}
+#ft_left {
+    float:left;
+    width:240px;
+    font-size:13px;
+    color:white;
+    margin-top:40px;
+}
+#ft_left p {
+	padding-left:2px;
+}
+#ft_right {
+    margin-left:200px;
+    float:left;
+    color:white;
+    margin-top:30px;
+}
+#ft_r_01 {
+	width:160px;
+	float:left;
+	margin-left:50px;
+}
+#ft_r_02 {
+	width:160px;
+	float:left;
+}
+#ft_r_03 {
+	width:160px;
+	float:left;
+}
+#ft_right ul {
+	list-style-type: none; 
+	border-left:white 1px solid;
+	padding-left:10px;
+	font-size:14px;
+}
+#ft_right li {
+
+}
+#ft_right a {
+	text-decoration:none;
+	color:white;
+	text-shadow: 1px 1px 1px #666666;
+}
+#ft_right h3 {
+	font-family:Just-Way;
+	text-shadow: 1px 1px 1px #666666;
+	margin-bottom:0px;
+}
+
+
+
+/*
+ *  LOG : errorLog.html
+ */
+
+.erreur_log {
+	width:300px;
+	margin-top:10px;
+	padding:5px;
+	background-color:#ffcccc;
+	font-size:13px;
+	color:#ff3f00;
+	font-weight:bold;
+}
+.form_connect {
+	font-size:13px;
+}
+.data_connect {
+	width:300px;
+	height:15px;
+	font-size:12px;
+}
+.data_connect a {
+	color:#444;
+	text-decoration:none;
+}
+
+.data_connect a:hover {
+	color:#444;
+	text-decoration:underline;
+}
+
+.form_connect {
+	height:50px;
+	width:320px;
+	font-weight:bold;
+}
+
+.form_connect input {
+	margin-top:3px;
+}
+
+#block_connexion_erreur_log {
+	width:310px;
+	background-color:#f7f7f7;
+	padding:10px;
+	margin:auto;
+	margin-top:100px;
+	border:#CCC solid 1px;
+}
+
+#block_connexion_erreur_log h2 {
+	padding:0px;
+	margin:0px;
+	font-size:18px;
+	color:#16717e;
+}
+ 
+#block_connexion_erreur_log .form_connect {
+ 	color:#444;
+}
+
+
+
+
+
+/*
+ * 	PROFILE
+ *
+ */
+#profile {
+
+}
+#top_profile {
+	width:1000px;
+	height:30px;
+}
+#profile_left {
+	float:left;
+	width:188px;
+	min-height:300px;
+	border-right:#B5B5B5 1px solid;
+	font-size:14px;
+	color:#444444;
+}
+
+#profile_left .profile_pseudo {
+	font-size:24px;
+	color:#2695a0;
+	margin:0px;
+	padding:0px;
+	font-weight:bold;
+}
+
+#profile_left #profile_avatar {
+	width:170px;
+	height:180px;
+	background-image:url(../images/profile_avatar.png);
+}
+
+#profile_center {
+	float:left;	
+	width:570px;
+	margin-left:20px;
+	min-height:300px;
+}
+#profile_center #profile_trophies_back {
+	width:548px;
+	height:178px;
+	background-image:url(../images/pattern_back.png);
+	box-shadow: 1px 1px 5px #AAA;
+	padding-top:14px;
+}
+#profile_center #profile_trophies {
+	width:519px;
+	height:162px;
+	margin-left:14px;
+	background-color:white;
+	border:1px solid #CCC;
+}
+
+#profile_center #profile_trophies_headline {
+	width:144px;
+	height:44px;
+	position:absolute;
+	top:240px;
+	background-image:url(../images/profile_trophies_headline.png);
+	color:white;
+}
+#profile_center #profile_trophies_headline h2 {
+	font-size:18px;
+	margin-top:12px;
+	margin-left:15px;
+	text-shadow: 1px 1px 1px #666666;
+}
+
+#profile_right {
+	width:220px;
+	min-height:300px;
+	float:left;
+}
+#profile_right #profile_badge_back {
+	width:217px;
+	height:348px;
+	background-image:url(../images/pattern_back.png);
+	box-shadow: 1px 1px 5px #AAA;
+	padding-top:12px;
+}
+#profile_right #profile_badge {
+	width:191px;
+	height:333px;
+	margin-left:12px;
+	border:1px solid #CCC;
+	background-color:white;
+}
+#profile_right #profile_badge_headline {
+	width:140px;
+	height:45px;
+	position:absolute;
+	top:240px;
+	background-image:url(../images/profile_badge_headline.png);
+	color:white;
+}
+#profile_right #profile_badge_headline h2 {
+	font-size:18px;
+	margin-top:12px;
+	margin-left:15px;
+	text-shadow: 1px 1px 1px #666666;
+}
+#profile_trophies p {
+	font-size:18px;
+	font-weight:bold;
+	color:#e0423f;
+	text-align:right;
+	padding-right:15px;
+}
+
+
+
+#bottom_profile {
+	width:1000px;
+	height:10px;
+	clear:both;
+}

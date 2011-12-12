@@ -48,6 +48,19 @@ DATABASES = {
     }
 }'''
 
+
+#PROD !!!!!! -> ne pas supprimer
+'''DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'justdothat_bdd',
+        'USER': 'justdothat',
+        'PASSWORD': 'djangoforever',
+        'HOST': 'mysql.alwaysdata.com',
+    }
+}'''
+
+
 #ajoute votre config BDD
 '''DATABASES = {
     'default': {
@@ -96,7 +109,13 @@ MEDIA_ROOT = os.path.join(PROJECT_PATH, 'media/')
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
 MEDIA_URL = '/media/'
 
-IMAGE_UPLOAD_PATH = os.path.join(MEDIA_ROOT, 'files/')
+IMAGE_UPLOAD_PATH = 'profile_pics'
+
+
+#PROD !!!
+#MEDIA_URL = 'http://justdothat.alwaysdata.net/media/'
+
+IMAGE_UPLOAD_PATH = 'profile_pics'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
@@ -168,6 +187,7 @@ INSTALLED_APPS = (
     'JustDoThat.apps.utilisateur',
     'JustDoThat.apps.reponse',
     'JustDoThat.apps.main',
+    'easy_thumbnails',
 
 )
 

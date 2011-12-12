@@ -10,7 +10,7 @@ class Utilisateur(models.Model):
     
     #Ajout de nos champs perso
     avatar = models.ImageField(upload_to=settings.IMAGE_UPLOAD_PATH, null=False)
-    points = models.IntegerField(null=False)
+    points = models.IntegerField(null=True)
     dateNaissance = models.DateField(null=False)
     pays = models.CharField(max_length=45, null=False)
     sexeM = models.BooleanField(null=False)

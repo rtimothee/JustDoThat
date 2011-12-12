@@ -1,5 +1,5 @@
 {% extends "layout/base.html" %}
-
+{% load thumbnail %}
 {% block content %}
 	
 	
@@ -14,23 +14,23 @@
 	{% else %}
 	
 	<div id="profile_left">
-		<!--{{ user.id }}
-		{{user_to_display.id}}-->
-		
+
 		<!-- l'url de l'img -->
 		<div id="profile_avatar">
-			<img src="{{  user_to_display.get_profile.avatar }}" />
+			<img src="{% thumbnail user_to_display.get_profile.avatar 140x140 crop %}" />
 		</div>
-		<!-- Pseudo de la personne -->
-		<h3 class="profile_pseudo">{{  user_to_display.get_profile.user.username }}</h3>
 		
-		<!-- si le user connecté est le même que le profil affiché, il peut modifier son profil-->
+		<!-- Pseudo de la personne -->
+		<h3 class="profile_pseudo">{{  user_to_display.username }}</h3>
+	
+		<!-- si le user connecté est le même que le profil affiché, il peut modifier et supprimer son profil-->
 		{% ifequal user.id user_to_display.id %}
 			<a  id="edit_profile_link" href="/user/edit-profile">Edit my profile</a><br/>
+			<a  id="delete_profile_link" href="/user/delete-account/?confirm=false">Delete my account</a><br/>
 		{% endifequal %}
 		
 		<!-- Dans le doute, l'email je me r'apelle plus si on l'affiche -->
-		<p>Email: {{  user_to_display.get_profile.user.email }}</p>
+		<p>Email: {{  user_to_display.email }}</p>
 		
 		<!-- Je suggère une petite soustraction sur la date de naissance et la date actuelle pour afficher l'âge et pas forcement la date entiere -->
 		<p>Born on: {{  user_to_display.get_profile.dateNaissance }}<br />
@@ -132,8 +132,7 @@
 			{{ d_rel.description }}
 			{{ d_rel.debut }}
 			{{ d_rel.fin }}
-		    {{ d_rel.photo }}
-			{{ d_rel.liste }}    
+		    {{ d_rel.photo }}  
 			{{ d_rel.difficulte }}
 			{{ d_rel.categorie }}
 	        <br/>
@@ -145,8 +144,7 @@
 			{{ d_cre.description }}
 			{{ d_cre.debut }}
 			{{ d_cre.fin }}
-		    {{ d_cre.photo }}
-			{{ d_cre.liste }}    
+		    {{ d_cre.photo }}   
 			{{ d_cre.difficulte }}
 			{{ d_cre.categorie }}
 	        <br/>
