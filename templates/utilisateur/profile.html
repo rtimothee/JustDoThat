@@ -123,33 +123,65 @@
 			
 		</div>
 		
+		<div id="profile_challenges">
 		
-		
-		
-		<!-- Liste des defis releves -->
-	    {% for d_rel in defis_releves %}
-	        {{ d_rel.titre }}
-			{{ d_rel.description }}
-			{{ d_rel.debut }}
-			{{ d_rel.fin }}
-		    {{ d_rel.photo }}  
-			{{ d_rel.difficulte }}
-			{{ d_rel.categorie }}
-	        <br/>
-	    {% endfor %}
+			<div id="challenges_accepted">
+				<div class="challenges_headline">
+		    		<h2>TAKEN UP BY {{ user_to_display.get_profile.user.username }}</h2>
+		    	</div>
+		    	<!-- Liste des defis releves -->
+			    {% for d_rel in defis_releves %}
+			    <div class="profile_challenge">
+			        {{ d_rel.titre }}
+					{{ d_rel.description }}
+					{{ d_rel.debut }}
+					{{ d_rel.fin }}
+				    {{ d_rel.photo }}
+					{{ d_rel.liste }}    
+					{{ d_rel.difficulte }}
+					{{ d_rel.categorie }}
+			    </div>
+			    {% endfor %}
+		    </div>
+		    <div id="challenges_created">
+		    	<div class="challenges_headline">
+		    		<h2>CREATED BY {{ user_to_display.get_profile.user.username }}</h2>
+		    	</div>
+				<!-- Liste des defis crees -->
+				<div id="challenges_created_all">
+				    {% for d_cre in defis_crees %}
+				    <div class="profile_challenge">
+				    	<div class="profile_challenge_picture">
+				    		<!--<img src="{{ d_cre.photo }}" />-->
+				    		<a href="#"><img src="{{ MEDIA_URL }}images/profile_challenge_avatar.png" alt="" /></a>
+				    	</div>
+				    	<div class="profile_content_challenge">
+					        <h3 class="profile_titre_challenge">{{ d_cre.titre }}</h3>
+							<!--{{ d_cre.description }}-->
+							
+							<!--{{ d_cre.debut }}
+							{{ d_cre.fin }}-->
+						    
+							<!--{{ d_cre.liste }}  -->  
+							
+							<p><img src="{{ MEDIA_URL }}images/picto_chrono_challenge.png" alt="" /><span class="profile_challenge_timer"><!--03:04:05-->{{ d_cre.fin }}</span><br /> 
+							   <img src="{{ MEDIA_URL }}images/picto_avatar_challenge.png" alt="" /><span class="profile_challenge_members">22</span> <img src="{{ MEDIA_URL }}images/picto_eclair.png" alt=""/><span class="profile_challenge_difficulty">{{ d_cre.difficulte }}</span></p>
+							
+						</div>
+						<div class="clear"></div>
+						<div class="profile_challenge_info">
+							<span class="profile_challenge_author">By Lolote</span> <span class="profile_category">{{ d_cre.categorie }}</span>
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+		    </div>
 	    
-		<!-- Liste des defis crees -->
-	    {% for d_cre in defis_crees %}
-	        {{ d_cre.titre }}
-			{{ d_cre.description }}
-			{{ d_cre.debut }}
-			{{ d_cre.fin }}
-		    {{ d_cre.photo }}   
-			{{ d_cre.difficulte }}
-			{{ d_cre.categorie }}
-	        <br/>
-	    {% endfor %}
+	    </div>
+	    
 	</div>
+		
+		
 	<div id="profile_right">   
 		
 		<div id="profile_badge_back">
