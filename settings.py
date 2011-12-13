@@ -18,11 +18,22 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',   # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': 'IMAC3_ProjetDjango',           # Or path to database file if using sqlite3.
         'USER': 'root',                         # Not used with sqlite3.
-        'PASSWORD': '',                 # Not used with sqlite3.
         'HOST': '',                             # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                             # Set to empty string for default. Not used with sqlite3.
     }
 }
+
+#Config BDD Marlene
+'''DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',   # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'IMAC3_ProjetDjango',           # Or path to database file if using sqlite3.
+        'USER': 'root',                         # Not used with sqlite3.
+        'PASSWORD': 'root',                     # Not used with sqlite3.
+        'HOST': '/Applications/MAMP/tmp/mysql/mysql.sock',                             # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': '3306',                             # Set to empty string for default. Not used with sqlite3.
+    }
+}'''
 
 #Config BDD Marlene
 '''DATABASES = {
@@ -48,6 +59,18 @@ DATABASES = {
     }
 }
 '''
+
+#ajoute votre config BDD
+'''DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': '',                      # Or path to database file if using sqlite3.
+        'USER': '',                      # Not used with sqlite3.
+        'PASSWORD': '',                  # Not used with sqlite3.
+        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+    }
+}'''
 
 
 # Local time zone for this installation. Choices can be found here:
@@ -164,7 +187,6 @@ INSTALLED_APPS = (
     'JustDoThat.apps.reponse',
     'JustDoThat.apps.main',
     'easy_thumbnails',
-    'django.contrib.comments',
 
 )
 

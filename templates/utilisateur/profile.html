@@ -23,11 +23,6 @@
 		<!-- Pseudo de la personne -->
 		<h3 class="profile_pseudo">{{  user_to_display.username }}</h3>
 	
-		<!-- si le user connecté est le même que le profil affiché, il peut modifier et supprimer son profil-->
-		{% ifequal user.id user_to_display.id %}
-			<a  id="edit_profile_link" href="/user/edit-profile">Edit my profile</a><br/>
-			<a  id="delete_profile_link" href="/user/delete-account/?confirm=false">Delete my account</a><br/>
-		{% endifequal %}
 		
 		<!-- Dans le doute, l'email je me r'apelle plus si on l'affiche -->
 		<p>Email: {{  user_to_display.email }}</p>
@@ -48,9 +43,16 @@
 		</p>
 		
 		<p><a href=""><img src="{{ MEDIA_URL }}images/ft_facebook.png" alt="" /></a> <a href=""><img src="{{ MEDIA_URL }}images/ft_twitter.png" alt="" /></a> <a href=""><img src="{{ MEDIA_URL }}images/profile_btn_message.png" alt="" /></a></p>
+
+		<!-- si le user connecté est le même que le profil affiché, il peut modifier et supprimer son profil-->
+		{% ifequal user.id user_to_display.id %}
+			<a id="edit_profile_link" href="/user/edit-profile">> Edit my profile</a><br/>
+			<a id="delete_profile_link" href="/user/delete-account/?confirm=false">> Delete my account</a><br/>
+		{% endifequal %}
 		
 		
 	</div>
+
 	<div id="profile_center">	
 		
 		<div id="profile_trophies_back">
@@ -127,7 +129,7 @@
 		
 			<div id="challenges_accepted">
 				<div class="challenges_headline">
-		    		<h2>TAKEN UP BY {{ user_to_display.get_profile.user.username }}</h2>
+		    		<h2>TAKEN UP</h2>
 		    	</div>
 		    	<!-- Liste des defis releves -->
 			    {% for d_rel in defis_releves %}
@@ -145,7 +147,7 @@
 		    </div>
 		    <div id="challenges_created">
 		    	<div class="challenges_headline">
-		    		<h2>CREATED BY {{ user_to_display.get_profile.user.username }}</h2>
+		    		<h2>CREATED BY</h2>
 		    	</div>
 				<!-- Liste des defis crees -->
 				<div id="challenges_created_all">

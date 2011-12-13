@@ -574,18 +574,21 @@ a img {
 }
 #profile_left {
 	float:left;
-	width:188px;
+	width:170px;
+	padding-right:18px;
 	min-height:300px;
 	border-right:#B5B5B5 1px solid;
-	font-size:14px;
+	font-size:13px;
 	color:#444444;
 }
 
 #profile_left .profile_pseudo {
-	font-size:24px;
+	font-size:18px;
+	text-transform:uppercase;
 	color:#2695a0;
-	margin:0px;
-	padding:0px;
+	margin:0;
+	margin-top:5px;
+	padding:0;
 	font-weight:bold;
 }
 
@@ -594,6 +597,28 @@ a img {
 	height:180px;
 	background-image:url(../images/profile_avatar.png);
 }
+#profile_left #edit_profile_link {
+	text-decoration:none;
+	font-weight: bold;
+	color:#444;
+}
+#profile_left #edit_profile_link:hover {
+	text-decoration:underline;
+	font-weight: bold;
+	color:#444;
+}
+#profile_left #delete_profile_link {
+	text-decoration:none;
+	font-weight: bold;
+	color:#444;
+}
+#profile_left #delete_profile_link:hover {
+	text-decoration:underline;
+	font-weight: bold;
+	color:#444;
+}
+
+
 
 #profile_center {
 	float:left;	
