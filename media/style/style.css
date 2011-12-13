@@ -599,10 +599,6 @@ a img {
 	padding-left:13px;
 	padding-top:12px;
 }
-#profile_left #profile_avatar {
-
-}
-
 #profile_left #edit_profile_link {
 	text-decoration:none;
 	font-weight: bold;
@@ -847,3 +843,44 @@ a img {
 	height:10px;
 	clear:both;
 }
+
+
+
+
+/*
+ * 
+ * USER REGISTER
+ * 
+ */
+
+#registration {
+	width:600px;
+	background-color:#f7f7f7;
+	padding:10px;
+	margin:auto;
+	margin-top:30px;
+	margin-bottom:30px;
+	border:#CCC solid 1px;
+}
+
+#registration h2 {
+	padding:0px;
+	margin:0px;
+	font-size:18px;
+	color:#16717e;
+}
+ 
+#registration .form_registration {
+ 	color:#444;
+	font-size:13px;
+}
+#registration .form_registration label {
+	font-weight:bold;
+}
+
+/*#submitJoin {
+	background:transparent url(../images/btn_join.png);
+	width:79px;
+	height:49px;
+	border:none;
+}*/

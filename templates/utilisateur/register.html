@@ -3,11 +3,13 @@
 {% block title %}Create an account{% endblock %}
 
 {% block content %}
-  <h1>Create an account</h1>
+<div id="registration">
+  <h2>Sign in</h2>
 
-  <form action="" method="post" enctype="multipart/form-data"> {% csrf_token %}
+  <form action="" method="post" enctype="multipart/form-data" class="form_registration"> {% csrf_token %}
       {{ user_form.as_p }}
       {{ utilisateur_form.as_p }}
-      <input type="submit" value="Create the account">
+      <input type="submit" value="Join" id="submitJoin">
   </form>
+</div>
 {% endblock %}
