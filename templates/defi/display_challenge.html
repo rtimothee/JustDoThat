@@ -1,8 +1,9 @@
 {% extends "layout/base.html" %}
 
 {% block content %}
+	<p><a href="/challenges/list_challenges/" title="Voir tous les challenges"> Retour aux challenges </a></p>
 	<h2>{{ defi.titre }}</h2>
-	<img src='{{ defi.photo }}' alt='' />
+	<img src='{{ defi.photo }}' alt='picture' />
 	<ul>
 		<li>Category : {{ category }}</li>
 		<li>Description : {{ defi.description }}</li>
@@ -14,6 +15,14 @@
 		{% else %}
 		<p>Challenge over</p>
 		{% endif %}		
+		{% if createur %}
+		<ul class="modif_challenge">
+				<a href="/challenges/modif_challenge/{{defi.id}}/" title="{{defi.titre}}">Modify</a> 
+			</ul>
+		<ul class="delete_challenge">
+			<a href="/challenges/delete_challenge/{{defi.id}}/confirm/" title="{{defi.titre}}">Delete</a> 
+		</ul>
+		{% endif %}
 	</ul>
 <h3>Challengers</h3>	
 	<ul>

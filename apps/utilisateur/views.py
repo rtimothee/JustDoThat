@@ -135,6 +135,12 @@ def conversation_view(request, pseudo):
 		messages1 = MessagePrive.objects.filter(destinataire = request.user, emeteur=User.objects.get(username = pseudo)).order_by("id")
 		messages2 = MessagePrive.objects.filter(emeteur = request.user, destinataire=User.objects.get(username = pseudo)).order_by("id")
 		messages = messages1 | messages2
+		
+		for m in messages:
+			if m.lu == 0 :
+				if m.destinataire == request.user :
+					m.lu=1
+					m.save()
         
 		#Recuperation du numero de la page 
 		messagesP = Paginator(messages, 10)

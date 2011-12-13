@@ -4,6 +4,7 @@
 	<ul>
 		{% for defi in defis %}
 			<li class="challenge">
+				<img src='{{ defi.photo }}' alt='picture' />
 				<a href="/challenges/display_challenge/{{defi.id}}/" title="{{defi.titre}}">{{ defi.titre }}</a> 
 			<ul>
 				<p>Difficulty : {{ defi.difficulte }} </p>
@@ -13,13 +14,6 @@
 			</ul>
 			<ul>
 				<p>Number of challengers : {{ defi.nbreleve }} </p>
-			</ul>
-
-			<ul class="modif_challenge">
-				<a href="/challenges/modif_challenge/{{defi.id}}/" title="{{defi.titre}}">Modify</a> 
-			</ul>
-			<ul class="delete_challenge">
-				<a href="/challenges/delete_challenge/{{defi.id}}/" title="{{defi.titre}}">Delete</a> 
 			</ul>
 			</li>
 			<br />

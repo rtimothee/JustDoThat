@@ -11,12 +11,13 @@
 		window.location = uri.toString();  
 	}
 </script>
+<p><a href='/user/inbox/' title='inbox'>Back to the inbox</a></p>
 	<ul>
 		{% for message in messages.object_list %}
 			<li class="challenge">
-				<a href="/user/conversation/{{message.emeteur}}/" title="{{message.emeteur}}">{{ message.emeteur }} {{ message.dateMessage }}</a> 
-				
-				<a href="" title="">{{ message.message }}</a> 
+				<a href="/user/profile/{{message.emeteur}}/" title="{{message.emeteur}}">{{ message.emeteur }} </a> 
+				{{ message.dateMessage }}
+				{{ message.message }}
 			
 			</li>
 			<br />

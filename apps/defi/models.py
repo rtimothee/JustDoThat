@@ -22,11 +22,12 @@ class Defi(models.Model):
 		return "%s %s" % (self.titre, self.description)
 		
 	def time_left(self):
+
 		if self.fin <= date.today() :
 			tl = 'Challenge over'
 		else:
 			tl = self.fin - self.debut
-		
+
 		return "%s" % (tl)
 	timeleft = property(time_left)
 	

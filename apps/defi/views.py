@@ -28,17 +28,24 @@ def modif_challenge_view(request, int):
 			defi_form.save()
 			return HttpResponseRedirect('/challenges/list_challenges/') 
 
-	else: 
-		defi_form = DefiForm(instance = defi) 
+	else:
+		if defi.createur == request.user :
+			defi_form = DefiForm(instance = defi) 
+		else :
+			return HttpResponseRedirect('/') 
 	
 	modif = True
-	return render_to_response('defi/create_challenge.html', {'defi_form': defi_form, 'modif': modif}, context_instance=RequestContext(request))
+	return render_to_response('defi/create_challenge.html', {'defi_form': defi_form, 'modif': modif,'defi':int}, context_instance=RequestContext(request))
   
 def display_challenge_view(request, int):
 		defi = Defi.objects.get(id=int)
 		releves = Relever.objects.filter(defi = defi.id)
+		createur =0
 		users = []
-		
+
+		if defi.createur == request.user :
+			createur=1
+
 		for r in releves :
 			users.append(User.objects.get(id = r.utilisateur.id))
 			
@@ -65,13 +72,19 @@ def display_challenge_view(request, int):
 		if defi.difficulte == 4:
 			difficulte = 'Very Hard'
 
-		return render_to_response('defi/display_challenge.html', {'defi': defi, 'difficulty': difficulte, 'category':category.nom, 'users':users}, context_instance=RequestContext(request))
+		return render_to_response('defi/display_challenge.html', {'defi': defi, 'difficulty': difficulte, 'category':category.nom, 'users':users, 'createur':createur}, context_instance=RequestContext(request))
 
   
-def delete_challenge_view(request, int):
+def delete_challenge_view(request, int, delete):
 	defi = Defi.objects.get(id=int)
-	defi.delete()
-	return HttpResponseRedirect('/challenges/')
+	if delete=='sup':
+		if defi.createur == request.user :
+			defi.delete()
+			return HttpResponseRedirect('/challenges/list_challenges/') 
+		else :
+			return HttpResponseRedirect('/') 
+
+	return render_to_response('defi/delete_challenge.html', {'defi':int}, context_instance=RequestContext(request)) 
 
 def create_challenge_view(request):
     if request.method == 'POST':
