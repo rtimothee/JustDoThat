@@ -10,87 +10,98 @@
 		window.location = uri.toString();  
 	}
 </script>
-<div>
-	<form action="" method="get">
-		Search : {{form.demande}}
-		<fieldset>
-			<legend align="top">Challenge</legend>
-			Difficulty : {{form.difficulte}}<br/>
-			Category : {{form.categorie}}<br/>
-			Deadline : {{form.fin}}
-		</fieldset>
-		<input type="submit" value="Recherche"/>
-	</form>
-</div>
-
-<div>
-	<div id="ct_most_popular_headline">
-		<h2>CHALLENGES</h2>
+<div id="page_search">
+	<div>
+		<form action="" method="get" id="form_search">
+			<h1>Search : {{form.demande}}</h1>
+			<fieldset>
+				<legend align="top">Challenge</legend>
+				<p>Difficulty : {{form.difficulte}} <span class="search_margin_left">Category : {{form.categorie}}</span> <span class="search_margin_left"> Deadline : {{form.fin}}</span></p>
+			</fieldset>
+			<input type="submit" value="Recherche"/>
+		</form>
 	</div>
-	{% if defis %}
-	<p>
-		Tri par : Nom <a href="#" onclick="changeValueGet('triDefi', 'Ncr')"> &lsaquo; </a> / <a href="#" onclick="changeValueGet('triDefi', 'Ndecr')"> &rsaquo; </a>
-		Date <a href="#" onclick="changeValueGet('triDefi', 'Dcr')"> &lsaquo; </a> / <a href="#" onclick="changeValueGet('triDefi', 'Ddecr')"> &rsaquo; </a>
-	</p>
-	<div id="ct_challenges_challenges">
-		{% for defi in defis.object_list %}
-		<div class="ct_challenges_challenge">
-			<img src="{{defi.photo}}" alt="{{defi.titre}}" />
-			<h3>{{defi.titre}}</h3>
-			<p><img src="../media/images/picto_chrono.png" alt="" /><span class="ct_challenge_data">{{defi.timeleft}}</span> <img src="../media/images/picto_avatar.png" alt="" /><span class="ct_challenge_data">{{defi.nbreleve}}</span> <img src="../media/images/picto_eclair.png" alt=""/><span class="ct_challenge_data">{{defi.difficulte}}</span></p>
+
+
+	<div>
+		<div id="ct_most_popular_headline">
+			<h2>CHALLENGES</h2>
 		</div>
-		{% endfor %}
-		<div class="clear"></div>
+		{% if defis %}
+		<p>
+			Tri par : Nom <a href="#" onclick="changeValueGet('triDefi', 'Ncr')"> &lsaquo; </a> / <a href="#" onclick="changeValueGet('triDefi', 'Ndecr')"> &rsaquo; </a>
+			Date <a href="#" onclick="changeValueGet('triDefi', 'Dcr')"> &lsaquo; </a> / <a href="#" onclick="changeValueGet('triDefi', 'Ddecr')"> &rsaquo; </a>
+		</p>
+		<div id="ct_challenges_challenges">
+			{% for defi in defis.object_list %}
+			<div class="ct_challenges_challenge marginLR">
+				<div class="challenge_picture">
+					<img src="{{defi.photo}}" alt="{{defi.titre}}" />
+				</div>
+				<h3>{{defi.titre}}</h3>
+				<p><img src="{{MEDIA_URL}}/images/picto_chrono.png" alt="" /><span class="ct_challenge_data">{{defi.timeleft}}</span> <img src="{{MEDIA_URL}}/images/picto_avatar.png" alt="" /><span class="ct_challenge_data">{{defi.nbreleve}}</span> <img src="{{MEDIA_URL}}/images/picto_eclair.png" alt=""/><span class="ct_challenge_data">{{defi.difficulte}}</span></p>
+			</div>
+			{% endfor %}
+			<div class="clear"></div>
+		</div>
+		
+		<div class="pagination">
+	    	<span class="step-links">
+	        	{% if defis.has_previous %}
+	   	       	<a href="#" onclick="changeValueGet('pageD', '{{ defis.previous_page_number }}')">previous</a>
+	   	   		{% endif %}
+	
+	      		<span class="current">
+	      	    	Page {{ defis.number }} of {{ defis.paginator.num_pages }}.
+	   	 		</span>
+	
+	       		{% if defis.has_next %}
+	           	<a href="#" onclick="changeValueGet('pageD', '{{ defis.next_page_number }}')">next</a>
+	       		{% endif %}
+	   		</span>
+		</div>
 	</div>
-	<div class="pagination">
-    	<span class="step-links">
-        	{% if defis.has_previous %}
-   	       	<a href="#" onclick="changeValueGet('pageD', '{{ defis.previous_page_number }}')">previous</a>
-   	   		{% endif %}
-
-      		<span class="current">
-      	    	Page {{ defis.number }} of {{ defis.paginator.num_pages }}.
-   	 		</span>
-
-       		{% if defis.has_next %}
-           	<a href="#" onclick="changeValueGet('pageD', '{{ defis.next_page_number }}')">next</a>
-       		{% endif %}
-   		</span>
-	</div>
+	
 	{% else %}
 		<p>0 results</p>
 	{% endif %}
 	
 	
-	<div id="ct_challengers_headline">
-		<h2> CHALLENGERS</h2>
-	</div>
-	<p>
-		Tri par : Nom <a href="#" onclick="changeValueGet('triUser', 'Ncr')">  &lsaquo; </a> / <a href="#" onclick="changeValueGet('triUser', 'Ndecr')"> &rsaquo; </a>
-	</p>
-	{% if utilisateurs %}
-	<div id="ct_challengers_users">
-		{% for utilisateur in utilisateurs.object_list %}
-		<div class="ct_challengers_user">
-			<img src="{% thumbnail utilisateur.get_profile.avatar 120x120 crop %}" alt="{{utilisateur.username}}" />
-			<h3>{{utilisateur.username}}</h3>
-			<p>{{utilisateur.get_profile.points}} points</p>
+	<div>
+		<div id="ct_challengers_headline">
+			<h2> CHALLENGERS</h2>
 		</div>
-		{% endfor %}
-		<div class='clear'></div>
-	</div>
-	<div class="pagination">
-    	<span class="step-links">
-       		{% if utilisateurs.has_previous %}
-           	<a href="#" onclick="changeValueGet('pageU', '{{ utilisateurs.previous_page_number }}')">previous</a>
-       		{% endif %}
-          	<span class="current">
-        	   	Page {{ utilisateurs.number }} of {{ utilisateurs.paginator.num_pages }}.
-        	</span>
-        	{% if utilisateurs.has_next %}
-            	<a href="#" onclick="changeValueGet('pageU', '{{ utilisateurs.next_page_number }}')">next</a>
-        	{% endif %}
-    	</span>
+		<p>
+			Tri par : Nom <a href="#" onclick="changeValueGet('triUser', 'Ncr')">  &lsaquo; </a> / <a href="#" onclick="changeValueGet('triUser', 'Ndecr')"> &rsaquo; </a>
+		</p>
+		
+		{% if utilisateurs %}
+		<div id="ct_challengers_users">
+			{% for utilisateur in utilisateurs.object_list %}
+			<div class="ct_challengers_user">
+				<div class="challenger_picture">
+					<img src="{% thumbnail utilisateur.get_profile.avatar 120x120 crop %}" alt="{{utilisateur.username}}" />
+				</div>
+				<h3>{{utilisateur.username}}</h3>
+				<p>{{utilisateur.get_profile.points}} points</p>
+			</div>
+			{% endfor %}
+			<div class='clear'></div>
+		</div>
+		
+		<div class="pagination">
+	    	<span class="step-links">
+	       		{% if utilisateurs.has_previous %}
+	           	<a href="#" onclick="changeValueGet('pageU', '{{ utilisateurs.previous_page_number }}')">previous</a>
+	       		{% endif %}
+	          	<span class="current">
+	        	   	Page {{ utilisateurs.number }} of {{ utilisateurs.paginator.num_pages }}.
+	        	</span>
+	        	{% if utilisateurs.has_next %}
+	            	<a href="#" onclick="changeValueGet('pageU', '{{ utilisateurs.next_page_number }}')">next</a>
+	        	{% endif %}
+	    	</span>
+		</div>
 	</div>
 	{% else %}
 		<p>0 results</p>
