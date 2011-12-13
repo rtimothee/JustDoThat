@@ -878,6 +878,19 @@ a img {
 	font-weight:bold;
 }
 
+.errorlist li {
+	background-color:#ffcccc;
+	width:250px;
+	list-style:none;
+	padding:0;
+	color:red;
+	font-weight:bold;
+	padding:4px;
+	padding-left:6px;
+}
+.errorlist {
+	padding:0;
+}
 /*#submitJoin {
 	background:transparent url(../images/btn_join.png);
 	width:79px;
