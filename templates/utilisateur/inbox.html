@@ -14,6 +14,11 @@
 	<ul>
 		{% for last_message in last_messages.object_list %}
 			<li class="challenge">
+			{% if last_message.lu %}
+				<p>Lu</p>
+			{% else %}
+				<p>Pas lu</p>
+			{% endif %}
 				<a href="/user/conversation/{{ last_message.emeteur}}/" title="{{ last_message.emeteur}}">{{ last_message.emeteur}} {{ last_message.dateMessage}}
 				<br/>
 				{{ last_message.message }}</a> 

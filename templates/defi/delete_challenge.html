@@ -1,0 +1,6 @@
+{% extends "layout/base.html" %}
+
+{% block content %}
+	<p><a href="/challenges/display_challenge/{{ defi }}/" title="Back to the challenge"> Back to the challenge </a></p>
+	<p>Vous êtes sur de vouloir supprimer votre défi ? <a href='/challenges/delete_challenge/{{ defi }}/sup/'>oui</a>  / <a href='/challenges/display_challenge/{{ defi }}/'>Non</a></p>
+{% endblock %}
