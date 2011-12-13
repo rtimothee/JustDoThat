@@ -36,17 +36,6 @@ DATABASES = {
     }
 }'''
 
-#Config BDD Marlene
-'''DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',   # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'IMAC3_ProjetDjango',           # Or path to database file if using sqlite3.
-        'USER': 'root',                         # Not used with sqlite3.
-        'PASSWORD': 'root',                     # Not used with sqlite3.
-        'HOST': '/Applications/MAMP/tmp/mysql/mysql.sock',                             # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '3306',                             # Set to empty string for default. Not used with sqlite3.
-    }
-}'''
 
 
 #PROD !!!!!! -> ne pas supprimer
@@ -187,8 +176,8 @@ INSTALLED_APPS = (
     'JustDoThat.apps.utilisateur',
     'JustDoThat.apps.reponse',
     'JustDoThat.apps.main',
-    'easy_thumbnails',
-
+    'easy_thumbnails', 
+    'django.contrib.comments',
 )
 
 # A sample logging configuration. The only tangible logging
