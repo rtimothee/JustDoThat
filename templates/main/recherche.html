@@ -12,7 +12,13 @@
 </script>
 <div>
 	<form action="" method="get">
-		{{form.as_p}}
+		Search : {{form.demande}}
+		<fieldset>
+			<legend align="top">Challenge</legend>
+			Difficulty : {{form.difficulte}}<br/>
+			Category : {{form.categorie}}<br/>
+			Deadline : {{form.fin}}
+		</fieldset>
 		<input type="submit" value="Recherche"/>
 	</form>
 </div>
@@ -25,7 +31,7 @@
 		</p>
 		<div>
 			{% for defi in defis.object_list %}
-				<p>{{defi.titre}} ({{defi.categorie.nom}})</p>
+				<p><img src="{{defi.photo}}"/> {{defi.titre}} ({{defi.difficulte}}) nbParticipant : {{defi.nbreleve}} time left : {{defi.timeleft}}</p>
 			{% endfor %}
 		</div>
 		<div class="pagination">
@@ -56,9 +62,9 @@
 		</p>
 		<div>
 			{% for utilisateur in utilisateurs.object_list %}
-				<p>
-					{{utilisateur.username}} 
-					{{utilisateur.get_profile.points}}
+				<p><img src="{{utilisateur.get_profile.avatar}}"/>
+					{{utilisateur.username}}  
+					nbPoints : {{utilisateur.get_profile.points}} 
 				</p>
 			{% endfor %}
 		</div>
