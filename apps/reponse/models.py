@@ -1,13 +1,15 @@
 from django.db import models
 from django.contrib.auth.models import User
 from JustDoThat.apps.defi.models import Defi
+from django.conf import settings
+from datetime import date
 
 #-------------------------------REPONSE--------------------------------    
 class Reponse(models.Model):
     slug = models.SlugField(max_length=100,null=False)
     message = models.TextField()
-    date_reponse = models.DateField(null=False)
-    photo = models.URLField(null=False)
+    date_reponse = models.DateField(null=False, default=date.today())
+    photo = models.ImageField(upload_to=settings.IMAGE_UPLOAD_PATH, null=False)
     notification = models.BooleanField(null=False)
     defi = models.ForeignKey(Defi)
     utilisateur = models.ForeignKey(User)

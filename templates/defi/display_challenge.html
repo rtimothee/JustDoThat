@@ -33,4 +33,45 @@
 			<br />
 		{% endfor %}
 	</ul>
+<h3>Repondre à un défi</h3>
+
+  <form action="" method="post" enctype="multipart/form-data"> {% csrf_token %}
+    
+      {{ Reponse_form.as_p }}
+      <input type="submit" value="Repondre à un défi">
+  </form>
+  
+  {% for reponse in reponses %}
+			<li class="challenge">
+				<a href="/challenges/display_challenge/{{defi.id}}/" title="{{defi.titre}}">{{ defi.titre }}</a> 
+			<ul>
+			
+				<p>Difficulty : {{ reponse.message }} </p>
+			</ul>
+			<ul>
+				<p>Date réponse : {{ reponse.date_reponse }} </p>
+			</ul>
+
+			<ul class="modif_challenge">
+				<a class="test" href="/challenges/modif_reponse/{{reponse.id}}/" title="{{reponse.id}}">Modify</a> 
+				<script>
+            jQuery('a.test').colorbox();
+        		</script>
+			</ul>
+			<ul class="delete_challenge">
+				<a  href="/challenges/delete_reponse/{{reponse.id}}/" title="{{reponse.id}}">Delete</a> 
+					
+			</ul>
+			</li>
+			<br />
+			
+			{% load comments %}
+			
+
+			{% render_comment_form for reponse %}
+
+			{% render_comment_list for reponse %}
+			
+  {% endfor %}	
 {% endblock content %}
+

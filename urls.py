@@ -12,6 +12,8 @@ urlpatterns = patterns('',
     (r'', include('JustDoThat.apps.main.urls')),
     (r'^user/', include('JustDoThat.apps.utilisateur.urls')),
 	(r'^challenges/', include('JustDoThat.apps.defi.urls')),
+    (r'^reponses/', include('JustDoThat.apps.reponse.urls')),
+    (r'^comments/', include('django.contrib.comments.urls')),
 )
 
 urlpatterns += patterns('',
