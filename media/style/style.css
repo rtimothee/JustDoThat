@@ -593,10 +593,16 @@ a img {
 }
 
 #profile_left #profile_avatar {
-	width:170px;
-	height:180px;
+	width:160px;
+	height:165px;
 	background-image:url(../images/profile_avatar.png);
+	padding-left:13px;
+	padding-top:12px;
 }
+#profile_left #profile_avatar {
+
+}
+
 #profile_left #edit_profile_link {
 	text-decoration:none;
 	font-weight: bold;
