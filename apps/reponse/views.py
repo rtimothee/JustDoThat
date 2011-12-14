@@ -84,5 +84,5 @@ def notation_view(request, userNotation, note_user, rep):
     else :
         statut = 'already vote'
     #recuperation de la nouvelle note
-    note = Noter.objects.filter(reponse = model_reponse, note = True).count() - Noter.objects.filter(reponse = model_reponse, note = False).count()
+    note = model_reponse.note
     return render_to_response("reponse/ajax.html", {'note': note,'statut': statut})

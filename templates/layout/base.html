@@ -11,6 +11,16 @@
     <title>Just do that</title>            
   </head>
   <body>
+  	
+  	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/fr_FR/all.js#xfbml=1";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
+  	
 	<div id="everything">
 
 		<div id="header01">
@@ -113,7 +123,7 @@
 		    	<div id="ft_left">
 		    		<a href=""><img src="{{ MEDIA_URL }}images/ft_logo.png" alt="" /></a>
 		    		<p>Our goal? Ensure that you have fun by challenging your friends through the most incredible challenges.</p>
-		    		<a href=""><img src="{{ MEDIA_URL }}images/ft_facebook.png" alt="" /></a> <a href=""><img src="{{ MEDIA_URL }}images/ft_twitter.png" alt="" /></a>
+		    		<a href="http://www.facebook.com/jdt.challenges"><img src="{{ MEDIA_URL }}images/ft_facebook.png" alt="" /></a> <a href="http://twitter.com/#!/_justdothat"><img src="{{ MEDIA_URL }}images/ft_twitter.png" alt="" /></a>
 		    	</div>
 		    	
 		    	<div id="ft_right">

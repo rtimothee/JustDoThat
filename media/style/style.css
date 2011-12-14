@@ -635,7 +635,7 @@ a img {
 	background:transparent url(../images/btn_join_over.png);
 }
 .helptext {
-
+	display:none;
 }
 
 

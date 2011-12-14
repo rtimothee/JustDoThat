@@ -7,7 +7,7 @@
             {% if field.is_hidden %}
                 {{ field }}
             {% else %}
-                {% if field.name != "name" and field.name != "email" and field.name != "url" %}
+                {% if field.name != "name" and field.name != "email" and field.name != "url" and field.name != "honeypot" %}
                     {% if field.errors %}{{ field.errors }}{% endif %}
                     {{ field }}
                 {% endif %}
