@@ -1,6 +1,25 @@
 {% extends "layout/base.html" %}
 
 {% block content %}
+	<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+   			$(".vote").click(function (e) {
+     			adresse=($(this).attr("href")); // on recuperer l' adresse du lien
+				$.ajax({ // ajax
+					url: adresse, // url de la page à charger
+					cache: false, // pas de mise en cache
+					success:function(html){ // si la requête est un succès 
+						alert(html);
+					},
+					error:function(XMLHttpRequest, textStatus, errorThrows){ // erreur durant la requete
+						alert("erreur");
+					}
+				});
+     			return false;
+   			});
+ 		});
+	</script>
 	<p><a href="/challenges/list_challenges/" title="Voir tous les challenges"> Retour aux challenges </a></p>
 	<h2>{{ defi.titre }}</h2>
 	<img src='{{ defi.photo }}' alt='picture' />
@@ -55,7 +74,12 @@
 				<p>Date réponse : {{ reponse.date_reponse }} </p>
 			</ul>
 			<ul>
-				<p>note : {{ reponse.note }}</p>
+				<p>note : {{ reponse.note }} 
+					{% if user.is_authenticated %}
+						<a href="http://localhost:8000/reponses/notation_ajax/{{ user.id }}/1/{{ reponse.id }}/" class="vote">+</a> 
+						<a href="http://localhost:8000/reponses/notation_ajax/{{ user.id }}/0/{{ reponse.id }}/" class="vote">-</a>
+					{% endif %}
+				</p>
 			</ul>
 
 			<ul class="modif_challenge">
