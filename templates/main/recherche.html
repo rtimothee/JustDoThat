@@ -27,7 +27,7 @@
 		<div id="ct_most_popular_headline">
 			<h2>CHALLENGES</h2>
 		</div>
-		{% if defis %}
+		{% if defis.object_list %}
 		<p>
 			Tri par : Nom <a href="#" onclick="changeValueGet('triDefi', 'Ncr')"> &lsaquo; </a> / <a href="#" onclick="changeValueGet('triDefi', 'Ndecr')"> &rsaquo; </a>
 			Date <a href="#" onclick="changeValueGet('triDefi', 'Dcr')"> &lsaquo; </a> / <a href="#" onclick="changeValueGet('triDefi', 'Ddecr')"> &rsaquo; </a>
@@ -71,11 +71,12 @@
 		<div id="ct_challengers_headline">
 			<h2> CHALLENGERS</h2>
 		</div>
+		
+		{% if utilisateurs.object_list %}
 		<p>
 			Tri par : Nom <a href="#" onclick="changeValueGet('triUser', 'Ncr')">  &lsaquo; </a> / <a href="#" onclick="changeValueGet('triUser', 'Ndecr')"> &rsaquo; </a>
 		</p>
 		
-		{% if utilisateurs %}
 		<div id="ct_challengers_users">
 			{% for utilisateur in utilisateurs.object_list %}
 			<div class="ct_challengers_user">
