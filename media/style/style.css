@@ -726,6 +726,9 @@ a img {
 	padding-top:0;
 	padding-bottom:0;
 }
+#creation_challenge h2 {
+	padding-top:10px;
+}
 #creation_challenge #create {
 	background:transparent url(../images/btn_create.png);
 	width:92px;
