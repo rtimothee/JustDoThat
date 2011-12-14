@@ -15,10 +15,12 @@
 		<form action="" method="get" id="form_search">
 			<h1>Search : {{form.demande}}</h1>
 			<fieldset>
-				<legend align="top">Challenge</legend>
+				<h2>Challenge</h2>
 				<p>Difficulty : {{form.difficulte}} <span class="search_margin_left">Category : {{form.categorie}}</span> <span class="search_margin_left"> Deadline : {{form.fin}}</span></p>
 			</fieldset>
-			<input type="submit" value="Recherche"/>
+			<h1>
+				<input type="submit" value="" id="search_submit" />
+			</h1>
 		</form>
 	</div>
 

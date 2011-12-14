@@ -608,11 +608,18 @@ a img {
 .errorlist {
 	padding:0;
 }
-/*#submitJoin {
+#submitJoin {
 	background:transparent url(../images/btn_join.png);
-	width:79px;
-	height:49px;
+	width:65px;
+	height:35px;
 	border:none;
-}*/
+	cursor:pointer;
+}
+#submitJoin:hover {
+	background:transparent url(../images/btn_join_over.png);
+}
+.helptext {
+
+}
 
 

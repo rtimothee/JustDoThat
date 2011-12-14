@@ -59,6 +59,15 @@
 	margin-top:30px;
 	margin-bottom:40px;
 }
+#page_search #form_search h2 {
+	padding:0px;
+	margin:0px;
+	font-size:18px;
+	color:#16717e;
+}
+#page_search #form_search fieldset {
+	padding:15px;
+}
 #page_search #form_search label {
 	font-weight:bold;
 }
@@ -91,10 +100,18 @@
 	-moz-box-shadow: inset rgba(0,0,0, 0.3) 0px 0px 1px;
 	-webkit-box-shadow: inset rgba(0,0,0, 0.3) 0px 0px 2px;
 }
-
-
-
 .align_center {
 	text-align:center;
 }
-
+#page_search #form_search #search_submit {
+	background:transparent url(../images/search_btn.png);
+	width:90px;
+	height:40px;
+	border:none;
+	margin:auto;
+	cursor:pointer;
+}
+#page_search #form_search #search_submit:hover {
+	background:transparent url(../images/search_btn_over.png);
+	
+}
