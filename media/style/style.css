@@ -5,12 +5,10 @@
     font-family: Trebuchet-MS-Bold;
     src: url(../font/Trebuchet-MS-Bold.ttf);
 }
-
 @font-face {
     font-family: Just-Way;
     src: url(../font/JustTheWayYouAre.ttf);
 }
-
 body {
 	margin:0 auto;
     font-family:Trebuchet MS;
@@ -19,7 +17,6 @@ a img {
 	text-decoration:none;
 	border:none
 }
-
 #everything {
     background-image:url(../images/background.png);
 }
@@ -42,12 +39,10 @@ a img {
     height:200px;
 	margin:auto;
 }
-
 #h_logo {
     width:670px;
     float:left;
 }
-
 #h_connexion{
 	color:#CCCCCC;
 	font-size:13px;
@@ -65,18 +60,15 @@ a img {
 	font-size:12px;
 	text-decoration:underline;
 }
-
 #h_connexion #member_non_logue li{
 	display:inline;
 }
-
 #h_connexion #member_logue {
 	width:250px;
 	float:right;
 	text-align:right;	
 	margin-top:20px;
 }
-
 #h_connexion #member_logue li {
 	list-style:none;
 	margin-left:20px;
@@ -92,11 +84,26 @@ a img {
 	width:185px;
 	height:50px;
 }
+#username, #password {
+	margin-top:6px;
+	
+	padding: 2px 2px 2px 4px;
+	border: 2px solid #333;
+	background-color:#444;
+	color:#CCC;
+	
+	-webkit-border-radius: 0.5em;
+	-moz-border-radius: 0.5;
+	border-radius: 0.5em;
+  
+	box-shadow: inset rgba(0,0,0, 0.3) 0px 0px 1px;
+	-moz-box-shadow: inset rgba(0,0,0, 0.3) 0px 0px 1px;
+	-webkit-box-shadow: inset rgba(0,0,0, 0.3) 0px 0px 2px;
+}
 #menu {
     height:50px;
     margin: 0;
 }
-
 #m_content {
 	width:1000px;
     height:40px;
@@ -104,7 +111,6 @@ a img {
     font-size:20px;
     color:white;
 }
-
 #m_content ul {
 	margin-top:6px;
 	padding-left:0;
@@ -118,11 +124,9 @@ a img {
     text-shadow: 1px 1px 1px #666666;
     padding-right:10px;
 }
-
 #m_content li img {
 	margin-bottom:-3px;
 }
-
 #m_content li a {
 	text-decoration:none;
 	padding:4px;
@@ -131,11 +135,8 @@ a img {
 	color:white;
 	margin-left:3px;
 }
-
 #m_content li a:hover {
 	background-image:url(../images/back_btn.png);
-	/*background-color:#2a9fa9;
-	box-shadow: 1px 1px 1px #666666;*/
 	padding:4px;
 	padding-left:6px;
 	padding-right:6px;
@@ -148,7 +149,6 @@ a img {
 	float:left;
 	margin-top:9px;
 	margin-left:90px;
-	
 }
 #SearchForm img
 {
@@ -158,11 +158,24 @@ a img {
 {
 	float: left;
 }
-
 #challenge_btn_div {
 
 }
-
+/* champ recherche */
+#demande {
+	padding: 5px 5px 5px 5px;
+	border: 2px solid #198691;
+	background-color:#2fa1ac;
+	color:#444;
+	
+	-webkit-border-radius: 0.5em;
+	-moz-border-radius: 0.5;
+	border-radius: 0.5em;
+  
+	box-shadow: inset rgba(0,0,0, 0.3) 0px 0px 1px;
+	-moz-box-shadow: inset rgba(0,0,0, 0.3) 0px 0px 1px;
+	-webkit-box-shadow: inset rgba(0,0,0, 0.3) 0px 0px 2px;
+}
 
 
 
@@ -270,7 +283,7 @@ a img {
 
 
 #ct_best_challenges_headline {
-	background-image:url(../images/ct_header_challenges.png);
+	background-image:url(../images/ct_header_best_challenges.png);
 	width:470px;
 	height:57px;
 	color:white;
@@ -524,22 +537,18 @@ a img {
 	color:#444;
 	text-decoration:none;
 }
-
 .data_connect a:hover {
 	color:#444;
 	text-decoration:underline;
 }
-
 .form_connect {
 	height:50px;
 	width:330px;
 	font-weight:bold;
 }
-
 .form_connect input {
 	margin-top:3px;
 }
-
 #block_connexion_erreur_log {
 	width:310px;
 	background-color:#f7f7f7;
@@ -548,307 +557,15 @@ a img {
 	margin-top:100px;
 	border:#CCC solid 1px;
 }
-
 #block_connexion_erreur_log h2 {
 	padding:0px;
 	margin:0px;
 	font-size:18px;
 	color:#16717e;
 }
- 
 #block_connexion_erreur_log .form_connect {
  	color:#444;
 }
-
-
-
-
-
-/*
- * 	PROFILE
- *
- */
-#profile {
-
-}
-#top_profile {
-	width:1000px;
-	height:30px;
-}
-#profile_left {
-	float:left;
-	width:170px;
-	padding-right:18px;
-	min-height:300px;
-	border-right:#B5B5B5 1px solid;
-	font-size:13px;
-	color:#444444;
-}
-
-#profile_left .profile_pseudo {
-	font-size:18px;
-	text-transform:uppercase;
-	color:#2695a0;
-	margin:0;
-	margin-top:5px;
-	padding:0;
-	font-weight:bold;
-}
-
-#profile_left #profile_avatar {
-	width:160px;
-	height:165px;
-	background-image:url(../images/profile_avatar.png);
-	padding-left:13px;
-	padding-top:12px;
-}
-#profile_left #edit_profile_link {
-	text-decoration:none;
-	font-weight: bold;
-	color:#444;
-}
-#profile_left #edit_profile_link:hover {
-	text-decoration:underline;
-	font-weight: bold;
-	color:#444;
-}
-#profile_left #delete_profile_link {
-	text-decoration:none;
-	font-weight: bold;
-	color:#444;
-}
-#profile_left #delete_profile_link:hover {
-	text-decoration:underline;
-	font-weight: bold;
-	color:#444;
-}
-
-
-
-#profile_center {
-	float:left;	
-	width:570px;
-	margin-left:20px;
-	min-height:300px;
-}
-#profile_center #profile_trophies_back {
-	width:548px;
-	height:178px;
-	background-image:url(../images/pattern_back.png);
-	box-shadow: 1px 1px 5px #AAA;
-	padding-top:14px;
-}
-#profile_center #profile_trophies {
-	width:519px;
-	height:162px;
-	margin-left:14px;
-	background-color:white;
-	border:1px solid #CCC;
-}
-
-#profile_center #profile_trophies_headline {
-	width:144px;
-	height:42px;
-	position:absolute;
-	top:240px;
-	background-image:url(../images/profile_trophies_headline.png);
-	color:white;
-}
-#profile_center #profile_trophies_headline h2 {
-	font-size:18px;
-	margin-top:12px;
-	margin-left:15px;
-	text-shadow: 1px 1px 1px #666666;
-}
-#profile_trophies .points_profile {
-	font-size:18px;
-	font-weight:bold;
-	color:#e0423f;
-	text-align:right;
-	padding-right:15px;
-}
-#profile_center .trophie_div {
-	width:89px;
-	height:97px;
-	float:left;
-	margin-left:12px;
-}
-#profile_center .trophie_div p {
-	color:#b5b5b5;
-	font-size:12px;
-	padding:0;
-	margin:0;
-	margin-top:2px;
-}
-#profile_center img {
-	
-}
-#profile_center span {
-	vertical-align:top;
-}
-#profile_center #trophie_gold {
-	
-}
-#profile_center #trophie_silver {
-	
-}
-#profile_center #trophie_bronze {
-	
-}
-#profile_center #trophie_taken {
-	
-}
-#profile_center #trophie_given {
-	
-}
-.trophie_left {
-	float:left;
-	width:55px;
-}
-.trophie_left img {
-	padding:5px;
-}
-.number_right {
-	float:left;
-	margin-top:25px;
-}
-.trophie_border {
-	border-bottom:1px solid #CCC;
-	height:75px;
-}
-
-#profile_challenges {
-	width:548px;
-}
-#challenges_created_all {
-	margin-top:20px;
-}
-.challenges_headline {
-	background-image:url(../images/profile_challenges_headline.png);
-	height:60px;
-	text-transform:uppercase;
-}
-.challenges_headline h2 {
-	text-align:center;
-	padding-top:18px;
-	font-size:18px;
-	color:white;
-	text-shadow: 1px 1px 1px #666666;
-}
-.profile_challenge {
-	width: 260px;
-	height:160px;
-	margin-bottom:10px;
-	margin-left:10px;
-	float:left;
-}
-.profile_challenge_picture {
-	width:166px;
-	height:123px;
-	background-image:url(../images/pattern_back.png);
-	box-shadow: 1px 1px 5px #AAA;
-	float:left;
-	margin-bottom:10px;
-}
-.profile_challenge_picture a img {
-	border:1px #CCC solid;
-	padding:0;
-	margin:0;
-}
-.profile_challenge_picture a {
-	padding:9px;
-}
-.profile_challenge_picture a img {
-	margin-top:9px;
-}
-.profile_titre_challenge {
-	color:#515151;
-	font-size: 14px;
-	padding:0;
-	margin:0;
-	text-transform:uppercase;
-}
-.profile_content_challenge {
-	float:left;
-	width:80px;
-	margin-left:10px;
-}
-.profile_content_challenge p {
-	font-size:12px;
-	font-weight:bold;
-	color:#515151;
-}
-.profile_challenge_difficulty {
-	color:#515151;
-}
-.profile_challenge_members {
-	color:#258ca1;
-}
-.profile_challenge_timer {
-	color:#cd2623;
-}
-.profile_category {
-	color:#808080;
-	background-image:url(../images/back_category.png);
-	padding:3px;
-	padding-top:2px;
-	float:right;
-}
-.profile_challenge_author {
-	color:#444444;
-}
-.profile_challenge_info {
-	width:166px;
-	font-size:12px;
-	font-weight:bold;
-}
-
-
-#profile_right {
-	width:220px;
-	min-height:300px;
-	float:left;
-}
-#profile_right #profile_badge_back {
-	width:217px;
-	height:348px;
-	background-image:url(../images/pattern_back.png);
-	box-shadow: 1px 1px 5px #AAA;
-	padding-top:12px;
-}
-#profile_right #profile_badge {
-	width:191px;
-	height:333px;
-	margin-left:12px;
-	border:1px solid #CCC;
-	background-color:white;
-}
-#profile_right #profile_badge_headline {
-	width:140px;
-	height:45px;
-	position:absolute;
-	top:240px;
-	background-image:url(../images/profile_badge_headline.png);
-	color:white;
-}
-#profile_right #profile_badge_headline h2 {
-	font-size:18px;
-	margin-top:12px;
-	margin-left:15px;
-	text-shadow: 1px 1px 1px #666666;
-}
-
-
-
-
-#bottom_profile {
-	width:1000px;
-	height:10px;
-	clear:both;
-}
-
-
-
 
 /*
  * 
@@ -865,14 +582,12 @@ a img {
 	margin-bottom:30px;
 	border:#CCC solid 1px;
 }
-
 #registration h2 {
 	padding:0px;
 	margin:0px;
 	font-size:18px;
 	color:#16717e;
 }
- 
 #registration .form_registration {
  	color:#444;
 	font-size:13px;
@@ -880,7 +595,6 @@ a img {
 #registration .form_registration label {
 	font-weight:bold;
 }
-
 .errorlist li {
 	background-color:#ffcccc;
 	width:250px;
@@ -902,129 +616,3 @@ a img {
 }*/
 
 
-
-
-/*
- * 
- * 	SEARCH
- * 
- */
-
-#page_search .ct_challenges_challenge .challenge_picture {
-	width:200px;
-	height:140px;
-	margin-left:10px;
-	margin-top:10px;
-	padding:0;
-}
-#page_search .ct_challenges_challenge .challenge_picture img {
-	margin:0;
-}
-
-
-#page_search .ct_challengers_user .challenger_picture {
-	width:120px;
-	height:120px;
-	margin-left:10px;
-	margin-top:10px;
-}
-#page_search .ct_challengers_user .challenger_picture img{
-	margin:0;
-}
-
-#page_search p {
-	font-size:14px;
-	font-weight:bold;
-}
-#page_search p a {
-	color:#42919c;
-	text-decoration:none;
-}
-#page_search p a:hover {
-	color:#42919c;
-	text-decoration:underline;
-}
-.step-links {
-	font-size:14px;
-	font-weight:bold;
-}
-#page_search #ct_most_popular_headline {
-	margin:auto;
-	margin-top:30px;
-}
-#page_search #ct_challengers_headline {
-	margin:auto;
-	margin-top:30px;
-}
-#page_search .marginLR {
-	margin-right:14px;
-	margin-left:14px;
-}
-
-#page_search #form_search {
-	font-size:14px;
-	width:600px;
-	margin:auto;
-	margin-top:30px;
-	margin-bottom:40px;
-}
-#page_search #form_search label {
-	font-weight:bold;
-}
-#page_search h1 {
-	text-align:center;
-	font-size:18px;
-	color:#444;
-}
-.search_margin_left {
-	margin-left:20px;
-}
-#id_demande {
-	
-	font-weight:bold;
-	padding: 6px 6px 6px 30px;
-	border: 4px solid #F7F7F7;
-	font-size: 16px;
-	color:#444;
-	
-	background: #FFF url(../images/search.png) no-repeat 8px 8px;
-	-webkit-border-radius: 0.5em;
-	-moz-border-radius: 0.5;
-	border-radius: 0.5em;
-  
-	box-shadow: inset rgba(0,0,0, 0.3) 0px 0px 1px;
-	-moz-box-shadow: inset rgba(0,0,0, 0.3) 0px 0px 1px;
-	-webkit-box-shadow: inset rgba(0,0,0, 0.3) 0px 0px 2px;
-}
-
-#username, #password {
-	margin-top:6px;
-	
-	padding: 2px 2px 2px 4px;
-	border: 2px solid #333;
-	background-color:#444;
-	color:#CCC;
-	
-	-webkit-border-radius: 0.5em;
-	-moz-border-radius: 0.5;
-	border-radius: 0.5em;
-  
-	box-shadow: inset rgba(0,0,0, 0.3) 0px 0px 1px;
-	-moz-box-shadow: inset rgba(0,0,0, 0.3) 0px 0px 1px;
-	-webkit-box-shadow: inset rgba(0,0,0, 0.3) 0px 0px 2px;
-}
-
-#demande {
-	padding: 5px 5px 5px 5px;
-	border: 2px solid #198691;
-	background-color:#2fa1ac;
-	color:#444;
-	
-	-webkit-border-radius: 0.5em;
-	-moz-border-radius: 0.5;
-	border-radius: 0.5em;
-  
-	box-shadow: inset rgba(0,0,0, 0.3) 0px 0px 1px;
-	-moz-box-shadow: inset rgba(0,0,0, 0.3) 0px 0px 1px;
-	-webkit-box-shadow: inset rgba(0,0,0, 0.3) 0px 0px 2px;
-}

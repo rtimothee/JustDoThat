@@ -60,11 +60,13 @@
 	       		{% endif %}
 	   		</span>
 		</div>
+		{% else %}
+			<p class="align_center">No results found for your query.</p>
+			<p class="align_center">Check your spelling or try another word.</p>
+		{% endif %}
 	</div>
 	
-	{% else %}
-		<p>0 results</p>
-	{% endif %}
+	
 	
 	
 	<div>
@@ -103,10 +105,13 @@
 	        	{% endif %}
 	    	</span>
 		</div>
+		{% else %}
+			<p class="align_center">No results found for your query.</p>
+			<p class="align_center">Check your spelling or try another word.</p>
+		{% endif %}
+		
 	</div>
-	{% else %}
-		<p>0 results</p>
-	{% endif %}
+	
 	
 </div>
 {% endblock content %}
