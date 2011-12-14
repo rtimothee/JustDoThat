@@ -12,6 +12,13 @@ class UserForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('username', 'email', )
+        
+    def __init__(self, *args, **kwargs):
+        super(UserForm, self).__init__(*args, **kwargs)
+        #affiche le help_text dans l'attribut title du champ
+        self.fields['username'].widget.attrs['title'] = self.fields['username'].help_text
+        #affiche le help_text dans l'attribut title du champ
+        self.fields['password2'].widget.attrs['title'] = self.fields['password2'].help_text
 
 class EditUserForm(UserCreationForm):
 
@@ -22,6 +29,9 @@ class EditUserForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super(EditUserForm, self).__init__(*args, **kwargs)
         instance = getattr(self, 'instance', None)
+        
+        #affiche le help_text dans l'attribut title du champ
+        self.fields['password2'].widget.attrs['title'] = self.fields['password2'].help_text
         if instance and instance.id:
             self.fields['username'].widget.attrs['readonly'] = True
     
@@ -29,6 +39,13 @@ class EditUserForm(UserCreationForm):
         return self.instance.username
 
 class UtilisateurForm(ModelForm):
+    
+    #personnalisation de certains champs
+    GENDER_CHOICES = ((True, 'Male'), (False, 'Female'), )
+    dateNaissance = forms.DateField(label='Date of birth')
+    pays = forms.CharField(label='Country', max_length=45, required=True)
+    sexeM = forms.ChoiceField(label='Gender', choices=GENDER_CHOICES, required=True)
+    
     class Meta:
         model = Utilisateur
         exclude = ('user', 'points',)
@@ -43,17 +60,6 @@ class UtilisateurForm(ModelForm):
         self.fields['dateNaissance'].widget = SelectDateWidget(years=years)
 
 
-        
-    
-#    def save(self, commit=True):
-#        user = super(RegisterForm, self).save(commit=False)
-#        first_name, last_name = self.cleaned_data["fullname"].split()
-#        user.first_name = first_name
-#        user.last_name = last_name
-#        user.email = self.cleaned_data["email"]
-#        if commit:
-#            user.save()
-#        return user
 
 class MessageForm(ModelForm):
     class Meta:
