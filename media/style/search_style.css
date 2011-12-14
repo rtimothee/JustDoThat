@@ -1,17 +1,17 @@
 /*
  * 
- * 	SEARCH
+ * 	SEARCH & ListChallenges
  * 
  */
 
-#page_search .ct_challenges_challenge .challenge_picture {
+#page_search .ct_challenges_challenge .challenge_picture, #list_challenges .ct_challenges_challenge .challenge_picture {
 	width:200px;
 	height:140px;
 	margin-left:10px;
 	margin-top:10px;
 	padding:0;
 }
-#page_search .ct_challenges_challenge .challenge_picture img {
+#page_search .ct_challenges_challenge .challenge_picture img, #list_challenges .ct_challenges_challenge .challenge_picture img {
 	margin:0;
 }
 #page_search .ct_challengers_user .challenger_picture {
@@ -48,7 +48,7 @@
 	margin:auto;
 	margin-top:30px;
 }
-#page_search .marginLR {
+#page_search .marginLR, #list_challenges .marginLR {
 	margin-right:14px;
 	margin-left:14px;
 }
@@ -114,4 +114,13 @@
 #page_search #form_search #search_submit:hover {
 	background:transparent url(../images/search_btn_over.png);
 	
+}
+
+#page_search h3 a, #list_challenges h3 a, #profile h3 a {
+	text-decoration:none;
+	color:#444;
+}
+#page_search h3 a:hover, #list_challenges h3 a:hover, #profile h3 a:hover {
+	text-decoration:underline;
+	color:#444;
 }

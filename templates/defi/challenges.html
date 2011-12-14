@@ -1,24 +1,25 @@
 {% extends "layout/base.html" %}
 
 {% block content %}
-	<ul>
-		{% for defi in defis %}
-			<li class="challenge">
-				<img src='{{ defi.photo }}' alt='picture' />
-				<a href="/challenges/display_challenge/{{defi.id}}/" title="{{defi.titre}}">{{ defi.titre }}</a> 
-			<ul>
-				<p>Difficulty : {{ defi.difficulte }} </p>
-			</ul>
-			<ul>
-				<p>Time Left : {{ defi.timeleft }} </p>
-			</ul>
-			<ul>
-				<p>Number of challengers : {{ defi.nbreleve }} </p>
-			</ul>
-			</li>
-			<br />
-		{% endfor %}
-	</ul>
-	
-	<p><a href="/challenges/create_challenge/" title="{{defi.titre}}">Create a challenge</a> </p>
+<div id="list_challenges">
+	<div id="challenges_headline">
+		<h2>CHALLENGES</h2>
+	</div>
+		
+		<div id="ct_challenges_challenges">
+			
+			{% for defi in defis %}
+			<div class="ct_challenges_challenge marginLR">
+				<div class="challenge_picture">
+					<img src="{{defi.photo}}" alt="{{defi.titre}}" />
+				</div>
+				<h3><a href="/challenges/display_challenge/{{defi.id}}/" title="{{defi.titre}}">{{defi.titre}}</a></h3>
+				<p><img src="{{MEDIA_URL}}/images/picto_chrono.png" alt="" /><span class="ct_challenge_data">{{defi.timeleft}}</span> <img src="{{MEDIA_URL}}/images/picto_avatar.png" alt="" /><span class="ct_challenge_data">{{defi.nbreleve}}</span> <img src="{{MEDIA_URL}}/images/picto_eclair.png" alt=""/><span class="ct_challenge_data">{{defi.difficulte}}</span></p>
+			</div>
+			{% endfor %}
+			<div class="clear"></div>
+		</div>
+	<p class="align_center bold">Make your own:</p>
+	<p><a href="/challenges/create_challenge/" title="{{defi.titre}}" id="create_challenge_btn"></a></p>
+</div>
 {% endblock content %}

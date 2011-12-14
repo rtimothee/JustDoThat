@@ -589,7 +589,7 @@ a img {
  * 
  */
 
-#registration {
+#registration, #creation_challenge {
 	width:600px;
 	background-image:url(../images/background_bis.png);
 	padding:10px;
@@ -598,17 +598,17 @@ a img {
 	margin-bottom:30px;
 	border:#BBB solid 1px;
 }
-#registration h2 {
+#registration h2, #creation_challenge h2 {
 	padding:0px;
 	margin:0px;
 	font-size:18px;
 	color:#16717e;
 }
-#registration .form_registration {
+#registration .form_registration, #creation_challenge .creation_challenge_form {
  	color:#444;
 	font-size:13px;
 }
-#registration .form_registration label {
+#registration .form_registration label, #creation_challenge .creation_challenge_form label {
 	font-weight:bold;
 }
 .errorlist li {
@@ -675,3 +675,87 @@ a img {
 	font-weight:normal;
 }
 
+
+
+
+
+/*
+ * 
+ * 
+ * Challenges
+ * 
+ * 
+ */
+#list_challenges .bold {
+	font-size: 16px;
+	font-weight:bold;
+}
+#list_challenges #challenges_headline {
+	width:650px;
+	height:55px;
+	margin:auto;
+	margin-top:30px;
+	background-image: url("../images/ct_header_challenges.png");
+	background-repeat:no-repeat;
+	text-align:center;
+	color:white;
+}
+#list_challenges #challenges_headline h2 {
+	font-size:24px;
+	text-align:center;
+    text-shadow: 1px 1px 1px #000;
+    padding-top:14px;
+    margin-top:0;
+}
+#create_challenge_btn {
+	display:block;
+	background:transparent url(../images/btn_create_challenge.png);
+	width:203px;
+	height:42px;
+	margin:auto;
+}
+#create_challenge_btn:hover {
+	background:transparent url(../images/btn_create_challenge_over.png);
+}
+
+/*
+ * Page Creation challenge
+ * */
+
+#creation_challenge {
+	padding-top:0;
+	padding-bottom:0;
+}
+#creation_challenge #create {
+	background:transparent url(../images/btn_create.png);
+	width:92px;
+	height:42px;
+	border:none;
+	cursor:pointer;
+}
+#creation_challenge #create:hover {
+	background:transparent url(../images/btn_create_over.png);
+}
+
+#creation_challenge #modify {
+	background:transparent url(../images/btn_modify.png);
+	width:92px;
+	height:42px;
+	border:none;
+	cursor:pointer;
+}
+#creation_challenge #modify:hover {
+	background:transparent url(../images/btn_modify_over.png);
+}
+#creation_challenge .linkBack a {
+	font-size:14px;
+	font-weight:bold;
+	text-decoration:none;
+	color:#444;
+}
+#creation_challenge .linkBack a:hover {
+	text-decoration:underline;
+}
+#creation_challenge p {
+	padding:0;
+}
