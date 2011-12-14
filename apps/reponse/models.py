@@ -17,6 +17,11 @@ class Reponse(models.Model):
     def __unicode__(self):
         return "%s %s" % (self.message, self.date_reponse)
     
+    def note_fonc(self):
+        var = Noter.objects.filter(reponse = self, note = True).count() - Noter.objects.filter(reponse = self, note = False).count()
+        return "%s" % (var)
+    note = property(note_fonc)
+    
 
 #-----------------------------COMMENTAIRE------------------------------    
 class Commentaire(models.Model):
