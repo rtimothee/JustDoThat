@@ -591,6 +591,7 @@ a img {
 /*
  * 
  * USER REGISTER
+ * INBOX
  * 
  */
 
@@ -622,7 +623,14 @@ a img {
 #inbox_div .current {
 	font-size:13px;	
 }
-
+#inbox_div .colorPasLu {
+	color:#d12d2b;
+	font-weight:bold;	
+}
+#inbox_div .colorLu {
+	color:#198691;
+	font-weight: bold;
+}
 #registration .form_registration, 
 #creation_challenge .creation_challenge_form, 
 #send_message .send_message_form {
@@ -788,7 +796,9 @@ a img {
 #inbox_div .bold {
 	font-weight:bold;
 }
-
+#inbox_div a {
+	color:#444;
+}
 
 /*
  * 
@@ -844,6 +854,7 @@ width:280px;
 width:150px;
 padding:0;
 margin:0;
+margin-top:-5px;
 font-size:16px;
 color:#2695A0;
 }
@@ -987,7 +998,11 @@ color:#222;
 
 
 
-
+/*
+ * 
+ * Challenge et Comments
+ * 
+ */
 
 
 #all_comments {
@@ -1125,4 +1140,50 @@ color:#222;
 	background-image:url(../images/back_category.png);
 	padding:3px;
 	padding-top:2px;
+}
+
+#everythingFORM h1 {
+	font-size:18px;
+	color:#16717e;
+}
+#everythingFORM {
+	color:#444;	
+}
+#everythingFORM p {
+	font-size:13px;
+}
+#everythingFORM #id_message {
+	width:260px;
+	height:100px;	
+}
+#cboxClose {
+	font-size:12px;	
+}
+
+
+
+
+
+.votePlus {
+	display:block;
+	background:transparent url(../images/btn_plus.png);
+	width:30px;
+	height:30px;
+	float:left
+}
+.votePlus:hover {
+	background:transparent url(../images/btn_plus_over.png);
+}
+.voteMoins {
+	display:block;
+	background:transparent url(../images/btn_moins.png);
+	width:30px;
+	height:30px;
+	float:left;
+}
+.voteMoins:hover {
+	background:transparent url(../images/btn_moins_over.png);
+}
+.noteAll {
+	float:left;
 }

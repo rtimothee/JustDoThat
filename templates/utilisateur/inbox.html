@@ -15,9 +15,9 @@
 <h2>Inbox</h2>
 		{% for last_message in last_messages.object_list %}
 			{% if last_message.lu %}
-				<p>Lu</p>
+				<p class="colorLu">Read</p>
 			{% else %}
-				<p>Pas lu</p>
+				<p class="colorPasLu">Not read</p>
 			{% endif %}
 				<p><a href="/user/{{ last_message.emeteur}}" class="bold"> {{ last_message.emeteur}}</a> {{ last_message.dateMessage}}
 				<br/>

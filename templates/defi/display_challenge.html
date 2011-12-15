@@ -103,14 +103,15 @@
 							{% endif %}
 						{% endfor %}
 						<p>{{ reponse.message }} </p>
-						<p>note : <span class="note">{{ reponse.note }}</span>  
+						<p>Grade: <span class="note">{{ reponse.note }}</span></p>
+						
+						<p class="clear">	
 						{% if user.is_authenticated %}
-							<a href="http://localhost:8000/reponses/notation_ajax/{{ user.id }}/1/{{ reponse.id }}/" class="vote">+</a> 
-							<a href="http://localhost:8000/reponses/notation_ajax/{{ user.id }}/0/{{ reponse.id }}/" class="vote">-</a>
+							<a href="http://localhost:8000/reponses/notation_ajax/{{ user.id }}/1/{{ reponse.id }}/" class="vote votePlus"></a> <a href="http://localhost:8000/reponses/notation_ajax/{{ user.id }}/0/{{ reponse.id }}/" class="vote voteMoins"></a>
 						{% endif %}
 						</p>
 						{% if reponse.utilisateur == request.user %}
-						<p>
+						<p class="clear">
 							<a class="formLB edit_profile_link" href="/challenges/modif_reponse/{{reponse.id}}/{{defi.id}}/" title="{{reponse.id}}" class="delete_profile_link">> Modify</a> 
 							<a href="/challenges/delete_reponse/{{reponse.id}}/" title="{{reponse.id}}" class="edit_profile_link">> Delete</a> 
 						</p>
