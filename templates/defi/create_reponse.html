@@ -1,4 +1,4 @@
-{% extends "layout/base.html" %}
+{% extends "layout/baseFORMLB.html" %}
 
 {% block title %}Create a challenge{% endblock %}
 
@@ -11,6 +11,11 @@
 	   <form action="" method="post" enctype="multipart/form-data"> {% csrf_token %}
 
 	{{ reponse_form.as_p }}
-    <p><input type="submit" value="Create" /></p>
+
+    {% if modif %}
+	  <p><input type="submit" value="Modify" /></p>
+	{% else %}
+	 <p><input type="submit" value="Create" /></p>
+	{% endif %}
   </form>
 {% endblock %}

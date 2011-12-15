@@ -20,6 +20,10 @@ a img {
 #everything {
     background-image:url(../images/background.png);
 }
+#everythingFORM {
+   
+}
+
 
 /* 
  * Header 
@@ -193,6 +197,11 @@ a img {
 	width:1000px;
 }
 
+#contentFORM {
+	min-height:300px;
+	margin:auto;
+	width:400px;
+}
 #home_content{
     min-height:1450px;
 }

@@ -1,5 +1,6 @@
-#Tue Dec 13 02:28:43 CET 2011
+#Thu Dec 15 17:18:21 CET 2011
 eclipse.preferences.version=1
+encoding//apps/defi/forms.py=utf-8
 encoding//apps/defi/models.py=utf-8
 encoding//apps/defi/views.py=utf-8
 encoding//apps/utilisateur/views.py=utf-8
