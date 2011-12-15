@@ -1,0 +1,12 @@
+{{user1}}:{{user2}}:{{user3}}
+<br />
+{{reponses}}
+<br />
+{{notes}}
+<br />
+{% for reponses, notes in reponses_notes %}
+
+	{{reponses.message}}
+	{{notes}}
+
+{%endfor%}

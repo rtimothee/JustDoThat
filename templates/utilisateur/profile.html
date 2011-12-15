@@ -138,10 +138,12 @@
 					{{ d_rel.description }}
 					{{ d_rel.debut }}
 					{{ d_rel.fin }}
-				    {{ d_rel.photo }}
-					{{ d_rel.liste }}    
+				    {{ d_rel.photo }} 
 					{{ d_rel.difficulte }}
 					{{ d_rel.categorie }}
+					<div class="profile_challenge_info">
+							<span class="profile_challenge_author">By <a href='/user/profile/{{ d_rel.createur.username }}/' title='{{ d_rel.createur.username }}'> {{ d_rel.createur.username }}</a></span> <span class="profile_category">{{ d_rel.categorie }}</span>
+						</div>
 			    </div>
 			    {% endfor %}
 		    </div>
@@ -172,7 +174,7 @@
 						</div>
 						<div class="clear"></div>
 						<div class="profile_challenge_info">
-							<span class="profile_challenge_author">By Lolote</span> <span class="profile_category">{{ d_cre.categorie }}</span>
+							<span class="profile_challenge_author">By <a href='/user/profile/{{ d_cre.createur.username }}/' title='{{ d_cre.createur.username }}'> {{ d_cre.createur.username }}</a></span> <span class="profile_category">{{ d_cre.categorie }}</span>
 						</div>
 					</div>
 					{% endfor %}
