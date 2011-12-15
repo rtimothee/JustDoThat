@@ -42,26 +42,26 @@ def logout_view(request):
 
 #-----------------------------------INSCRIPTION--------------------------------------------
 def register_view(request):
-	if request.method == 'POST':
-		#recupération des informations du formulaire
-		user_form = UserForm(request.POST)
-		utilisateur_form = UtilisateurForm(request.POST, request.FILES)
+    if request.method == 'POST':
+        #recupération des informations du formulaire
+        user_form = UserForm(request.POST)
+        utilisateur_form = UtilisateurForm(request.POST, request.FILES)
         
         #si les infos sont valides
-		if user_form.is_valid() and utilisateur_form.is_valid():
-			#creation du nouvel utilisateur
-			new_user = Utilisateur(**utilisateur_form.cleaned_data)
-			new_user.points = 0
-			new_user.user = user_form.save()
-			new_user.save()
+        if user_form.is_valid() and utilisateur_form.is_valid():
+            #creation du nouvel utilisateur
+            new_user = Utilisateur(**utilisateur_form.cleaned_data)
+            new_user.points = 0
+            new_user.user = user_form.save()
+            new_user.save()
             
-		return HttpResponseRedirect("/")
-	else:
-		#creation des formulaires
-		user_form = UserForm()
-		utilisateur_form = UtilisateurForm()
+            return HttpResponseRedirect("/")
+    else:
+        #creation des formulaires
+        user_form = UserForm()
+        utilisateur_form = UtilisateurForm()
         
-	return render_to_response("utilisateur/register.html", {'user_form': user_form, 'utilisateur_form': utilisateur_form,}, context_instance=RequestContext(request))
+    return render_to_response("utilisateur/register.html", {'user_form': user_form, 'utilisateur_form': utilisateur_form,}, context_instance=RequestContext(request))
 
 #------------------------ENVOI DE MESSAGE---------------------------------------------------------------------
 def send_message_view(request, pseudo):
@@ -214,10 +214,6 @@ def edit_profile(request):
             if user_form.is_valid() and utilisateur_form.is_valid():
                 user_form.save()
                 utilisateur_form.save()
-                    #creation du nouvel utilisateur
-#                    new_user = Utilisateur(**utilisateur_form.cleaned_data)
-#                    new_user.user = user_form.save()
-#                    new_user.save()
                     
                 return HttpResponseRedirect("/")
         else:
