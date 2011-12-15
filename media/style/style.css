@@ -768,3 +768,24 @@ a img {
 
 #profile .bold {
 	font-weight:bold;
+}
+
+
+/*
+ * 
+ * Challenge
+ * 
+ */
+
+#challenge #profile_right {
+	padding-left:20px;
+	width:200px;
+}
+
+#challenge .challenges_headline {
+	width:550px;
+}
+
+#challenge #profile_trophies_back {
+	margin-top:10px;
+}

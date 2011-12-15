@@ -24,7 +24,7 @@
    			});
  		});
 	</script>
-	
+<div id="challenge">	
 	<div id="profile">
 		<div id="top_profile">
 			
@@ -33,7 +33,8 @@
 			
 			<!-- l'url de l'img -->
 			<div id="profile_avatar">
-				<img src="{% thumbnail defi.photo 145x145 crop %}" alt="{{defi.titre}}" />
+				<!--<img src="{% thumbnail defi.photo 145x145 crop %}" alt="{{defi.titre}}" />-->
+				<img src="{{MEDIA_URL}}/images/defi_test.png" />
 			</div>
 			
 			<h3 class="profile_pseudo">{{ defi.titre }}</h3>
@@ -77,9 +78,23 @@
 			
 		</div>
 		<div id="profile_center">
+			<div class="challenges_headline">
+		    	<h2>TAKEN UP</h2>
+		    </div>
+		 	<div id="profile_trophies_back">
+   
+			    <div id="profile_trophies">
+					<img src="" />
+				</div>
+			</div>
+		    
+			
 			{% for reponse in reponses %}
-		<li class="challenge">
 			<!--<a href="/challenges/display_challenge/{{defi.id}}/" title="{{defi.titre}}">{{ defi.titre }}</a> -->
+			
+			
+		<li class="challenge">
+			
 			<ul>
 				<p>{{ reponse.message }} </p>
 			</ul>
@@ -131,6 +146,6 @@
 	
 	
   
-  	
+</div>  	
 {% endblock content %}
 
