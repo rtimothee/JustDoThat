@@ -99,8 +99,16 @@ def send_message_view(request, pseudo):
 def inbox_view(request):
 	if request.user.is_authenticated(): 
 		messages = MessagePrive.objects.filter(destinataire = request.user).order_by("-id")
-
+		notif = 0
+		
+		# on recupere l\'ensemble des messages recus par un user
 		nb = MessagePrive.objects.filter(destinataire = request.user).count()
+		
+		# si il y ny en a aucun il aura un message le lui disant
+		if nb ==0:
+			notif = 1
+		
+		# on recupere lensemble des users ayant envoye un message au courant ainsi que leur dernier message emis
 		users = []
 		last_messages = []
 		if nb > 1 :
@@ -123,7 +131,7 @@ def inbox_view(request):
 		except EmptyPage: pageMessage = messagesP.page(messagesP.num_pages)
 	else:
 		return HttpResponseRedirect('/')
-	return render_to_response("utilisateur/inbox.html", {'last_messages': pageMessage,},context_instance=RequestContext(request))
+	return render_to_response("utilisateur/inbox.html", {'last_messages': pageMessage, 'notif':notif,},context_instance=RequestContext(request))
 
 #------------------------CONVERSATION---------------------------------------------------------------------
 def conversation_view(request, pseudo):
@@ -152,11 +160,12 @@ def conversation_view(request, pseudo):
 			else:
 				message_form = MessageForm()
 				message_form.destinataire = User.objects.get(username = pseudo)
-				
+				# on assemble les deux listes de messages
 				messages1 = MessagePrive.objects.filter(destinataire = request.user, emeteur=User.objects.get(username = pseudo)).order_by("id")
 				messages2 = MessagePrive.objects.filter(emeteur = request.user, destinataire=User.objects.get(username = pseudo)).order_by("id")
 				messages = messages1 | messages2
 				
+				# on met a jour le statut lu du message
 				for m in messages:
 					if m.lu == 0 :
 						if m.destinataire == request.user :
