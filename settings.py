@@ -13,7 +13,7 @@ ADMINS = (
 MANAGERS = ADMINS
 
 #Config BDD Timothee
-
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',   # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
@@ -25,6 +25,7 @@ DATABASES = {
     }
 }
 '''
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',   # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
@@ -35,6 +36,7 @@ DATABASES = {
         'PORT': '',                             # Set to empty string for default. Not used with sqlite3.
     }
 }
+'''
 #Config BDD Marlene
 DATABASES = {
     'default': {
