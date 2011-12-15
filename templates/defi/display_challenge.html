@@ -1,6 +1,25 @@
 {% extends "layout/base.html" %}
 {% load thumbnail %}
 {% block content %}
+	<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+   			$(".vote").click(function (e) {
+     			adresse=($(this).attr("href")); // on recuperer l' adresse du lien
+				$.ajax({ // ajax
+					url: adresse, // url de la page à charger
+					cache: false, // pas de mise en cache
+					success:function(html){ // si la requête est un succès 
+						alert(html);
+					},
+					error:function(XMLHttpRequest, textStatus, errorThrows){ // erreur durant la requete
+						alert("erreur");
+					}
+				});
+     			return false;
+   			});
+ 		});
+	</script>
 	<p><a href="/challenges/list_challenges/" title="Voir tous les challenges"> Retour aux challenges </a></p>
 	<h2>{{ defi.titre }}</h2>
 	<img src="{% thumbnail defi.photo 140x140 crop %}" alt="defi.titre" />
@@ -15,6 +34,9 @@
 		{% else %}
 		<p>Challenge over</p>
 		{% endif %}		
+		
+		<div class="fb-like" data-href="http://justdothat.alwaysdata.net/challenges/display_challenge/{{defi.id}}/" data-send="true" data-layout="button_count" data-width="450" data-show-faces="true" data-font="trebuchet ms"></div>
+		
 		{% if createur %}
 		<ul class="modif_challenge">
 				<a href="/challenges/modif_challenge/{{defi.id}}/" title="{{defi.titre}}">Modify</a> 
@@ -33,4 +55,53 @@
 			<br />
 		{% endfor %}
 	</ul>
+<h3>Repondre à un défi</h3>
+
+  <form action="" method="post" enctype="multipart/form-data"> {% csrf_token %}
+    
+      {{ Reponse_form.as_p }}
+      <input type="submit" value="Repondre à un défi">
+  </form>
+  
+  {% for reponse in reponses %}
+			<li class="challenge">
+				<a href="/challenges/display_challenge/{{defi.id}}/" title="{{defi.titre}}">{{ defi.titre }}</a> 
+			<ul>
+			
+				<p>{{ reponse.message }} </p>
+			</ul>
+			<ul>
+				<p>Date réponse : {{ reponse.date_reponse }} </p>
+			</ul>
+			<ul>
+				<p>note : {{ reponse.note }} 
+					{% if user.is_authenticated %}
+						<a href="http://localhost:8000/reponses/notation_ajax/{{ user.id }}/1/{{ reponse.id }}/" class="vote">+</a> 
+						<a href="http://localhost:8000/reponses/notation_ajax/{{ user.id }}/0/{{ reponse.id }}/" class="vote">-</a>
+					{% endif %}
+				</p>
+			</ul>
+
+			<ul class="modif_challenge">
+				<a class="test" href="/challenges/modif_reponse/{{reponse.id}}/" title="{{reponse.id}}">Modify</a> 
+				<script>
+            jQuery('a.test').colorbox();
+        		</script>
+			</ul>
+			<ul class="delete_challenge">
+				<a  href="/challenges/delete_reponse/{{reponse.id}}/" title="{{reponse.id}}">Delete</a> 
+					
+			</ul>
+			</li>
+			<br />
+			
+			{% load comments %}
+			
+
+			{% render_comment_form for reponse %}
+
+			{% render_comment_list for reponse %}
+			
+  {% endfor %}	
 {% endblock content %}
+

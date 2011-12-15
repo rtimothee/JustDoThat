@@ -1,5 +1,9 @@
 {% extends "layout/base.html" %}
 
 {% block content %}
-	Vous êtes sur de vouloir supprimer votre compte ? <a href='/user/delete_account/?confirm=True'>oui</a>  / <a href='/'>Non</a>
+<div id="delete_account">
+	<p class="align_center">Do you really want to delete your account ?</p> 
+	<p class="align_center light">You will lose all your challenges, all your awards and you'll maybe even look like a coward to your friends. </p>
+	<p class="align_center"><a href='/user/delete_account/?confirm=True' id="delete_yes"></a> <a href='/' id="delete_cancel"></a></p>
+</div>
 {% endblock %}

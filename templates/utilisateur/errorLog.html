@@ -4,7 +4,9 @@
 	<!--Si erreur s'affiche ici à encadrer de div-->
 <div id="block_connexion_erreur_log">	
 	<h2>Log in</h2>
+	{% if erreur %}
 	<div class="erreur_log">{{erreur}}</div>
+	{% endif %}
 	
 	<form action="/user/login/" method="post" class="form_connect">
 		<div class="login_input">

@@ -1,5 +1,5 @@
 {% extends "layout/base.html" %}
-
+{% load thumbnail %}
 {% block content %}
 <script type="text/javascript" src="{{ MEDIA_URL }}js/jsuri-1.1.1.min.js"></script>
 <script type="text/javascript">
@@ -10,76 +10,110 @@
 		window.location = uri.toString();  
 	}
 </script>
-<div>
-	<form action="" method="get">
-		{{form.as_p}}
-		<input type="submit" value="Recherche"/>
-	</form>
-</div>
-<div>
-	<h2>Defis</h2><br/>
-	{% if defis %}
+<div id="page_search">
+	<div>
+		<form action="" method="get" id="form_search">
+			<h1>Search : {{form.demande}}</h1>
+			<fieldset>
+				<h2>Challenge</h2>
+				<p>Difficulty : {{form.difficulte}} <span class="search_margin_left">Category : {{form.categorie}}</span> <span class="search_margin_left"> Deadline : {{form.fin}}</span></p>
+			</fieldset>
+			<h1>
+				<input type="submit" value="" id="search_submit" />
+			</h1>
+		</form>
+	</div>
+
+
+	<div>
+		<div id="ct_most_popular_headline">
+			<h2>CHALLENGES</h2>
+		</div>
+		{% if defis.object_list %}
 		<p>
 			Tri par : Nom <a href="#" onclick="changeValueGet('triDefi', 'Ncr')"> &lsaquo; </a> / <a href="#" onclick="changeValueGet('triDefi', 'Ndecr')"> &rsaquo; </a>
 			Date <a href="#" onclick="changeValueGet('triDefi', 'Dcr')"> &lsaquo; </a> / <a href="#" onclick="changeValueGet('triDefi', 'Ddecr')"> &rsaquo; </a>
 		</p>
-		<div>
+		<div id="ct_challenges_challenges">
 			{% for defi in defis.object_list %}
-				<p>{{defi.titre}} ({{defi.categorie.nom}})</p>
+			<div class="ct_challenges_challenge marginLR">
+				<div class="challenge_picture">
+					<img src="{{defi.photo}}" alt="{{defi.titre}}" />
+				</div>
+				<h3><a href="/challenges/display_challenge/{{defi.id}}/" title="{{defi.titre}}">{{defi.titre}}</a></h3>
+				<p><img src="{{MEDIA_URL}}/images/picto_chrono.png" alt="" /><span class="ct_challenge_data">{{defi.timeleft}}</span> <img src="{{MEDIA_URL}}/images/picto_avatar.png" alt="" /><span class="ct_challenge_data">{{defi.nbreleve}}</span> <img src="{{MEDIA_URL}}/images/picto_eclair.png" alt=""/><span class="ct_challenge_data">{{defi.difficulte}}</span></p>
+			</div>
 			{% endfor %}
+			<div class="clear"></div>
 		</div>
+		
 		<div class="pagination">
-    		<span class="step-links">
-    	    	{% if defis.has_previous %}
-     	       	<a href="#" onclick="changeValueGet('pageD', '{{ defis.previous_page_number }}')">previous</a>
-     	   		{% endif %}
-
-        		<span class="current">
-        	    	Page {{ defis.number }} of {{ defis.paginator.num_pages }}.
-       	 		</span>
-
-        		{% if defis.has_next %}
-            	<a href="#" onclick="changeValueGet('pageD', '{{ defis.next_page_number }}')">next</a>
-        		{% endif %}
-    		</span>
+	    	<span class="step-links">
+	        	{% if defis.has_previous %}
+	   	       	<a href="#" onclick="changeValueGet('pageD', '{{ defis.previous_page_number }}')">previous</a>
+	   	   		{% endif %}
+	
+	      		<span class="current">
+	      	    	Page {{ defis.number }} of {{ defis.paginator.num_pages }}.
+	   	 		</span>
+	
+	       		{% if defis.has_next %}
+	           	<a href="#" onclick="changeValueGet('pageD', '{{ defis.next_page_number }}')">next</a>
+	       		{% endif %}
+	   		</span>
 		</div>
-	{% else %}
-		<p>0 results</p>
-	{% endif %}
+		{% else %}
+			<p class="align_center">No results found for your query.</p>
+			<p class="align_center">Check your spelling or try another word.</p>
+		{% endif %}
+	</div>
 	
 	
 	
-	<h2>Utilisateur</h2>
-	{% if utilisateurs %}
+	
+	<div>
+		<div id="ct_challengers_headline">
+			<h2> CHALLENGERS</h2>
+		</div>
+		
+		{% if utilisateurs.object_list %}
 		<p>
 			Tri par : Nom <a href="#" onclick="changeValueGet('triUser', 'Ncr')">  &lsaquo; </a> / <a href="#" onclick="changeValueGet('triUser', 'Ndecr')"> &rsaquo; </a>
 		</p>
-		<div>
+		
+		<div id="ct_challengers_users">
 			{% for utilisateur in utilisateurs.object_list %}
-				<p>
-					{{utilisateur.username}} 
-					{{utilisateur.get_profile.points}}
-				</p>
+			<div class="ct_challengers_user">
+				<div class="challenger_picture">
+					<img src="{% thumbnail utilisateur.get_profile.avatar 120x120 crop %}" alt="{{utilisateur.username}}" />
+				</div>
+				<h3>{{utilisateur.username}}</h3>
+				<p>{{utilisateur.get_profile.points}} points</p>
+			</div>
 			{% endfor %}
+			<div class='clear'></div>
 		</div>
+		
 		<div class="pagination">
-    		<span class="step-links">
-        		{% if utilisateurs.has_previous %}
-            	<a href="#" onclick="changeValueGet('pageU', '{{ utilisateurs.previous_page_number }}')">previous</a>
-        		{% endif %}
-
-        		<span class="current">
-        	    	Page {{ utilisateurs.number }} of {{ utilisateurs.paginator.num_pages }}.
-        		</span>
-
-        		{% if utilisateurs.has_next %}
-            	<a href="#" onclick="changeValueGet('pageU', '{{ utilisateurs.next_page_number }}')">next</a>
-        		{% endif %}
-    		</span>
+	    	<span class="step-links">
+	       		{% if utilisateurs.has_previous %}
+	           	<a href="#" onclick="changeValueGet('pageU', '{{ utilisateurs.previous_page_number }}')">previous</a>
+	       		{% endif %}
+	          	<span class="current">
+	        	   	Page {{ utilisateurs.number }} of {{ utilisateurs.paginator.num_pages }}.
+	        	</span>
+	        	{% if utilisateurs.has_next %}
+	            	<a href="#" onclick="changeValueGet('pageU', '{{ utilisateurs.next_page_number }}')">next</a>
+	        	{% endif %}
+	    	</span>
 		</div>
-	{% else %}
-		<p>0 results</p>
-	{% endif %}
+		{% else %}
+			<p class="align_center">No results found for your query.</p>
+			<p class="align_center">Check your spelling or try another word.</p>
+		{% endif %}
+		
+	</div>
+	
 	
 </div>
 {% endblock content %}

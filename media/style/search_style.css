@@ -1,0 +1,126 @@
+/*
+ * 
+ * 	SEARCH & ListChallenges
+ * 
+ */
+
+#page_search .ct_challenges_challenge .challenge_picture, #list_challenges .ct_challenges_challenge .challenge_picture {
+	width:200px;
+	height:140px;
+	margin-left:10px;
+	margin-top:10px;
+	padding:0;
+}
+#page_search .ct_challenges_challenge .challenge_picture img, #list_challenges .ct_challenges_challenge .challenge_picture img {
+	margin:0;
+}
+#page_search .ct_challengers_user .challenger_picture {
+	width:120px;
+	height:120px;
+	margin-left:10px;
+	margin-top:10px;
+}
+#page_search .ct_challengers_user .challenger_picture img{
+	margin:0;
+}
+
+#page_search p {
+	font-size:14px;
+	font-weight:bold;
+}
+#page_search p a {
+	color:#42919c;
+	text-decoration:none;
+}
+#page_search p a:hover {
+	color:#42919c;
+	text-decoration:underline;
+}
+.step-links {
+	font-size:14px;
+	font-weight:bold;
+}
+#page_search #ct_most_popular_headline {
+	margin:auto;
+	margin-top:30px;
+}
+#page_search #ct_challengers_headline {
+	margin:auto;
+	margin-top:30px;
+}
+#page_search .marginLR, #list_challenges .marginLR {
+	margin-right:14px;
+	margin-left:14px;
+}
+#page_search #form_search {
+	font-size:14px;
+	width:600px;
+	margin:auto;
+	margin-top:30px;
+	margin-bottom:40px;
+}
+#page_search #form_search h2 {
+	padding:0px;
+	margin:0px;
+	font-size:18px;
+	color:#16717e;
+}
+#page_search #form_search fieldset {
+	padding:15px;
+}
+#page_search #form_search label {
+	font-weight:bold;
+}
+#page_search h1 {
+	text-align:center;
+	font-size:18px;
+	color:#444;
+}
+#page_search #ct_most_popular_headline {
+	background-image:url(../images/ct_header_challenges.png);
+	width:649px;
+}
+.search_margin_left {
+	margin-left:20px;
+}
+#id_demande {
+	
+	font-weight:bold;
+	padding: 6px 6px 6px 30px;
+	border: 4px solid #F7F7F7;
+	font-size: 16px;
+	color:#444;
+	
+	background: #FFF url(../images/search.png) no-repeat 8px 8px;
+	-webkit-border-radius: 0.5em;
+	-moz-border-radius: 0.5;
+	border-radius: 0.5em;
+  
+	box-shadow: inset rgba(0,0,0, 0.3) 0px 0px 1px;
+	-moz-box-shadow: inset rgba(0,0,0, 0.3) 0px 0px 1px;
+	-webkit-box-shadow: inset rgba(0,0,0, 0.3) 0px 0px 2px;
+}
+.align_center {
+	text-align:center;
+}
+#page_search #form_search #search_submit {
+	background:transparent url(../images/search_btn.png);
+	width:90px;
+	height:40px;
+	border:none;
+	margin:auto;
+	cursor:pointer;
+}
+#page_search #form_search #search_submit:hover {
+	background:transparent url(../images/search_btn_over.png);
+	
+}
+
+#page_search h3 a, #list_challenges h3 a, #profile h3 a {
+	text-decoration:none;
+	color:#444;
+}
+#page_search h3 a:hover, #list_challenges h3 a:hover, #profile h3 a:hover {
+	text-decoration:underline;
+	color:#444;
+}

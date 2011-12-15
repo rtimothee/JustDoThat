@@ -3,23 +3,35 @@
 {% block title %}Create a challenge{% endblock %}
 
 {% block content %}
-	{% if error %}
+
+<div id="creation_challenge">
+ 
+  	{% if error %}
 		{{ error }}
 	{% else %}
-	{% if modif %}
-	<p><a href="/challenges/display_challenge/{{ defi }}/" title="Back to the challenge"> Back to the challenge </a></p>
-	 <h1>Modify a challenge</h1>
-	{% else %}
-	  <h1>Create a challenge</h1>
+	
+		{% if modif %}
+		
+			<p class="linkBack"><a href="/challenges/display_challenge/{{ defi }}/" title="Back to the challenge"> Back to the challenge </a></p>
+		
+			<h2>Modify a challenge</h2>
+		{% else %}
+			<h2>Create a challenge</h2>
+		{% endif %}
+		   
+		<form action="" method="post" enctype="multipart/form-data" class="creation_challenge_form"> {% csrf_token %}
+		
+			{{ defi_form.as_p }}
+			
+			{% if modif %}
+		    	<p><input type="submit" value="" id="modify" /></p>
+			{% else %}
+				<p><input type="submit" value="" id="create" /></p>
+			{% endif %}
+		  	
+	  	</form>
 	{% endif %}
-	   <form action="" method="post" enctype="multipart/form-data"> {% csrf_token %}
 
-	    {{ defi_form.as_p }}
-	{% if modif %}
-    <p><input type="submit" value="Modify" /></p>
-	{% else %}
-	<p><input type="submit" value="Create" /></p>
-	{% endif %}
-  </form>
-	{% endif %}
+</div>
+
 {% endblock %}

@@ -4,11 +4,23 @@
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />	
 	<meta name="Authors" content="Pixel Pepper" />
 	<meta name="Description" content="" />
-	<link rel="stylesheet" title="Ma Feuille de Style" type="text/css" href="{{ MEDIA_URL }}style/style.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}style/style.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}style/search_style.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}style/profile_style.css" media="screen" />
 
     <title>Just do that</title>            
   </head>
   <body>
+  	
+  	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/fr_FR/all.js#xfbml=1";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
+  	
 	<div id="everything">
 
 		<div id="header01">
@@ -56,7 +68,7 @@
 				    				</div>
 				    							    				
 				  				</form>
-				  				<p><a href="#">Forgotten password ?</a> <a href="#">Sign in</a></p>
+				  				<p><a href="#">Forgotten password ?</a> <a href="/user/register/">Sign in</a></p>
 							</div>
 							{% endif %}
 							
@@ -69,8 +81,8 @@
 		    <div id="menu">
 		    	<div id="m_content">
 		    		<ul id="menuLeft">
-		    			<li><img src="{{ MEDIA_URL }}images/btn_home.png" alt="" /><a href="#">HOME</a></li>
-		    			<li><img src="{{ MEDIA_URL }}images/btn_challenge.png" alt="" /><a href="#">CHALLENGES</a></li>
+		    			<li><img src="{{ MEDIA_URL }}images/btn_home.png" alt="" /><a href="/">HOME</a></li>
+		    			<li><img src="{{ MEDIA_URL }}images/btn_challenge.png" alt="" /><a href="/challenges/list_challenges/">CHALLENGES</a></li>
 		    			<li><img src="{{ MEDIA_URL }}images/btn_community.png" alt="" /><a href="#">COMMUNITY</a></li>
 		    		</ul>
 		    		
@@ -81,7 +93,7 @@
 		    			
 		    			<div id="SearchForm">
 				  			<form action="/search/results/" method="get">
-								<input type="text" name="demande" value="" id="demande"> <input type="submit" value="Ok" />
+								<input type="text" name="demande" value="Search" id="demande"> <input type="submit" value="Ok" />
 								<a href="#"><img src="{{ MEDIA_URL }}images/challenge_btn.png" alt="" /></a>
 							</form>
 				  		</div>
@@ -111,15 +123,15 @@
 		    	<div id="ft_left">
 		    		<a href=""><img src="{{ MEDIA_URL }}images/ft_logo.png" alt="" /></a>
 		    		<p>Our goal? Ensure that you have fun by challenging your friends through the most incredible challenges.</p>
-		    		<a href=""><img src="{{ MEDIA_URL }}images/ft_facebook.png" alt="" /></a> <a href=""><img src="{{ MEDIA_URL }}images/ft_twitter.png" alt="" /></a>
+		    		<a href="http://www.facebook.com/jdt.challenges"><img src="{{ MEDIA_URL }}images/ft_facebook.png" alt="" /></a> <a href="http://twitter.com/#!/_justdothat"><img src="{{ MEDIA_URL }}images/ft_twitter.png" alt="" /></a>
 		    	</div>
 		    	
 		    	<div id="ft_right">
 		    		<div id="ft_r_01">
 		    			<h3>Sitemap</h3>
 		    			<ul>
-		    				<li><a href="#">HOME</a></li>
-		    				<li><a href="#">CHALLENGE</a></li>
+		    				<li><a href="/">HOME</a></li>
+		    				<li><a href="/challenges/list_challenges/">CHALLENGES</a></li>
 		    				<li><a href="#">COMMUNITY</a></li>
 		    			</ul>
 		    		</div>

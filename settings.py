@@ -18,14 +18,15 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',   # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': 'IMAC3_ProjetDjango',           # Or path to database file if using sqlite3.
         'USER': 'root',                         # Not used with sqlite3.
-        'PASSWORD': '',                     # Not used with sqlite3.
+        'PASSWORD': '',                         # Not used with sqlite3.
         'HOST': '',                             # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                             # Set to empty string for default. Not used with sqlite3.
     }
 }
 
+'''
 #Config BDD Marlene
-'''DATABASES = {
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',   # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': 'IMAC3_ProjetDjango',           # Or path to database file if using sqlite3.
@@ -34,19 +35,8 @@ DATABASES = {
         'HOST': '/Applications/MAMP/tmp/mysql/mysql.sock',                             # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '3306',                             # Set to empty string for default. Not used with sqlite3.
     }
-}'''
-
-#Config BDD Marlene
-'''DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',   # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'IMAC3_ProjetDjango',           # Or path to database file if using sqlite3.
-        'USER': 'root',                         # Not used with sqlite3.
-        'PASSWORD': 'root',                     # Not used with sqlite3.
-        'HOST': '/Applications/MAMP/tmp/mysql/mysql.sock',                             # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '3306',                             # Set to empty string for default. Not used with sqlite3.
-    }
-}'''
+}
+'''
 
 
 #PROD !!!!!! -> ne pas supprimer
@@ -58,8 +48,8 @@ DATABASES = {
         'PASSWORD': 'djangoforever',
         'HOST': 'mysql.alwaysdata.com',
     }
-}'''
-
+}
+'''
 
 #ajoute votre config BDD
 '''DATABASES = {
@@ -88,7 +78,7 @@ TIME_ZONE = 'Europe/Paris'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'fr-fr'
+LANGUAGE_CODE = 'en-us'
 
 SITE_ID = 1
 
@@ -188,7 +178,8 @@ INSTALLED_APPS = (
     'JustDoThat.apps.utilisateur',
     'JustDoThat.apps.reponse',
     'JustDoThat.apps.main',
-    'easy_thumbnails',
+    'easy_thumbnails', 
+    'django.contrib.comments',
 
 )
 

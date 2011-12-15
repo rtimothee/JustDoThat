@@ -63,7 +63,7 @@ def recherche (request):
                     elif triUser == 'Ndecr' : utilisateurs = utilisateurs.order_by('-username')
                 
                 #Recuperation du numero de la page 
-                utilisateursP = Paginator(utilisateurs, 1)
+                utilisateursP = Paginator(utilisateurs, 12)
                 try: pageU = int(request.GET.get('pageU', '1'))
                 except ValueError : pageU = 1
                 
@@ -93,7 +93,7 @@ def recherche (request):
                     elif triDefi == 'Ddecr' : defis = defis.order_by('-fin')
                     
                 #Recuperation du numero de la page 
-                defisP = Paginator(defis, 1)
+                defisP = Paginator(defis, 12)
                 try: pageD = int(request.GET.get('pageD', '1'))
                 except ValueError : pageD = 1
                 
