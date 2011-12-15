@@ -765,3 +765,6 @@ a img {
 #creation_challenge p {
 	padding:0;
 }
+
+#profile .bold {
+	font-weight:bold;
