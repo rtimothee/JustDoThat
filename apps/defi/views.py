@@ -181,8 +181,9 @@ def display_challenge_view(request, int):
 		createur=1
 
 	for r in releves :
-		users.append(User.objects.get(id = r.utilisateur.id))
-
+			user = User.objects.get(id = r.utilisateur.id)
+			if user not in users:
+				users.append(user)
 
 	time_left = defi.fin - defi.debut
 
