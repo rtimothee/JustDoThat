@@ -35,8 +35,7 @@
 			<!-- l'url de l'img -->
 			<div id="challenge_avatar_back">
 				<div id="challenge_avatar">
-				<!--<img src="{% thumbnail defi.photo 145x145 crop %}" alt="{{defi.titre}}" />-->
-					<img src="{{MEDIA_URL}}images/defi_test.png" />
+				<img src="{% thumbnail defi.photo 200x140 crop %}" alt="{{defi.titre}}" />
 				</div>
 			</div>
 			
@@ -152,20 +151,11 @@
 		
 		    <div class="profile_challenge">
 		    	<div class="profile_challenge_picture">
-		    		<!--<img src="{{ d_cre.photo }}" />-->
-		    		<a href="#"><img src="{{ MEDIA_URL }}images/profile_challenge_avatar.png" alt="" /></a>
+		    		<a href="/challenges/display_challenge/{{d.id}}/"><img src="{% thumbnail d.photo 145x100 crop %}" alt="{{d.titre}}" /></a>
 		    	</div>
 		    	<div class="profile_content_challenge">
 			        <h3 class="profile_titre_challenge"><a href="/challenges/display_challenge/{{d.id}}/" title="{{d.titre}}">{{ d.titre|truncate_chars:22 }}</a></h3>
-					<!--{{ d_cre.description }}-->
-					
-					<!--{{ d_cre.debut }}
-					{{ d_cre.fin }}-->
-				    
-					<!--{{ d_cre.liste }}  -->  
-					
 					<p><img src="{{ MEDIA_URL }}images/picto_chrono_challenge.png" alt="" /><span class="profile_challenge_timer"><!--03:04:05-->{{ d.timeleft }} </span> <img src="{{ MEDIA_URL }}images/picto_avatar_challenge.png" alt="" /><span class="profile_challenge_members">{{d.nbreleve}}</span> <img src="{{ MEDIA_URL }}images/picto_eclair.png" alt=""/><span class="profile_challenge_difficulty">{{ d.difficulte }}</span></p>
-					
 				</div>
 				<div class="clear"></div>
 				<div class="profile_challenge_info">
