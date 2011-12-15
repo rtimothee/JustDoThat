@@ -9,7 +9,7 @@ class Utilisateur(models.Model):
     user = models.ForeignKey(User, unique=True)
     
     #Ajout de nos champs perso
-    avatar = models.ImageField(upload_to=settings.IMAGE_UPLOAD_PATH, default='profile_pics/default.jpg', null=False)
+    avatar = models.ImageField(upload_to=settings.IMAGE_UPLOAD_PATH, default='profile_pics/default.png', null=False)
     points = models.IntegerField(null=True)
     dateNaissance = models.DateField(null=False)
     pays = models.CharField(max_length=45, null=False)

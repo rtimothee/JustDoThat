@@ -9,12 +9,14 @@ from datetime import date
 
 class UserForm(UserCreationForm):
     
+    #le champs email est obligatoire
     email = forms.EmailField(required=True)
     
     class Meta:
         model = User
         fields = ('username', 'email', )
-     
+        
+    #surcharge du constructeur 
     def __init__(self, *args, **kwargs):
         super(UserForm, self).__init__(*args, **kwargs)
         #affiche le help_text dans l'attribut title du champ
@@ -23,7 +25,8 @@ class UserForm(UserCreationForm):
         self.fields['password2'].widget.attrs['title'] = self.fields['password2'].help_text
 
 class EditUserForm(UserCreationForm):
-
+    
+    #le champs email est obligatoire
     email = forms.EmailField(required=True)
     
     class Meta:
@@ -59,7 +62,7 @@ class UtilisateurForm(ModelForm):
     #surcharge du constructeur pour changer l'affichage de la date de naissance
     def __init__(self, *args, **kwargs):
         super(UtilisateurForm, self).__init__(*args, **kwargs)
-        #set the list of years used in the form, we assume that users are at least 15 years old
+        #reglage des annees a afficher, on estime que l'utilisateur a au moins 15 ans
         this_year = date.today().year
         years = range(this_year-100, this_year-15)
         years.reverse()

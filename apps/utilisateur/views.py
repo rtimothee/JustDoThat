@@ -206,19 +206,19 @@ def display_profile(request, pseudo):
     except User.DoesNotExist:
         return render_to_response('utilisateur/profile.html', {'requested_user':pseudo, 'error':"Sorry, no profile was found for",},  context_instance=RequestContext(request))
 
-    # On recupere badges remportes par le user du profil
+    # On recupere les badges remportes par le user du profil
     tmp_gagner = Gagner.objects.filter(utilisateur=user_to_display)
     badges = []
     for g in tmp_gagner :
         badges.append(Badge.objects.get(id=g.badge.id))
         
-    # On recupere les défis releves par le user du profil
+    # On recupere les defis releves par le user du profil
     tmp_releves = Relever.objects.filter(utilisateur=user_to_display)
     defis_releves = []  
     for r in tmp_releves :
         defis_releves.append(Defi.objects.get(id=r.defi.id))
     
-    # On recupere les défis crees par le user du profil
+    # On recupere les defis crees par le user du profil
     defis_crees = Defi.objects.filter(createur=user_to_display)
     
     return render_to_response('utilisateur/profile.html', {'badges':badges, 'user_to_display':user_to_display, 'defis_releves':defis_releves, 'defis_crees':defis_crees}, context_instance=RequestContext(request))
@@ -227,6 +227,7 @@ def display_profile(request, pseudo):
 #-----------------------EDITION PROFIL------------------------------------
 def edit_profile(request):
     
+    # On check si l'utilisateur est authentifie
     if request.user.is_authenticated(): 
     
         if request.method == 'POST':
@@ -236,6 +237,7 @@ def edit_profile(request):
             
             #si les infos sont valides
             if user_form.is_valid() and utilisateur_form.is_valid():
+                #on change les infos de l'utilisateur
                 user_form.save()
                 utilisateur_form.save()
                     
