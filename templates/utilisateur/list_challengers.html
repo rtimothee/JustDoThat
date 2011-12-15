@@ -28,7 +28,7 @@
 				<div class="challenger_picture">
 					<img src="{% thumbnail utilisateur.get_profile.avatar 120x120 crop %}" alt="{{utilisateur.username}}" />
 				</div>
-				<h3>{{utilisateur.username}}</h3>
+				<h3><a href="/user/profile/{{ utilisateur.username}}">{{utilisateur.username}}</a></h3>
 				<p>{{utilisateur.get_profile.points}} points</p>
 			</div>
 			{% endfor %}

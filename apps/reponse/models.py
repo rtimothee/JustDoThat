@@ -6,17 +6,20 @@ from datetime import date
 
 #-------------------------------REPONSE--------------------------------    
 class Reponse(models.Model):
+
 	slug = models.SlugField(max_length=100,null=False)
 	message = models.TextField()
 	date_reponse = models.DateField(null=False, default=date.today())
-	photo = models.ImageField(upload_to=settings.IMAGE_UPLOAD_PATH, null=False)
-	notification = models.BooleanField(null=False)
+	photo = models.ImageField(upload_to=settings.IMAGE_UPLOAD_PATH_REPONSE, default='reponse_pics/defaut.jpg', null=False)
+	notification = models.BooleanField(default=True)
 	defi = models.ForeignKey(Defi)
 	utilisateur = models.ForeignKey(User)
 	classement = models.IntegerField(null=False,default=4)
 
+
 	def __unicode__(self):
 		return "%s %s" % (self.message, self.date_reponse)
+
     
 	def note_fonc(self):
 		var = Noter.objects.filter(reponse = self, note = True).count() - Noter.objects.filter(reponse = self, note = False).count()

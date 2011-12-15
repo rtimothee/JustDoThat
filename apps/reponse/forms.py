@@ -10,7 +10,9 @@ from datetime import date
 class ReponseForm(ModelForm):
     class Meta:
         model = Reponse
-        exclude = ('slug','date_reponse','utilisateur','defi','classement',)
+
+        exclude = ('slug','date_reponse','utilisateur','defi','notification','classement',)
+
         
     #surcharge du constructeur pour changer l'affichage de la date de naissance
     def __init__(self, *args, **kwargs):

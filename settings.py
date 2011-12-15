@@ -13,6 +13,18 @@ ADMINS = (
 MANAGERS = ADMINS
 
 #Config BDD Timothee
+
+'''DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',   # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'IMAC3_ProjetDjango',           # Or path to database file if using sqlite3.
+        'USER': 'root',                         # Not used with sqlite3.
+        'PASSWORD': 'root',                     # Not used with sqlite3.
+        'HOST': '/Applications/MAMP/tmp/mysql/mysql.sock',                             # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': '3306',                             # Set to empty string for default. Not used with sqlite3.
+    }
+}
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',   # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
@@ -23,10 +35,8 @@ DATABASES = {
         'PORT': '',                             # Set to empty string for default. Not used with sqlite3.
     }
 }
-
-'''
 #Config BDD Marlene
-DATABASES = {
+'''DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',   # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': 'IMAC3_ProjetDjango',           # Or path to database file if using sqlite3.
@@ -101,6 +111,7 @@ MEDIA_URL = '/media/'
 
 IMAGE_UPLOAD_PATH = 'profile_pics'
 IMAGE_UPLOAD_PATH_CHALLENGE = 'challenge_pics'
+IMAGE_UPLOAD_PATH_REPONSE = 'reponse_pics'
 
 
 #PROD !!!
