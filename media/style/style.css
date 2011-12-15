@@ -1091,6 +1091,10 @@ color:#222;
 	margin:0;
 	text-transform:uppercase;
 }
+#challenge .profile_titre_challenge h3 {
+	padding:0;
+	margin:0;
+}
 #challenge .profile_content_challenge {
 	width:160px;
 }
