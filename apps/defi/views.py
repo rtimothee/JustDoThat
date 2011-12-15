@@ -118,28 +118,27 @@ def create_challenge_view(request):
    
    
 def create_reponse_view(request, int):
+    #Fonction de creation de reponse
+    #Cette fonction sera accessible par une lightbox
     if request.method == 'POST':
         #recuperation des informations du formulaire
         reponse_form = ReponseForm(request.POST, request.FILES)
         
         #si les infos sont valides
         if reponse_form.is_valid() :
-              #fonction gerant l'upload de la photo du defi
-					#handle_uploaded_file(request.FILES['photo'])
-					#creation du nouveau defi
-					
+             		#Creation d'un table relever correspondant au defi a l'utilisateur
 					new_releve = Relever()
 					new_releve.utilisateur = request.user
 					new_releve.defi = Defi.objects.get(id = int)
+                    #sauvegarde de cette table
 					new_releve.save()
 					new_reponse = Reponse(**reponse_form.cleaned_data)
 					#creation du nouveau defi avec comme cr�ateur l'utilisateur connecte
 					new_reponse.utilisateur_id = request.user.id
 					new_reponse.defi_id = int
-					
-					
+			        #sauvegarde de la reponse créée
 					new_reponse.save()
-					
+					#redirection vers la page d'affichage du challenge correspondant
 					return HttpResponseRedirect('/challenges/display_challenge/'+int+'/')
     else:
         reponse_form = ReponseForm()
@@ -153,7 +152,8 @@ def delete_reponse_view(request, int):
 	return HttpResponseRedirect('/challenges/display_challenge/'+int+'/')
 
 def modif_reponse_view(request, int, intDefi):
-	
+	#la modification de la reponse se fait aussi dans une lightbox
+    #elle dispose de integer das son URL
 	reponse  = Reponse.objects.get(id=int)
 	defi = reponse.defi
 	if request.method == 'POST':   
@@ -163,6 +163,7 @@ def modif_reponse_view(request, int, intDefi):
 			return HttpResponseRedirect('/challenges/display_challenge/'+intDefi+'/') 
 
 	else:
+        #on rempli le formlaire
 		if reponse.utilisateur == request.user :
 			reponse_form = ReponseForm(instance = reponse) 
 		else :
@@ -214,8 +215,7 @@ def display_challenge_view(request, int):
 	
 	
 	if request.method == 'POST':
-		
-	
+        #autre formualaire de creation de reponse present ici pour le fonctionement de la lightbox
 		Reponse_form = ReponseForm(request.POST, request.FILES)
 		
 		#si les infos sont valides
@@ -225,7 +225,6 @@ def display_challenge_view(request, int):
 			new_releve.defi = Defi.objects.get(id = int)
 			new_releve.save()
 			new_reponse = Reponse(**Reponse_form.cleaned_data)
-		  #  new_reponse.slug = slugify(new_reponse.titre)
 			new_reponse.utilisateur_id = request.user.id
 			new_reponse.defi_id = int
 			new_reponse.save()
@@ -233,9 +232,6 @@ def display_challenge_view(request, int):
 	else:
 		 Reponse_form = ReponseForm()
 	
-
-	
-		
 
 	return render_to_response("defi/display_challenge.html", {'Reponse_form': Reponse_form,'reponses': reponses,'defiList':listeD[0:4], 'defi': defi, 'difficulty': difficulte, 'category':category.nom, 'users':users, 'createur':createur,'end':end}, context_instance=RequestContext(request))
 
