@@ -6,14 +6,18 @@
 		$(document).ready(function () {
    			$(".vote").click(function (e) {
      			adresse=($(this).attr("href")); // on recuperer l' adresse du lien
+     			spanNote = $(this).parent().children().first();
 				$.ajax({ // ajax
 					url: adresse, // url de la page à charger
 					cache: false, // pas de mise en cache
 					success:function(html){ // si la requête est un succès 
-						alert(html);
+						var retour = html.split(':');
+						spanNote.empty();
+						spanNote.append(retour[0]);
+						if (retour[1].indexOf('done')==-1) alert(retour[1]);
 					},
 					error:function(XMLHttpRequest, textStatus, errorThrows){ // erreur durant la requete
-						alert("erreur");
+						alert("error");
 					}
 				});
      			return false;
@@ -74,7 +78,7 @@
 				<p>Date réponse : {{ reponse.date_reponse }} </p>
 			</ul>
 			<ul>
-				<p>note : {{ reponse.note }} 
+				<p>note : <span class="note">{{ reponse.note }}</span>  
 					{% if user.is_authenticated %}
 						<a href="http://localhost:8000/reponses/notation_ajax/{{ user.id }}/1/{{ reponse.id }}/" class="vote">+</a> 
 						<a href="http://localhost:8000/reponses/notation_ajax/{{ user.id }}/0/{{ reponse.id }}/" class="vote">-</a>
