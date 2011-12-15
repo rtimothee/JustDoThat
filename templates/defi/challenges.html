@@ -1,5 +1,6 @@
 {% extends "layout/base.html" %}
 {% load thumbnail %}
+{% load truncate_filters %}
 {% block content %}
 <script type="text/javascript" src="{{ MEDIA_URL }}js/jsuri-1.1.1.min.js"></script>
 <script type="text/javascript">
@@ -27,7 +28,7 @@
 				<div class="challenge_picture">
 					<img src="{% thumbnail defi.photo 200x140 crop %}" alt="defi.titre" />
 				</div>
-				<h3><a href="/challenges/display_challenge/{{defi.id}}/" title="{{defi.titre}}">{{defi.titre}}</a></h3>
+				<h3><a href="/challenges/display_challenge/{{defi.id}}/" title="{{defi.titre}}">{{ defi.titre|truncate_chars:22}}</a></h3>
 				<p><img src="{{MEDIA_URL}}/images/picto_chrono.png" alt="" /><span class="ct_challenge_data">{{defi.timeleft}}</span> <img src="{{MEDIA_URL}}/images/picto_avatar.png" alt="" /><span class="ct_challenge_data">{{defi.nbreleve}}</span> <img src="{{MEDIA_URL}}/images/picto_eclair.png" alt=""/><span class="ct_challenge_data">{{defi.difficulte}}</span></p>
 			</div>
 			{% endfor %}

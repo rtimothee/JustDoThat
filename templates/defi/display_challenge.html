@@ -1,5 +1,6 @@
 {% extends "layout/base.html" %}
 {% load thumbnail %}
+{% load truncate_filters %}
 {% block content %}
 	<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.js"></script>
 	<script type="text/javascript">
@@ -45,8 +46,8 @@
 				<p><span class="bold">Description :</span> {{ defi.description }}</p>
 				<p><span class="bold">Difficulty :</span> {{ difficulty }}</p>		
 				<p><span class="bold">Beginning :</span> {{ defi.debut }}</p>	
-				{% if end %}
-				<p>Time Left: {{ time_left }}</p>
+				{% if end == 0 %}
+				<p>Time Left: {{ defi.timeleft }}</p>
 				<p><a href='#'>Take up the challenge</a></p>
 				{% else %}
 					<p>Challenge over</p>
@@ -136,6 +137,20 @@
   {% endfor %}	
 		</div>
 		<div id="profile_right">
+		{% for d in defiList %}
+			{{ d.titre|truncate_chars:22 }}
+			
+			{{ d.debut }}
+			{{ d.createur.username}}
+			{{ d.timeleft }}
+			<!--<img src="{% thumbnail d.photo 145x145 crop %}" alt="{{d.titre}}" />-->
+			{{ d.difficulte }}
+			{{ d.categorie }}
+			{{ d.nbreleve}}
+			
+			<br />
+			<br />
+		{% endfor %}
 			<p><a href="/challenges/list_challenges/" title="Voir tous les challenges"> Retour aux challenges </a></p>	
 		</div>
 		<div id="bottom_profile">

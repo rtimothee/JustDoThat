@@ -180,6 +180,7 @@ INSTALLED_APPS = (
     'JustDoThat.apps.main',
     'easy_thumbnails', 
     'django.contrib.comments',
+	'JustDoThat.apps.defi.templatetags',
 
 )
 

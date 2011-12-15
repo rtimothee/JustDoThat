@@ -139,7 +139,7 @@ def create_reponse_view(request, int):
 def delete_reponse_view(request, int):
 	reponse = Reponse.objects.get(id=int)
 	reponse.delete()
-	return HttpResponseRedirect('/challenges/display_challenge/1/')
+	return HttpResponseRedirect('/challenges/display_challenge/'+int+'/')
 
 def modif_reponse_view(request, int):
 	reponse  = Reponse.objects.get(id=int)
@@ -172,10 +172,10 @@ def display_challenge_view(request, int):
 
 	time_left = defi.fin - defi.debut
 
-	if defi.fin <= date.today() :
-		End = False
+	if defi.fin > date.today() :
+		end = 0
 	else:
-		End = True
+		end = 1
 
 
 	category = Categorie.objects.get(id=defi.categorie_id)
@@ -192,6 +192,8 @@ def display_challenge_view(request, int):
 		
 		
 	reponses = Reponse.objects.filter(defi=defi.id)
+	listeD = Defi.objects.filter(categorie = defi.categorie).order_by('-fin')
+	
 	
 	if request.method == 'POST':
 		
@@ -212,4 +214,4 @@ def display_challenge_view(request, int):
 	 
 	
 		
-	return render_to_response("defi/display_challenge.html", {'Reponse_form': Reponse_form,'reponses': reponses, 'defi': defi, 'difficulty': difficulte, 'category':category.nom, 'users':users, 'createur':createur}, context_instance=RequestContext(request))
+	return render_to_response("defi/display_challenge.html", {'Reponse_form': Reponse_form,'reponses': reponses,'defiList':listeD[0:4], 'defi': defi, 'difficulty': difficulte, 'category':category.nom, 'users':users, 'createur':createur,'end':end}, context_instance=RequestContext(request))
