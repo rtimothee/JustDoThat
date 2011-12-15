@@ -52,22 +52,23 @@ a img {
 }
 #h_connexion a {
 	color:#CCCCCC;
-	font-size:12px;
 	text-decoration:none;
 }
 #h_connexion a:hover {
-	color:#CCCCCC;
-	font-size:12px;
 	text-decoration:underline;
 }
-#h_connexion #member_non_logue li{
+#h_connexion #member_non_logue {
+	font-size:13px;	
+}
+}#h_connexion #member_non_logue li{
 	display:inline;
 }
 #h_connexion #member_logue {
-	width:250px;
+	width:270px;
 	float:right;
-	text-align:right;	
+	text-align:right;
 	margin-top:20px;
+	font-size:14px;
 }
 #h_connexion #member_logue li {
 	list-style:none;
