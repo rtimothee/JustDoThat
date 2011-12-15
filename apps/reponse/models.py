@@ -23,7 +23,7 @@ class Reponse(models.Model):
     
 	def note_fonc(self):
 		var = Noter.objects.filter(reponse = self, note = True).count() - Noter.objects.filter(reponse = self, note = False).count()
-		return "%s" % (var)
+		return "%d" % (var)
 	note = property(note_fonc)
     
 

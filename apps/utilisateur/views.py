@@ -32,7 +32,7 @@ def login_view(request):
       # invalid login
       return render_to_response('utilisateur/errorLog.html', {'erreur' : 'Login ou mot de passe invalide.', 'user':request.user, 'next':request.POST['next']},context_instance=RequestContext(request))
   else:
-      #return HttpResponseRedirect('/')
+      # return HttpResponseRedirect('/')
       return render_to_response('utilisateur/errorLog.html',context_instance=RequestContext(request))
   
 def logout_view(request):
@@ -72,14 +72,14 @@ def send_message_view(request, pseudo):
 			return HttpResponseRedirect("/")
 		if pseudo == user.username:
 			if request.method == 'POST':
-				#recupération des informations du formulaire
+				#recuperation des informations du formulaire
 				message_form = MessageForm(request.POST)
 				
 				#si les infos sont valides
 				if message_form.is_valid() :
 							#creation du nouveau message
 							new_message = MessagePrive(**message_form.cleaned_data)
-							#creation du nouveau message avec comme créateur l'utilisateur connecté
+							#creation du nouveau message avec comme createur l utilisateur connecté
 							new_message.emeteur = request.user
 							new_message.destinataire = User.objects.get(username = pseudo)
 							new_message.save()
@@ -99,8 +99,16 @@ def send_message_view(request, pseudo):
 def inbox_view(request):
 	if request.user.is_authenticated(): 
 		messages = MessagePrive.objects.filter(destinataire = request.user).order_by("-id")
-
+		notif = 0
+		
+		# on recupere l\'ensemble des messages recus par un user
 		nb = MessagePrive.objects.filter(destinataire = request.user).count()
+		
+		# si il y ny en a aucun il aura un message le lui disant
+		if nb ==0:
+			notif = 1
+		
+		# on recupere lensemble des users ayant envoye un message au courant ainsi que leur dernier message emis
 		users = []
 		last_messages = []
 		if nb > 1 :
@@ -123,7 +131,7 @@ def inbox_view(request):
 		except EmptyPage: pageMessage = messagesP.page(messagesP.num_pages)
 	else:
 		return HttpResponseRedirect('/')
-	return render_to_response("utilisateur/inbox.html", {'last_messages': pageMessage,},context_instance=RequestContext(request))
+	return render_to_response("utilisateur/inbox.html", {'last_messages': pageMessage, 'notif':notif,},context_instance=RequestContext(request))
 
 #------------------------CONVERSATION---------------------------------------------------------------------
 def conversation_view(request, pseudo):
@@ -136,14 +144,14 @@ def conversation_view(request, pseudo):
 		if pseudo == user.username:
 			
 			if request.method == 'POST':
-				#recupération des informations du formulaire
+				#recuperation des informations du formulaire
 				message_form = MessageForm(request.POST)
 				
 				#si les infos sont valides
 				if message_form.is_valid() :
 							#creation du nouveau message
 							new_message = MessagePrive(**message_form.cleaned_data)
-							#creation du nouveau message avec comme créateur l'utilisateur connecté
+							#creation du nouveau message avec comme createur l utilisateur connecté
 							new_message.emeteur = request.user
 							new_message.destinataire = User.objects.get(username = pseudo)
 							new_message.save()
@@ -152,11 +160,12 @@ def conversation_view(request, pseudo):
 			else:
 				message_form = MessageForm()
 				message_form.destinataire = User.objects.get(username = pseudo)
-				
+				# on assemble les deux listes de messages
 				messages1 = MessagePrive.objects.filter(destinataire = request.user, emeteur=User.objects.get(username = pseudo)).order_by("id")
 				messages2 = MessagePrive.objects.filter(emeteur = request.user, destinataire=User.objects.get(username = pseudo)).order_by("id")
 				messages = messages1 | messages2
 				
+				# on met a jour le statut lu du message
 				for m in messages:
 					if m.lu == 0 :
 						if m.destinataire == request.user :
@@ -187,7 +196,7 @@ def delete_account (request):
                 #MAJ des défis
                 defi = Defi.objects.filter(createur=user)
                 if defi.count() > 0 : defi.update(createur=User.objects.get(username='Anonymous'))
-                #suppression de l'utilisateur en Cascade
+                #suppression de l utilisateur en Cascade
                 user.delete()
             
                 #redirection vers l'accueil
@@ -231,7 +240,7 @@ def edit_profile(request):
     if request.user.is_authenticated(): 
     
         if request.method == 'POST':
-            #recupération des informations du formulaire
+            #recuperation des informations du formulaire
             user_form = EditUserForm(request.POST, instance=request.user)
             utilisateur_form = UtilisateurForm(request.POST, request.FILES, instance=request.user.get_profile())
             

@@ -3,10 +3,12 @@
 {% block title %}Send a message{% endblock %}
 
 {% block content %}
-  <h1>Send a message</h1>
+<div id="send_message">
+  <h2>Send a message</h2>
 
-  <form action="" method="post" enctype="multipart/form-data"> {% csrf_token %}
+  <form action="" method="post" enctype="multipart/form-data" class="send_message_form"> {% csrf_token %}
       {{ message_form.as_p }}
       <input type="submit" value="Send the message">
   </form>
+</div>
 {% endblock %}

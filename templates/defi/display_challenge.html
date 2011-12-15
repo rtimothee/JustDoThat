@@ -41,27 +41,28 @@
 			</div>
 			
 			<h3 class="profile_pseudo">{{ defi.titre }}</h3>
+				<div class="fb-like" data-href="http://justdothat.alwaysdata.net/challenges/display_challenge/{{defi.id}}/" data-send="true" data-layout="button_count" data-width="450" data-show-faces="true" data-font="trebuchet ms"></div>
 
-				<p><span class="bold">Category :</span> {{ category }}</p>
-				<p><span class="bold">Description :</span> {{ defi.description }}</p>
-				<p><span class="bold">Difficulty :</span> {{ difficulty }}</p>		
-				<p><span class="bold">Beginning :</span> {{ defi.debut }}</p>	
+				<p><span class="bold">Category:</span> {{ category }}</p>
+				<p><span class="bold">Description:</span> {{ defi.description }}</p>
+				<p><span class="bold">Difficulty:</span> {{ difficulty }}</p>		
+				<p><span class="bold">Beginning:</span> {{ defi.debut }}</p>	
 
 				{% if end == 0 %}
-				<p>Time Left: {{ defi.timeleft }}</p>
-				<p><a class="formLB" href="/challenges/create_reponse/{{defi.id}}/" title="{{reponse.id}}">Take up the challenge</a></p>
+				<p><span class="bold">Time Left:</span> {{ defi.timeleft }}</p>
+				<div id="take_up_div">
+					<p>Take up the challenge!</p>
+					<p><a class="formLB take_up" href="/challenges/create_reponse/{{defi.id}}/" title="{{reponse.id}}"></a></p>
+				</div>
 
 				{% else %}
 					<p>Challenge over</p>
 				{% endif %}		
-				<p><a class="formLB" href="/challenges/create_reponse/{{defi.id}}/" title="{{reponse.id}}">Take up the challenge</a></p>
-				
-				<div class="fb-like" data-href="http://justdothat.alwaysdata.net/challenges/display_challenge/{{defi.id}}/" data-send="true" data-layout="button_count" data-width="450" data-show-faces="true" data-font="trebuchet ms"></div>
-				
+								
 				{% if createur %}
 				<p>
-					<a class="edit_profile_link" href="/challenges/modif_challenge/{{defi.id}}/" title="{{defi.titre}}">> Modify</a><br/> 
-					<a class="delete_profile_link" href="/challenges/delete_challenge/{{defi.id}}/confirm/" title="{{defi.titre}}">> Delete</a> 
+					> <a class="edit_profile_link" href="/challenges/modif_challenge/{{defi.id}}/" title="{{defi.titre}}">Modify</a><br/> 
+					> <a class="delete_profile_link" href="/challenges/delete_challenge/{{defi.id}}/confirm/" title="{{defi.titre}}">Delete</a> 
 				</p>
 				{% endif %}
 				
@@ -69,13 +70,13 @@
 			</ul>
 			
 			<h3>Challengers</h3>	
-			<ul>
-				{% for user in users %}
-					<li class="user">
-						<p> <a href='/user/profile/{{user.username}}/'>{{ user.username}}</a> </p>
-					</li>
+				<p> 
+					{% for user in users %}
+						# <a class="edit_profile_link" href='/user/profile/{{user.username}}/'>{{ user.username}}</a>
+						<!--<img src="{% thumbnail user.get_profile.avatar 145x145 crop %}" />-->
 					<br />
 				{% endfor %}
+				</p>
 			</ul>
 			
 		
@@ -98,7 +99,7 @@
 					<div class="one_challenge">
 						{% for user in users %}
 							{% if reponse.utilisateur == user %}
-						<h3>{{ user}}</h3><span class="date_reponse">{{ reponse.date_reponse }} </span>
+						<h3><a href="/user/profile/{{user.username}}"> {{ user}}</a></h3><span class="date_reponse">{{ reponse.date_reponse }} </span>
 							{% endif %}
 						{% endfor %}
 						<p>{{ reponse.message }} </p>
@@ -110,7 +111,7 @@
 						</p>
 						{% if reponse.utilisateur == request.user %}
 						<p>
-							<a class="formLB" href="/challenges/modif_reponse/{{reponse.id}}/{{defi.id}}/" title="{{reponse.id}}" class="delete_profile_link">> Modify</a> 
+							<a class="formLB edit_profile_link" href="/challenges/modif_reponse/{{reponse.id}}/{{defi.id}}/" title="{{reponse.id}}" class="delete_profile_link">> Modify</a> 
 							<a href="/challenges/delete_reponse/{{reponse.id}}/" title="{{reponse.id}}" class="edit_profile_link">> Delete</a> 
 						</p>
 						{% endif %}
@@ -118,35 +119,66 @@
 				</div>
 			</div>
 		    
+	
+				<br />
 			
-			
-			
-		
-		<br />
-			
+			<div id="all_comments">
 			{% load comments %}
+				<h3>Commentaires</h3>
 
-			{% render_comment_form for reponse %}
+				<div>
+						{% render_comment_list for reponse %}
+				</div>
 
-			{% render_comment_list for reponse %}
+				<div class="form_answer">
+					{% render_comment_form for reponse %}
+				</div>
+
+  			</div>
+  			
+  			<div class="clear"></div>
 			
-  {% endfor %}	
+  			{% endfor %}	
 		</div>
+		
+		
 		<div id="profile_right">
+		
+			
+		<p>Other challenges you may be interested in:</p>
+		
+		<div class="challenges_created_all">
 		{% for d in defiList %}
-			{{ d.titre|truncate_chars:22 }}
+		
+		    <div class="profile_challenge">
+		    	<div class="profile_challenge_picture">
+		    		<!--<img src="{{ d_cre.photo }}" />-->
+		    		<a href="#"><img src="{{ MEDIA_URL }}images/profile_challenge_avatar.png" alt="" /></a>
+		    	</div>
+		    	<div class="profile_content_challenge">
+			        <h3 class="profile_titre_challenge"><a href="/challenges/display_challenge/{{d.id}}/" title="{{d.titre}}">{{ d.titre|truncate_chars:22 }}</a></h3>
+					<!--{{ d_cre.description }}-->
+					
+					<!--{{ d_cre.debut }}
+					{{ d_cre.fin }}-->
+				    
+					<!--{{ d_cre.liste }}  -->  
+					
+					<p><img src="{{ MEDIA_URL }}images/picto_chrono_challenge.png" alt="" /><span class="profile_challenge_timer"><!--03:04:05-->{{ d.timeleft }} </span> <img src="{{ MEDIA_URL }}images/picto_avatar_challenge.png" alt="" /><span class="profile_challenge_members">{{d.nbreleve}}</span> <img src="{{ MEDIA_URL }}images/picto_eclair.png" alt=""/><span class="profile_challenge_difficulty">{{ d.difficulte }}</span></p>
+					
+				</div>
+				<div class="clear"></div>
+				<div class="profile_challenge_info">
+					<span class="profile_category">{{ d.categorie }}</span> <span class="profile_challenge_author">By <a href='/user/profile/{{ d.createur.username }}/' title='{{ d.createur.username }}'> {{ d.createur.username }}</a></span>
+				</div>
+			</div>
+			<div class="clear"></div>
 			
-			{{ d.debut }}
-			{{ d.createur.username}}
-			{{ d.timeleft }}
-			<!--<img src="{% thumbnail d.photo 145x145 crop %}" alt="{{d.titre}}" />-->
-			{{ d.difficulte }}
-			{{ d.categorie }}
-			{{ d.nbreleve}}
-			
-			<br />
-			<br />
 		{% endfor %}
+		</div>
+		
+		
+		
 			<p><a href="/challenges/list_challenges/" title="Voir tous les challenges"> Retour aux challenges </a></p>	
 		</div>
 		<div id="bottom_profile">

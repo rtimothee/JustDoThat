@@ -68,6 +68,7 @@ def modif_challenge_view(request, int):
 				return HttpResponseRedirect('/') 
 	else:
 		return HttpResponseRedirect('/')
+	# on renvoie le booleen pour specifier de modifer certains elements du formulaires
 	modif = True
 	return render_to_response('defi/create_challenge.html', {'defi_form': defi_form, 'modif': modif,'defi':int}, context_instance=RequestContext(request))
   
@@ -75,6 +76,7 @@ def modif_challenge_view(request, int):
 
   
 def delete_challenge_view(request, int, delete):
+	# verification de connexion du user
 	if request.user.is_authenticated():
 		try: defi = Defi.objects.get(id=int)
 		except Defi.DoesNotExist:
@@ -93,17 +95,16 @@ def delete_challenge_view(request, int, delete):
 def create_challenge_view(request):
 	if request.user.is_authenticated():
 		if request.method == 'POST':
-			#recup�ration des informations du formulaire
+			#recuperation des informations du formulaire
 			defi_form = DefiForm(request.POST, request.FILES)
 			
 			#si les infos sont valides
 			if defi_form.is_valid() :
-				  #fonction g�rant l'upload de la photo du d�fi
-						handle_uploaded_file(request.FILES['photo'])
-						#creation du nouveau d�fi
+				  #fonction gerant l'upload de la photo du d�fi
+						#creation du nouveau defi
 						new_defi = Defi(**defi_form.cleaned_data)
 						new_defi.slug = slugify(new_defi.titre)
-						#creation du nouveau d�fi avec comme cr�ateur l'utilisateur connect�
+						#creation du nouveau defi avec comme createur l'utilisateur connecte
 						new_defi.createur = request.user
 						new_defi.save()
 						
@@ -118,21 +119,21 @@ def create_challenge_view(request):
    
 def create_reponse_view(request, int):
     if request.method == 'POST':
-        #recup�ration des informations du formulaire
+        #recuperation des informations du formulaire
         reponse_form = ReponseForm(request.POST, request.FILES)
         
         #si les infos sont valides
         if reponse_form.is_valid() :
-              #fonction g�rant l'upload de la photo du d�fi
+              #fonction gerant l'upload de la photo du defi
 					#handle_uploaded_file(request.FILES['photo'])
-					#creation du nouveau d�fi
+					#creation du nouveau defi
 					
 					new_releve = Relever()
 					new_releve.utilisateur = request.user
 					new_releve.defi = Defi.objects.get(id = int)
 					new_releve.save()
 					new_reponse = Reponse(**reponse_form.cleaned_data)
-					#creation du nouveau d�fi avec comme cr�ateur l'utilisateur connect�
+					#creation du nouveau defi avec comme cr�ateur l'utilisateur connecte
 					new_reponse.utilisateur_id = request.user.id
 					new_reponse.defi_id = int
 					
@@ -179,12 +180,13 @@ def display_challenge_view(request, int):
 	createur =0
 	if defi.createur == request.user :
 		createur=1
-
+	# recuperation des users qui ont releve le defi
 	for r in releves :
 			user = User.objects.get(id = r.utilisateur.id)
 			if user not in users:
 				users.append(user)
 
+	# on verifie si le defi est fini et on envoi un booleen pour restreindre l access aux users
 	time_left = defi.fin - defi.debut
 
 	if defi.fin > date.today() :
@@ -192,10 +194,10 @@ def display_challenge_view(request, int):
 	else:
 		end = 1
 
-
+	# on recupere la categorie
 	category = Categorie.objects.get(id=defi.categorie_id)
 
-
+	# on specifie les niveaux de difficulte
 	if defi.difficulte == 1:
 		difficulte = 'Easy'
 	if defi.difficulte == 2:
@@ -205,8 +207,9 @@ def display_challenge_view(request, int):
 	if defi.difficulte == 4:
 		difficulte = 'Very Hard'
 		
-		
+	# reponses du defi
 	reponses = Reponse.objects.filter(defi=defi.id)
+	# defis de meme categorie
 	listeD = Defi.objects.filter(categorie = defi.categorie).order_by('-fin')
 	
 	

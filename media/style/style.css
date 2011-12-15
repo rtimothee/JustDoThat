@@ -594,7 +594,7 @@ a img {
  * 
  */
 
-#registration, #creation_challenge {
+#registration, #creation_challenge, #send_message {
 	width:600px;
 	background-image:url(../images/background_bis.png);
 	padding:10px;
@@ -603,13 +603,13 @@ a img {
 	margin-bottom:30px;
 	border:#BBB solid 1px;
 }
-#registration h2, #creation_challenge h2 {
+#registration h2, #creation_challenge h2, #send_message h2 {
 	padding:0px;
 	margin:0px;
 	font-size:18px;
 	color:#16717e;
 }
-#registration .form_registration, #creation_challenge .creation_challenge_form {
+#registration .form_registration, #creation_challenge .creation_challenge_form, #send_message .send_message_form {
  	color:#444;
 	font-size:13px;
 }
@@ -778,10 +778,21 @@ a img {
  * Challenge
  * 
  */
-
+#challenge #profile_left {
+	width:220px;	
+}
+#challenge #challenge_avatar_back {
+    background-image:url(../images/pattern_back.png);	
+    box-shadow: 1px 1px 5px #AAAAAA;	
+    padding:10px;
+    width:202px;
+}
+#challenge #challenge_avatar {
+	background-color:white;
+	border: 1px solid #CCCCCC;
+}
 #challenge #profile_right {
-	padding-left:20px;
-	width:200px;
+	width:170px;
 }
 
 #challenge .challenges_headline {
@@ -827,6 +838,9 @@ color:#444444;
 #challenge .one_challenge p {
 font-size:13px;
 color:#222;
+}
+#challenge #profile_left .profile_pseudo {
+	margin-top:10px;
 }
 
 /*
@@ -952,4 +966,146 @@ color:#222;
 #wowslider-container1 .ws-title div{
 	padding-top:5px;
 	font-size: 12px;
+}
+
+
+
+
+
+
+#all_comments {
+	width:400px;
+	float:right;
+	padding-right:20px;
+	font-size:13px;
+	color:#444;
+	margin-bottom:5px;
+}
+#all_comments h3 {
+	padding-top:0;
+	margin-top:0;
+}
+#id_comment {
+	width:385px;
+	height:40px;
+	
+    font-family:Trebuchet MS;
+	padding: 5px 5px 5px 5px;
+	border: 2px solid #F7F7F7;
+	font-size: 13px;
+	color:#444;
+	
+	-webkit-border-radius: 0.5em;
+	-moz-border-radius: 0.5;
+	border-radius: 0.5em;
+  
+	box-shadow: inset rgba(0,0,0, 0.3) 0px 0px 1px;
+	-moz-box-shadow: inset rgba(0,0,0, 0.3) 0px 0px 1px;
+	-webkit-box-shadow: inset rgba(0,0,0, 0.3) 0px 0px 2px;
+}
+.form_answer {
+	margin-top:10px;	
+}
+.form_answer .submit-post {
+	margin-top:5px;	
+	float:right;
+}
+.comment {
+	margin-top:10px;	
+}
+.answer_user {
+	color:#333;
+	font-weight:bold;
+	text-decoration:none;	
+}
+.answer_user:hover {
+	text-decoration:underline;	
+}
+.answer_date {
+	font-size:11px;
+	color:#666;	
+}
+.take_up {
+
+}
+.take_up {
+	display:block;
+	background:transparent url(../images/btn_take_up.png);
+	width:70px;
+	height:40px;
+	margin:auto;
+}
+.take_up:hover {
+	background:transparent url(../images/btn_take_up_over.png);
+}
+#take_up_div {
+	text-align:center;
+	margin-top:20px;
+	margin-bottom:5px;
+}
+.fb-like {
+	margin-top:10px;
+}
+
+#challenge #profile_right p {
+	color:#444;
+	font-size:13px;
+	font-weight:bold;
+}
+#challenge #profile_right p a {
+	color:#444;
+	font-size:14px;
+	font-weight:bold;
+	text-decoration:none;
+}
+#challenge #profile_right p a:hover {
+	text-decoration:underline;
+}
+#challenge .profile_challenge {
+	height:230px;	
+	width: 180px;
+	margin:0;
+}
+#challenge .profile_challenge_picture {
+	width:166px;
+	height:123px;
+	background-image:url(../images/pattern_back.png);
+	box-shadow: 1px 1px 5px #AAA;
+	margin-bottom:10px;
+}
+#challenge .profile_challenge_picture a img {
+	border:1px #CCC solid;
+	padding:0;
+	margin:0;
+}
+#challenge .profile_challenge_picture a {
+	padding:9px;
+}
+#challenge .profile_challenge_picture a img {
+	margin-top:9px;
+}
+#challenge .profile_titre_challenge {
+	color:#515151;
+	font-size: 14px;
+	padding:0;
+	margin:0;
+	text-transform:uppercase;
+}
+#challenge .profile_titre_challenge h3 {
+	padding:0;
+	margin:0;
+}
+#challenge .profile_content_challenge {
+	width:160px;
+}
+#challenge .profile_content_challenge p {
+	font-size:12px;
+	font-weight:bold;
+	color:#515151;
+}
+#challenge .profile_category {
+	color:#808080;
+	background-image:url(../images/back_category.png);
+	padding:3px;
+	padding-top:2px;
 }

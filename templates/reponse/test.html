@@ -1,5 +1,9 @@
 
 {% for challenge in challenges %}
 		{{challenge.titre}}
+{% endfor%}<br/>
+
+{% for rep in reponses %}
+		{{rep.message}} ( {{rep.note}} / {{rep.classement}})<br/>
 {% endfor%}
 

@@ -11,6 +11,7 @@
 		window.location = uri.toString();  
 	}
 </script>
+<h2>Inbox</h2>
 	<ul>
 		{% for last_message in last_messages.object_list %}
 			<li class="challenge">
@@ -27,6 +28,9 @@
 			<br />
 		{% endfor %}
 	</ul>
+	{% if notif == 1 %}
+		<p>You haven&#146;t received any message yet.</p>
+	{% endif %}
 	
 		<div class="pagination">
     		<span class="step-links">
