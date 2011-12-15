@@ -11,7 +11,7 @@ from django.views.generic.simple import direct_to_template
 from django.contrib.auth.views import login, logout
 from django.shortcuts import render_to_response
 from JustDoThat.apps.utilisateur.tools import handle_uploaded_file
-from datetime import date
+from datetime import date, datetime
 
 
 def reponse_view(request, int):
@@ -96,39 +96,23 @@ def compfreq(elem1,elem2):
     return 0
 
 
-def update_users_view(request):
-	# en cours de dev pas beau ne pas faire attention
-	# challenges= Defi.objects.extra(where=['fini = 0'])
-	# for c in challenges :
-		# notes = []
-		# if c.timeleft == 'Challenge over':
-			# reponses = Reponse.objects.filter(defi=c)
-			# for r in reponses :
-				# notes.append(r.note)
-			# reponses_notes = sorted(zip(reponses, notes))
-			# reponses_notes.sort(lambda x,y: cmp(x[1],y[1]), reverse=True)
-			# reponses_notes.sort(compfreq, reverse=True)
-			# reponses_notes[0:2]
-			# for reponses, notes in reponses_notes :
-				# if reponses_notes[0]:
-					# reponses.classement = 1
-					# reponses.save()
-					# user1 = Utilisateur.objects.get(user= reponses.utilisateur)
-					# user1.points = 150
-					# user1.save()
-				# if reponses_notes[1]:
-					# reponses.classement = 2
-					# reponses.save()
-					# user2 = Utilisateur.objects.get(user = reponses.utilisateur)
-					# user2.points = 100
-					# user2.save()
-				# if reponses_notes[2]:
-					# reponses.classement = 3
-					# reponses.save()
-					# user3 = Utilisateur.objects.get(user = reponses.utilisateur)
-					# user3.points = 50
-					# user3.save()
-	# c.fini = 1
-	# c.save()
+#KRON POUR LA MAJ DU CLASSEMENT DES REPONSES
+def update_users_view(request): 
+    challenges = Defi.objects.filter(fini = 0, fin__lte=datetime.now())
+    reponses = []
+    for c in challenges :
+        #tri des reponses en fonction de la note
+        reponses = sorted(Reponse.objects.filter(defi = c), key=lambda r: r.note, reverse=True)
+        cpt = 1
+        #enregistrement du classement
+        for reponse in reponses:
+            reponse.classement = cpt
+            if cpt<4 : cpt = cpt+1
+            reponse.save()
+        c.fini = 1
+        c.save()
+            
+    return render_to_response("reponse/test.html", {'challenges': challenges, 'reponses': reponses}) 
+        
 
-	return render_to_response("reponse/test.html", {'challenges': challenges})
+	
