@@ -1,3 +1,4 @@
+{% load thumbnail %}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
@@ -47,7 +48,7 @@
 									
 								</ul>-->
 								<ul>
-									<li><img style="vertical-align: -10px;" src="{{ MEDIA_URL }}images/_micro_avatar.png" /></li>
+									<li><img style="vertical-align: -10px;" src="{% thumbnail user.get_profile.avatar 30x30 crop %}" /></li>
 									<li><a href="http://localhost:8000/user/profile/{{user.username}}">{{ user.username }}</a></li>
 									<li><a href='/user/logout/'>Log out</a></li>
 								</ul>
