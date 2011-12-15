@@ -823,10 +823,6 @@ a img {
 	overflow:hidden;
 }
 
-#wowslider-container1 .ws_images a{
-	display:none;
-}
-
 #wowslider-container1 .ws_images img{
 	top:0;
 	left:0;
