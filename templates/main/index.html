@@ -9,7 +9,23 @@
 			<h2>NEWS</h2>
 		</div>
 		
-		<img src="../media/images/fond_diapo.png" style="margin-left:10px;margin-top:10px;" />
+		<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.js"></script>
+		<script type="text/javascript" src="{{ MEDIA_URL }}js/wowslider.js"></script>
+		<div id="wowslider-container1">
+			<div class="ws_images">
+					<a href="http://localhost:8000/user/register"><img src="{{ MEDIA_URL }}images/banniere1.png" alt="banniere1" id="wows0"/></a>
+					<a href="http://localhost:8000/user/register"><img src="{{ MEDIA_URL }}images/banniere2.png" alt="banniere2" id="wows1"/></a>
+					<a href="http://localhost:8000/user/register"><img src="{{ MEDIA_URL }}images/banniere3.png" alt="banniere3" id="wows2"/></a>
+			</div>
+			<div class="ws_bullets">
+			<a href="#wows0" >1</a>
+			<a href="#wows1" >2</a>
+			<a href="#wows2" >3</a>
+			</div>
+		</div>
+		<script type="text/javascript" src="{{ MEDIA_URL }}js/script.js"></script>
+		
+		<!--<img src="../media/images/fond_diapo.png" style="margin-left:10px;margin-top:10px;" />
 		<!--<div id="ct_register_btn">
 			<a href="#"><img src="../media/images/inscription_btn.png" alt="" /></a>
 		</div>-->
