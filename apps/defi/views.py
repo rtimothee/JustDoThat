@@ -16,11 +16,31 @@ from JustDoThat.apps.defi.tools import handle_uploaded_file
 from datetime import date
 from django.template import RequestContext
 from compiler.pycodegen import EXCEPT
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 
 def challenges_view(request):
 	defis = Defi.objects.all()
+	
+    #Recuperation du numero de la page 
+	defisP = Paginator(defis, 12)
+	try: pageD = int(request.GET.get('pageD', '1'))
+	except ValueError : pageD = 1
+                
+    #pagination
+	try: pageDefis = defisP.page(pageD)
+	except PageNotAnInteger: pageDefis = defisP.page(1)
+	except EmptyPage: pageDefis = utilisateursP.page(defisP.num_pages)
+                           
+    #rediriger vers la page de resultats
+	return render_to_response('defi/challenges.html', {'defis':pageDefis}, context_instance=RequestContext(request))
+
+
+
+'''def challenges_view(request):
+	defis = Defi.objects.all()
 			
-	return render_to_response('defi/challenges.html', {'defis': defis}, context_instance=RequestContext(request))
+	return render_to_response('defi/challenges.html', {'defis': defis}, context_instance=RequestContext(request))'''
 	
 def modif_challenge_view(request, int):
 	defi  = Defi.objects.get(id=int)

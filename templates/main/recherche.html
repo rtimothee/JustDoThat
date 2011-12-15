@@ -46,7 +46,7 @@
 			{% endfor %}
 			<div class="clear"></div>
 		</div>
-		
+		{% if defis.paginator.num_pages > 1 %}
 		<div class="pagination">
 	    	<span class="step-links">
 	        	{% if defis.has_previous %}
@@ -62,6 +62,7 @@
 	       		{% endif %}
 	   		</span>
 		</div>
+		{% endif %}
 		{% else %}
 			<p class="align_center">No results found for your query.</p>
 			<p class="align_center">Check your spelling or try another word.</p>
@@ -93,7 +94,7 @@
 			{% endfor %}
 			<div class='clear'></div>
 		</div>
-		
+		{% if utilisateurs.paginator.num_pages > 1 %}
 		<div class="pagination">
 	    	<span class="step-links">
 	       		{% if utilisateurs.has_previous %}
@@ -107,6 +108,7 @@
 	        	{% endif %}
 	    	</span>
 		</div>
+		{% endif %}
 		{% else %}
 			<p class="align_center">No results found for your query.</p>
 			<p class="align_center">Check your spelling or try another word.</p>
