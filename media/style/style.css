@@ -693,12 +693,12 @@ a img {
 	font-size: 16px;
 	font-weight:bold;
 }
-#list_challenges #challenges_headline {
+#list_challenges #challenges_headline, #list_challengers #ct_challengers_headline {
 	width:650px;
 	height:55px;
 	margin:auto;
 	margin-top:30px;
-	background-image: url("../images/ct_header_challenges.png");
+	background-image: url("../images/ct_header_challengers.png");
 	background-repeat:no-repeat;
 	text-align:center;
 	color:white;
@@ -768,3 +768,24 @@ a img {
 
 #profile .bold {
 	font-weight:bold;
+}
+
+
+/*
+ * 
+ * Challenge
+ * 
+ */
+
+#challenge #profile_right {
+	padding-left:20px;
+	width:200px;
+}
+
+#challenge .challenges_headline {
+	width:550px;
+}
+
+#challenge #profile_trophies_back {
+	margin-top:10px;
+}

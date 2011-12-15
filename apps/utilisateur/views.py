@@ -225,3 +225,26 @@ def edit_profile(request):
     
     else:
         return render_to_response("utilisateur/edit_profile.html", {'error': "You must login to edit your profile",}, context_instance=RequestContext(request))
+
+
+#--------------------------------LISTE DES USERS-------------------------------
+def list_challengers(request):
+    #requete            
+    utilisateurs = User.objects.all()         
+    #recuperation des conditions de tri
+    triUser = request.GET.get('triUser')
+    if triUser :
+        if triUser == 'Ncr' : utilisateurs = utilisateurs.order_by('username')
+        elif triUser == 'Ndecr' : utilisateurs = utilisateurs.order_by('-username')
+
+    #Recuperation du numero de la page 
+    utilisateursP = Paginator(utilisateurs, 24)
+    try: pageU = int(request.GET.get('pageU', '1'))
+    except ValueError : pageU = 1
+     
+    #pagination
+    try: pageUser = utilisateursP.page(pageU)
+    except PageNotAnInteger: pageUser = utilisateursP.page(1)
+    except EmptyPage: pageUser = utilisateursP.page(utilisateursP.num_pages)
+
+    return render_to_response('utilisateur/list_challengers.html', {'utilisateurs':pageUser}, context_instance=RequestContext(request))
