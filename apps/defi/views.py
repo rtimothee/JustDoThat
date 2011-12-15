@@ -22,6 +22,14 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 def challenges_view(request):
 	defis = Defi.objects.all()
 	
+	#tri
+	triDefi = request.GET.get('triDefi')
+	if triDefi :
+		if triDefi == 'Ncr' : defis = defis.order_by('titre')
+		elif triDefi == 'Ndecr' : defis = defis.order_by('-titre')
+		elif triDefi == 'Dcr' : defis = defis.order_by('fin')
+		elif triDefi == 'Ddecr' : defis = defis.order_by('-fin')
+	
     #Recuperation du numero de la page 
 	defisP = Paginator(defis, 12)
 	try: pageD = int(request.GET.get('pageD', '1'))
