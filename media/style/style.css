@@ -776,10 +776,24 @@ a img {
  * Challenge
  * 
  */
+#challenge #profile_left {
+	width:220px;	
+}
+#challenge #challenge_avatar_back {
+    background-image:url(../images/pattern_back.png);	
+    box-shadow: 1px 1px 5px #AAAAAA;	
+    padding:10px;
+    width:202px;
+}
+#challenge #challenge_avatar {
+	background-color:white;
+	border: 1px solid #CCCCCC;
+}
+
 
 #challenge #profile_right {
 	padding-left:20px;
-	width:200px;
+	width:150px;
 }
 
 #challenge .challenges_headline {
