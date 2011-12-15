@@ -8,11 +8,13 @@ from JustDoThat.apps.utilisateur.models import MessagePrive
 from datetime import date
 
 class UserForm(UserCreationForm):
-
+    
+    email = forms.EmailField(required=True)
+    
     class Meta:
         model = User
         fields = ('username', 'email', )
-        
+     
     def __init__(self, *args, **kwargs):
         super(UserForm, self).__init__(*args, **kwargs)
         #affiche le help_text dans l'attribut title du champ
@@ -22,6 +24,8 @@ class UserForm(UserCreationForm):
 
 class EditUserForm(UserCreationForm):
 
+    email = forms.EmailField(required=True)
+    
     class Meta:
         model = User
         fields = ('username', 'email', )
@@ -32,9 +36,11 @@ class EditUserForm(UserCreationForm):
         
         #affiche le help_text dans l'attribut title du champ
         self.fields['password2'].widget.attrs['title'] = self.fields['password2'].help_text
+        #empeche l'edition du username
         if instance and instance.id:
             self.fields['username'].widget.attrs['readonly'] = True
-    
+            
+    #renvoie la valeur de depart pour s'assurer que la valeur n'a pas ete change (securite)
     def clean_username(self):
         return self.instance.username
 

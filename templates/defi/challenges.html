@@ -1,15 +1,28 @@
 {% extends "layout/base.html" %}
 {% load thumbnail %}
 {% block content %}
-
+<script type="text/javascript" src="{{ MEDIA_URL }}js/jsuri-1.1.1.min.js"></script>
+<script type="text/javascript">
+	function changeValueGet(variable, contenu){
+		var uri = new Uri(window.location);
+		uri.replaceQueryParam(variable, contenu);
+		//Reload
+		window.location = uri.toString();  
+	}
+</script>
 <div id="list_challenges">
 	<div id="challenges_headline">
 		<h2>CHALLENGES</h2>
 	</div>
 		
+	<div id="ct_challenges_challenges">
+	{% if defis.object_list %}
+		<p>
+			Tri par : Nom <a href="#" onclick="changeValueGet('triDefi', 'Ncr')"> &lsaquo; </a> / <a href="#" onclick="changeValueGet('triDefi', 'Ndecr')"> &rsaquo; </a>
+			Date <a href="#" onclick="changeValueGet('triDefi', 'Dcr')"> &lsaquo; </a> / <a href="#" onclick="changeValueGet('triDefi', 'Ddecr')"> &rsaquo; </a>
+		</p>
 		<div id="ct_challenges_challenges">
-			
-			{% for defi in defis %}
+			{% for defi in defis.object_list %}
 			<div class="ct_challenges_challenge marginLR">
 				<div class="challenge_picture">
 					<img src="{% thumbnail defi.photo 200x140 crop %}" alt="defi.titre" />
@@ -20,8 +33,29 @@
 			{% endfor %}
 			<div class="clear"></div>
 		</div>
+		{% if defis.paginator.num_pages > 1 %}
+		<div class="pagination">
+	    	<span class="step-links">
+	        	{% if defis.has_previous %}
+	   	       	<a href="#" onclick="changeValueGet('pageD', '{{ defis.previous_page_number }}')">previous</a>
+	   	   		{% endif %}
+	
+	      		<span class="current">
+	      	    	Page {{ defis.number }} of {{ defis.paginator.num_pages }}.
+	   	 		</span>
+	
+	       		{% if defis.has_next %}
+	           	<a href="#" onclick="changeValueGet('pageD', '{{ defis.next_page_number }}')">next</a>
+	       		{% endif %}
+	   		</span>
+		</div>
+		{% endif %}
+	{% else %}
+			<p class="align_center">No results found for your query.</p>
+			<p class="align_center">Check your spelling or try another word.</p>
+	{% endif %}
+	</div>
 	<p class="align_center bold">Make your own:</p>
 	<p><a href="/challenges/create_challenge/" title="{{defi.titre}}" id="create_challenge_btn"></a></p>
 </div>
-
 {% endblock content %}

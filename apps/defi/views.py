@@ -16,11 +16,39 @@ from JustDoThat.apps.defi.tools import handle_uploaded_file
 from datetime import date
 from django.template import RequestContext
 from compiler.pycodegen import EXCEPT
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 
 def challenges_view(request):
 	defis = Defi.objects.all()
+	
+	#tri
+	triDefi = request.GET.get('triDefi')
+	if triDefi :
+		if triDefi == 'Ncr' : defis = defis.order_by('titre')
+		elif triDefi == 'Ndecr' : defis = defis.order_by('-titre')
+		elif triDefi == 'Dcr' : defis = defis.order_by('fin')
+		elif triDefi == 'Ddecr' : defis = defis.order_by('-fin')
+	
+    #Recuperation du numero de la page 
+	defisP = Paginator(defis, 12)
+	try: pageD = int(request.GET.get('pageD', '1'))
+	except ValueError : pageD = 1
+                
+    #pagination
+	try: pageDefis = defisP.page(pageD)
+	except PageNotAnInteger: pageDefis = defisP.page(1)
+	except EmptyPage: pageDefis = utilisateursP.page(defisP.num_pages)
+                           
+    #rediriger vers la page de resultats
+	return render_to_response('defi/challenges.html', {'defis':pageDefis}, context_instance=RequestContext(request))
+
+
+
+'''def challenges_view(request):
+	defis = Defi.objects.all()
 			
-	return render_to_response('defi/challenges.html', {'defis': defis}, context_instance=RequestContext(request))
+	return render_to_response('defi/challenges.html', {'defis': defis}, context_instance=RequestContext(request))'''
 	
 def modif_challenge_view(request, int):
 	if request.user.is_authenticated():

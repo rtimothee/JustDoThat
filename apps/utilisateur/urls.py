@@ -12,5 +12,6 @@ urlpatterns = patterns('',
   url(r'^conversation/(?P<pseudo>[\w-]+)/$',  conversation_view, name="outbox"),
   url(r'^delete_account/$', delete_account, name='delete_account'),
   url(r'^edit-profile/$',  edit_profile, name="edit_profile"),
+  url(r'^list_challengers/$', list_challengers, name='list_challengers'),
 )
 

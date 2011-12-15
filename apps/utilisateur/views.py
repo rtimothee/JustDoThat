@@ -42,26 +42,26 @@ def logout_view(request):
 
 #-----------------------------------INSCRIPTION--------------------------------------------
 def register_view(request):
-	if request.method == 'POST':
-		#recupération des informations du formulaire
-		user_form = UserForm(request.POST)
-		utilisateur_form = UtilisateurForm(request.POST, request.FILES)
+    if request.method == 'POST':
+        #recupération des informations du formulaire
+        user_form = UserForm(request.POST)
+        utilisateur_form = UtilisateurForm(request.POST, request.FILES)
         
         #si les infos sont valides
-		if user_form.is_valid() and utilisateur_form.is_valid():
-			#creation du nouvel utilisateur
-			new_user = Utilisateur(**utilisateur_form.cleaned_data)
-			new_user.points = 0
-			new_user.user = user_form.save()
-			new_user.save()
+        if user_form.is_valid() and utilisateur_form.is_valid():
+            #creation du nouvel utilisateur
+            new_user = Utilisateur(**utilisateur_form.cleaned_data)
+            new_user.points = 0
+            new_user.user = user_form.save()
+            new_user.save()
             
-		return HttpResponseRedirect("/")
-	else:
-		#creation des formulaires
-		user_form = UserForm()
-		utilisateur_form = UtilisateurForm()
+            return HttpResponseRedirect("/")
+    else:
+        #creation des formulaires
+        user_form = UserForm()
+        utilisateur_form = UtilisateurForm()
         
-	return render_to_response("utilisateur/register.html", {'user_form': user_form, 'utilisateur_form': utilisateur_form,}, context_instance=RequestContext(request))
+    return render_to_response("utilisateur/register.html", {'user_form': user_form, 'utilisateur_form': utilisateur_form,}, context_instance=RequestContext(request))
 
 #------------------------ENVOI DE MESSAGE---------------------------------------------------------------------
 def send_message_view(request, pseudo):
@@ -238,10 +238,6 @@ def edit_profile(request):
             if user_form.is_valid() and utilisateur_form.is_valid():
                 user_form.save()
                 utilisateur_form.save()
-                    #creation du nouvel utilisateur
-#                    new_user = Utilisateur(**utilisateur_form.cleaned_data)
-#                    new_user.user = user_form.save()
-#                    new_user.save()
                     
                 return HttpResponseRedirect("/")
         else:
@@ -253,3 +249,26 @@ def edit_profile(request):
     
     else:
         return render_to_response("utilisateur/edit_profile.html", {'error': "You must login to edit your profile",}, context_instance=RequestContext(request))
+
+
+#--------------------------------LISTE DES USERS-------------------------------
+def list_challengers(request):
+    #requete            
+    utilisateurs = User.objects.all()         
+    #recuperation des conditions de tri
+    triUser = request.GET.get('triUser')
+    if triUser :
+        if triUser == 'Ncr' : utilisateurs = utilisateurs.order_by('username')
+        elif triUser == 'Ndecr' : utilisateurs = utilisateurs.order_by('-username')
+
+    #Recuperation du numero de la page 
+    utilisateursP = Paginator(utilisateurs, 24)
+    try: pageU = int(request.GET.get('pageU', '1'))
+    except ValueError : pageU = 1
+     
+    #pagination
+    try: pageUser = utilisateursP.page(pageU)
+    except PageNotAnInteger: pageUser = utilisateursP.page(1)
+    except EmptyPage: pageUser = utilisateursP.page(utilisateursP.num_pages)
+
+    return render_to_response('utilisateur/list_challengers.html', {'utilisateurs':pageUser}, context_instance=RequestContext(request))

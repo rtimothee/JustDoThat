@@ -40,34 +40,37 @@ a img {
 	margin:auto;
 }
 #h_logo {
-    width:670px;
+    width:500px;
     float:left;
 }
 #h_connexion{
 	color:#CCCCCC;
 	font-size:13px;
 	margin-top:20px;
-    width:330px;
+    width:500px;
 	float:right;
 }
 #h_connexion a {
 	color:#CCCCCC;
-	font-size:12px;
 	text-decoration:none;
 }
 #h_connexion a:hover {
-	color:#CCCCCC;
-	font-size:12px;
 	text-decoration:underline;
 }
-#h_connexion #member_non_logue li{
+#h_connexion #member_non_logue {
+	font-size:13px;	
+	width:330px;
+	float:right;
+}
+}#h_connexion #member_non_logue li{
 	display:inline;
 }
 #h_connexion #member_logue {
-	width:250px;
+	width:500px;
 	float:right;
-	text-align:right;	
+	text-align:right;
 	margin-top:20px;
+	font-size:14px;
 }
 #h_connexion #member_logue li {
 	list-style:none;
@@ -690,12 +693,12 @@ a img {
 	font-size: 16px;
 	font-weight:bold;
 }
-#list_challenges #challenges_headline {
+#list_challenges #challenges_headline, #list_challengers #ct_challengers_headline {
 	width:650px;
 	height:55px;
 	margin:auto;
 	margin-top:30px;
-	background-image: url("../images/ct_header_challenges.png");
+	background-image: url("../images/ct_header_challengers.png");
 	background-repeat:no-repeat;
 	text-align:center;
 	color:white;
@@ -761,4 +764,42 @@ a img {
 }
 #creation_challenge p {
 	padding:0;
+}
+
+#profile .bold {
+	font-weight:bold;
+}
+
+
+/*
+ * 
+ * Challenge
+ * 
+ */
+#challenge #profile_left {
+	width:220px;	
+}
+#challenge #challenge_avatar_back {
+    background-image:url(../images/pattern_back.png);	
+    box-shadow: 1px 1px 5px #AAAAAA;	
+    padding:10px;
+    width:202px;
+}
+#challenge #challenge_avatar {
+	background-color:white;
+	border: 1px solid #CCCCCC;
+}
+
+
+#challenge #profile_right {
+	padding-left:20px;
+	width:150px;
+}
+
+#challenge .challenges_headline {
+	width:550px;
+}
+
+#challenge #profile_trophies_back {
+	margin-top:10px;
 }

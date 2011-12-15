@@ -1,11 +1,12 @@
+{% load thumbnail %}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />	
 	<meta name="Authors" content="Pixel Pepper" />
 	<meta name="Description" content="" />
-	<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}style/style.css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}style/search_style.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}style/style.css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}style/profile_style.css" media="screen" />
 
     <title>Just do that</title>            
@@ -47,6 +48,7 @@
 									
 								</ul>-->
 								<ul>
+									<li><img style="vertical-align: -10px;" src="{% thumbnail user.get_profile.avatar 30x30 crop %}" /></li>
 									<li><a href="http://localhost:8000/user/profile/{{user.username}}">{{ user.username }}</a></li>
 									<li><a href='/user/logout/'>Log out</a></li>
 								</ul>
@@ -83,7 +85,7 @@
 		    		<ul id="menuLeft">
 		    			<li><img src="{{ MEDIA_URL }}images/btn_home.png" alt="" /><a href="/">HOME</a></li>
 		    			<li><img src="{{ MEDIA_URL }}images/btn_challenge.png" alt="" /><a href="/challenges/list_challenges/">CHALLENGES</a></li>
-		    			<li><img src="{{ MEDIA_URL }}images/btn_community.png" alt="" /><a href="#">COMMUNITY</a></li>
+		    			<li><img src="{{ MEDIA_URL }}images/btn_community.png" alt="" /><a href="/user/list_challengers/">COMMUNITY</a></li>
 		    		</ul>
 		    		
 		    			<!--<form action="" method="post" id="SearchForm">
@@ -93,7 +95,7 @@
 		    			
 		    			<div id="SearchForm">
 				  			<form action="/search/results/" method="get">
-								<input type="text" name="demande" value="Search" id="demande"> <input type="submit" value="Ok" />
+								<input type="text" name="demande" value="Search" onFocus="this.value=''" id="demande"> <input type="submit" value="Ok" />
 								<a href="#"><img src="{{ MEDIA_URL }}images/challenge_btn.png" alt="" /></a>
 							</form>
 				  		</div>

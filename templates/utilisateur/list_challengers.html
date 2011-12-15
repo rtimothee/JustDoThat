@@ -1,0 +1,59 @@
+{% extends "layout/base.html" %}
+{% load thumbnail %}
+{% block content %}
+<script type="text/javascript" src="{{ MEDIA_URL }}js/jsuri-1.1.1.min.js"></script>
+<script type="text/javascript">
+	function changeValueGet(variable, contenu){
+		var uri = new Uri(window.location);
+		uri.replaceQueryParam(variable, contenu);
+		//Reload
+		window.location = uri.toString();  
+	}
+</script>
+
+	
+	<div id="list_challengers">
+		<div id="ct_challengers_headline">
+			<h2> CHALLENGERS</h2>
+		</div>
+		
+		{% if utilisateurs.object_list %}
+		<p>
+			Tri par : Nom <a href="#" onclick="changeValueGet('triUser', 'Ncr')">  &lsaquo; </a> / <a href="#" onclick="changeValueGet('triUser', 'Ndecr')"> &rsaquo; </a>
+		</p>
+		
+		<div id="ct_challengers_users">
+			{% for utilisateur in utilisateurs.object_list %}
+			<div class="ct_challengers_user">
+				<div class="challenger_picture">
+					<img src="{% thumbnail utilisateur.get_profile.avatar 120x120 crop %}" alt="{{utilisateur.username}}" />
+				</div>
+				<h3>{{utilisateur.username}}</h3>
+				<p>{{utilisateur.get_profile.points}} points</p>
+			</div>
+			{% endfor %}
+			<div class='clear'></div>
+		</div>
+		{% if utilisateurs.paginator.num_pages > 1 %}
+		<div class="pagination">
+	    	<span class="step-links">
+	       		{% if utilisateurs.has_previous %}
+	           	<a href="#" onclick="changeValueGet('pageU', '{{ utilisateurs.previous_page_number }}')">previous</a>
+	       		{% endif %}
+	          	<span class="current">
+	        	   	Page {{ utilisateurs.number }} of {{ utilisateurs.paginator.num_pages }}.
+	        	</span>
+	        	{% if utilisateurs.has_next %}
+	            	<a href="#" onclick="changeValueGet('pageU', '{{ utilisateurs.next_page_number }}')">next</a>
+	        	{% endif %}
+	    	</span>
+		</div>
+		{% endif %}
+		{% else %}
+			<p class="align_center">No results found for your query.</p>
+			<p class="align_center">Check your spelling or try another word.</p>
+		{% endif %}
+		
+	</div>
+
+{% endblock content %}

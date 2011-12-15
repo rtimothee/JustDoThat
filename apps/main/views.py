@@ -93,7 +93,7 @@ def recherche (request):
                     elif triDefi == 'Ddecr' : defis = defis.order_by('-fin')
                     
                 #Recuperation du numero de la page 
-                defisP = Paginator(defis, 12)
+                defisP = Paginator(defis, 8)
                 try: pageD = int(request.GET.get('pageD', '1'))
                 except ValueError : pageD = 1
                 
