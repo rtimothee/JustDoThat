@@ -788,8 +788,45 @@ a img {
 	width:550px;
 }
 
-#challenge #profile_trophies_back {
-	margin-top:10px;
+#challenge #challenge_submitted_back {
+width:548px;
+height:178px;
+background-image:url(../images/pattern_back.png);
+box-shadow: 1px 1px 5px #AAA;
+padding-top:12px;
+margin-top:10px;
+}
+#challenge #challenge_submitted {
+width:497px;
+height:140px;
+margin-left:12px;
+background-color:white;
+border:1px solid #CCC;
+padding:12px;
+}
+#challenge #challenge_submitted img {
+float:left;
+}
+#challenge .one_challenge {
+float:left;
+margin-left:12px;
+width:280px;
+}
+#challenge .one_challenge h3 {
+width:150px;
+padding:0;
+margin:0;
+font-size:16px;
+color:#2695A0;
+}
+#challenge .one_challenge .date_reponse {
+font-size:12px;
+font-weight:bold;
+color:#444444;
+}
+#challenge .one_challenge p {
+font-size:13px;
+color:#222;
 }
 
 /*
