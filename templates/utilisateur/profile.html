@@ -46,8 +46,8 @@
 
 		<!-- si le user connecté est le même que le profil affiché, il peut modifier et supprimer son profil-->
 		{% ifequal user.id user_to_display.id %}
-			<a id="edit_profile_link" href="/user/edit-profile">> Edit my profile</a><br/>
-			<a id="delete_profile_link" href="/user/delete_account">> Delete my account</a><br/>
+			<a class="edit_profile_link" href="/user/edit-profile">> Edit my profile</a><br/>
+			<a class="delete_profile_link" href="/user/delete_account">> Delete my account</a><br/>
 		{% endifequal %}
 		
 		
