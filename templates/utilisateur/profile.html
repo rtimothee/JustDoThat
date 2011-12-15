@@ -42,7 +42,7 @@
 		Lives in: {{ user_to_display.get_profile.pays }}
 		</p>
 		
-		<p><!--<a href=""><img src="{{ MEDIA_URL }}images/ft_facebook.png" alt="" /></a> <a href=""><img src="{{ MEDIA_URL }}images/ft_twitter.png" alt="" /></a>--> <a href=""><img src="{{ MEDIA_URL }}images/profile_btn_message.png" alt="" /></a></p>
+		<p><!--<a href=""><img src="{{ MEDIA_URL }}images/ft_facebook.png" alt="" /></a> <a href=""><img src="{{ MEDIA_URL }}images/ft_twitter.png" alt="" /></a>--> <a href="/user/send_message/{{user_to_display.username}}"><img src="{{ MEDIA_URL }}images/profile_btn_message.png" alt="" /></a></p>
 
 		<!-- si le user connecté est le même que le profil affiché, il peut modifier et supprimer son profil-->
 		{% ifequal user.id user_to_display.id %}
