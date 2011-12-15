@@ -66,7 +66,7 @@ def reponse_view(request, int):
     return render_to_response("reponse/reponse.html", {'Reponse_form': Reponse_form,'defi': defi, 'difficulty': difficulte, 'category':category.nom, 'users':users})
 
 def notation_view(request, userNotation, note_user, rep):
-    #recuperation du user et de la reponse
+    # recuperation du user et de la reponse
     model_user = User.objects.get(id = userNotation)
     model_reponse = Reponse.objects.get(id = rep)
     

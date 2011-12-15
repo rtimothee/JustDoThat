@@ -32,7 +32,7 @@ def login_view(request):
       # invalid login
       return render_to_response('utilisateur/errorLog.html', {'erreur' : 'Login ou mot de passe invalide.', 'user':request.user, 'next':request.POST['next']},context_instance=RequestContext(request))
   else:
-      #return HttpResponseRedirect('/')
+      # return HttpResponseRedirect('/')
       return render_to_response('utilisateur/errorLog.html',context_instance=RequestContext(request))
   
 def logout_view(request):
