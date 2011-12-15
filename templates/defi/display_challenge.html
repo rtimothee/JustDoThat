@@ -24,59 +24,70 @@
    			});
  		});
 	</script>
-	<p><a href="/challenges/list_challenges/" title="Voir tous les challenges"> Retour aux challenges </a></p>
-	<h2>{{ defi.titre }}</h2>
-	<img src="{% thumbnail defi.photo 140x140 crop %}" alt="defi.titre" />
-	<ul>
-		<li>Category : {{ category }}</li>
-		<li>Description : {{ defi.description }}</li>
-		<li>Difficulty : {{ difficulty }}</li>		
-		<li>Beginning : {{ defi.debut }}</li>	
-		{% if end %}
-		<li>Time Left: {{ time_left }}</li>
-		<p><a href='#'>Take up the challenge</a></p>
-		{% else %}
-		<p>Challenge over</p>
-		{% endif %}		
-		
-		<div class="fb-like" data-href="http://justdothat.alwaysdata.net/challenges/display_challenge/{{defi.id}}/" data-send="true" data-layout="button_count" data-width="450" data-show-faces="true" data-font="trebuchet ms"></div>
-		
-		{% if createur %}
-		<ul class="modif_challenge">
-				<a href="/challenges/modif_challenge/{{defi.id}}/" title="{{defi.titre}}">Modify</a> 
-			</ul>
-		<ul class="delete_challenge">
-			<a href="/challenges/delete_challenge/{{defi.id}}/confirm/" title="{{defi.titre}}">Delete</a> 
-		</ul>
-		{% endif %}
-	</ul>
-<h3>Challengers</h3>	
-	<ul>
-		{% for user in users %}
-			<li class="user">
-				<p> <a href='#'>{{ user}}</a> </p>
-			</li>
-			<br />
-		{% endfor %}
-	</ul>
-<h3>Repondre à un défi</h3>
-
-  <form action="" method="post" enctype="multipart/form-data"> {% csrf_token %}
-    
-      {{ Reponse_form.as_p }}
-      <input type="submit" value="Repondre à un défi">
-  </form>
-  
-  {% for reponse in reponses %}
-			<li class="challenge">
-				<a href="/challenges/display_challenge/{{defi.id}}/" title="{{defi.titre}}">{{ defi.titre }}</a> 
-			<ul>
+	
+	<div id="profile">
+		<div id="top_profile">
 			
+		</div>
+		<div id="profile_left">
+			
+			<!-- l'url de l'img -->
+			<div id="profile_avatar">
+				<img src="{% thumbnail defi.photo 145x145 crop %}" alt="{{defi.titre}}" />
+			</div>
+			
+			<h3 class="profile_pseudo">{{ defi.titre }}</h3>
+
+				<p><span class="bold">Category :</span> {{ category }}</p>
+				<p><span class="bold">Description :</span> {{ defi.description }}</p>
+				<p><span class="bold">Difficulty :</span> {{ difficulty }}</p>		
+				<p><span class="bold">Beginning :</span> {{ defi.debut }}</p>	
+				{% if end %}
+				<p>Time Left: {{ time_left }}</p>
+				<p><a href='#'>Take up the challenge</a></p>
+				{% else %}
+					<p>Challenge over</p>
+				{% endif %}		
+				
+				<div class="fb-like" data-href="http://justdothat.alwaysdata.net/challenges/display_challenge/{{defi.id}}/" data-send="true" data-layout="button_count" data-width="450" data-show-faces="true" data-font="trebuchet ms"></div>
+				
+				{% if createur %}
+				<p>
+					<a id="edit_profile_link" href="/challenges/modif_challenge/{{defi.id}}/" title="{{defi.titre}}">> Modify</a><br/> 
+					<a id="delete_profile_link" href="/challenges/delete_challenge/{{defi.id}}/confirm/" title="{{defi.titre}}">> Delete</a> 
+				</p>
+				{% endif %}
+			</ul>
+			
+			<h3>Challengers</h3>	
+			<ul>
+				{% for user in users %}
+					<li class="user">
+						<p> <a href='#'>{{ user}}</a> </p>
+					</li>
+					<br />
+				{% endfor %}
+			</ul>
+			
+			<h3>Repondre à un défi</h3>
+		  	<form action="" method="post" enctype="multipart/form-data"> {% csrf_token %}
+		    	{{ Reponse_form.as_p }}
+		     	<input type="submit" value="Repondre à un défi">
+		 	</form>
+			
+		</div>
+		<div id="profile_center">
+			{% for reponse in reponses %}
+		<li class="challenge">
+			<a href="/challenges/display_challenge/{{defi.id}}/" title="{{defi.titre}}">{{ defi.titre }}</a> 
+			<ul>
 				<p>{{ reponse.message }} </p>
 			</ul>
+			
 			<ul>
 				<p>Date réponse : {{ reponse.date_reponse }} </p>
 			</ul>
+			
 			<ul>
 				<p>note : <span class="note">{{ reponse.note }}</span>  
 					{% if user.is_authenticated %}
@@ -85,27 +96,41 @@
 					{% endif %}
 				</p>
 			</ul>
-
+	
 			<ul class="modif_challenge">
 				<a class="test" href="/challenges/modif_reponse/{{reponse.id}}/" title="{{reponse.id}}">Modify</a> 
 				<script>
-            jQuery('a.test').colorbox();
-        		</script>
+	            	jQuery('a.test').colorbox();
+	        	</script>
 			</ul>
 			<ul class="delete_challenge">
 				<a  href="/challenges/delete_reponse/{{reponse.id}}/" title="{{reponse.id}}">Delete</a> 
-					
 			</ul>
-			</li>
-			<br />
+		</li>
+		
+		<br />
 			
 			{% load comments %}
-			
 
 			{% render_comment_form for reponse %}
 
 			{% render_comment_list for reponse %}
 			
   {% endfor %}	
+		</div>
+		<div id="profile_right">
+			<p><a href="/challenges/list_challenges/" title="Voir tous les challenges"> Retour aux challenges </a></p>	
+		</div>
+		<div id="bottom_profile">
+			
+		</div>
+		
+	</div>
+	
+	
+	
+	
+  
+  	
 {% endblock content %}
 
