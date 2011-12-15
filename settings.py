@@ -13,8 +13,8 @@ ADMINS = (
 MANAGERS = ADMINS
 
 #Config BDD Timothee
-
-'''DATABASES = {
+'''
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',   # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': 'IMAC3_ProjetDjango',           # Or path to database file if using sqlite3.
@@ -25,6 +25,7 @@ MANAGERS = ADMINS
     }
 }
 '''
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',   # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
@@ -35,8 +36,9 @@ DATABASES = {
         'PORT': '',                             # Set to empty string for default. Not used with sqlite3.
     }
 }
+'''
 #Config BDD Marlene
-'''DATABASES = {
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',   # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': 'IMAC3_ProjetDjango',           # Or path to database file if using sqlite3.
@@ -117,7 +119,6 @@ IMAGE_UPLOAD_PATH_REPONSE = 'reponse_pics'
 #PROD !!!
 #MEDIA_URL = 'http://justdothat.alwaysdata.net/media/'
 
-IMAGE_UPLOAD_PATH = 'profile_pics'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
@@ -191,7 +192,6 @@ INSTALLED_APPS = (
     'JustDoThat.apps.main',
     'easy_thumbnails', 
     'django.contrib.comments',
-	'JustDoThat.apps.defi.templatetags',
 
 )
 
