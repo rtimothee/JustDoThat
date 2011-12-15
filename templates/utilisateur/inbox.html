@@ -11,23 +11,19 @@
 		window.location = uri.toString();  
 	}
 </script>
+<div id="inbox_div">
 <h2>Inbox</h2>
-	<ul>
 		{% for last_message in last_messages.object_list %}
-			<li class="challenge">
 			{% if last_message.lu %}
 				<p>Lu</p>
 			{% else %}
 				<p>Pas lu</p>
 			{% endif %}
-				<a href="/user/conversation/{{ last_message.emeteur}}/" title="{{ last_message.emeteur}}">{{ last_message.emeteur}} {{ last_message.dateMessage}}
+				<p><a href="/user/{{ last_message.emeteur}}" class="bold"> {{ last_message.emeteur}}</a> {{ last_message.dateMessage}}
 				<br/>
-				{{ last_message.message }}</a> 
-			
-			</li>
+				<a href="/user/conversation/{{ last_message.emeteur}}/" title="{{ last_message.emeteur}}">{{ last_message.message }}</a> </p>
 			<br />
 		{% endfor %}
-	</ul>
 	{% if notif == 1 %}
 		<p>You haven&#146;t received any message yet.</p>
 	{% endif %}
@@ -47,4 +43,5 @@
         		{% endif %}
     		</span>
 		</div>
+</div>
 {% endblock content %}

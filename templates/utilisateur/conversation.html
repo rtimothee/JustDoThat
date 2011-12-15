@@ -11,15 +11,18 @@
 		window.location = uri.toString();  
 	}
 </script>
+<div id="inbox_div">
+	<h2>Conversation</h2>
 <p><a href='/user/inbox/' title='inbox'>Back to the inbox</a></p>
 	<ul>
 		{% for message in messages.object_list %}
-			<li class="challenge">
-				<a href="/user/profile/{{message.emeteur}}/" title="{{message.emeteur}}">{{ message.emeteur }} </a> 
-				{{ message.dateMessage }}
+			<p>
+				<a href="/user/profile/{{message.emeteur}}/" title="{{message.emeteur}}">{{ message.emeteur }} </a>
+				{{ message.dateMessage }}<br/>
 				{{ message.message }}
 		
-			</li>
+			
+			</p>
 			<br />
 		{% endfor %}
 	</ul>
@@ -42,4 +45,5 @@
       {{ message_form.as_p }}
       <input type="submit" value="Send the message">
   </form>
+</div>
 {% endblock content %}

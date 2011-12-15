@@ -594,7 +594,10 @@ a img {
  * 
  */
 
-#registration, #creation_challenge, #send_message {
+#registration, 
+#creation_challenge, 
+#send_message, 
+#inbox_div {
 	width:600px;
 	background-image:url(../images/background_bis.png);
 	padding:10px;
@@ -603,13 +606,26 @@ a img {
 	margin-bottom:30px;
 	border:#BBB solid 1px;
 }
-#registration h2, #creation_challenge h2, #send_message h2 {
+#registration h2, 
+#creation_challenge h2, 
+#send_message h2,
+#inbox_div h2 {
 	padding:0px;
 	margin:0px;
 	font-size:18px;
 	color:#16717e;
 }
-#registration .form_registration, #creation_challenge .creation_challenge_form, #send_message .send_message_form {
+#inbox_div p {
+	color:#222;
+	font-size:13px;	
+}
+#inbox_div .current {
+	font-size:13px;	
+}
+
+#registration .form_registration, 
+#creation_challenge .creation_challenge_form, 
+#send_message .send_message_form {
  	color:#444;
 	font-size:13px;
 }
@@ -768,7 +784,8 @@ a img {
 	padding:0;
 }
 
-#profile .bold {
+#profile .bold,
+#inbox_div .bold {
 	font-weight:bold;
 }
 
