@@ -594,7 +594,7 @@ a img {
  * 
  */
 
-#registration, #creation_challenge {
+#registration, #creation_challenge, #send_message {
 	width:600px;
 	background-image:url(../images/background_bis.png);
 	padding:10px;
@@ -603,13 +603,13 @@ a img {
 	margin-bottom:30px;
 	border:#BBB solid 1px;
 }
-#registration h2, #creation_challenge h2 {
+#registration h2, #creation_challenge h2, #send_message h2 {
 	padding:0px;
 	margin:0px;
 	font-size:18px;
 	color:#16717e;
 }
-#registration .form_registration, #creation_challenge .creation_challenge_form {
+#registration .form_registration, #creation_challenge .creation_challenge_form, #send_message .send_message_form {
  	color:#444;
 	font-size:13px;
 }
