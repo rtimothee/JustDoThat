@@ -1,5 +1,6 @@
 {% extends "layout/base.html" %}
 {% load thumbnail %}
+{% load truncate_filters %}
 {% block content %}
 
 <div id="home_content">
@@ -48,7 +49,7 @@
 							<div class="challenge_picture">
 								<img src="{% thumbnail latest.photo 200x140 crop %}" alt="latest.titre" />
 							</div>
-							<h3><a href='challenges/display_challenge/{{ latest.id}}'>{{ latest.titre}}</a></h3>
+							<h3><a href='challenges/display_challenge/{{ latest.id}}'>{{ latest.titre|truncate_chars:22}}</a></h3>
 							<p><img src="../media/images/picto_chrono.png" alt="" /><span class="ct_challenge_data">{{ latest.timeleft}}</span> <img src="../media/images/picto_avatar.png" alt="" /><span class="ct_challenge_data">{{ latest.nbreleve }}</span> <img src="../media/images/picto_eclair.png" alt=""/><span class="ct_challenge_data">{{ latest.difficulte }}</span></p>
 						</div>
 					{% endif %}
@@ -57,7 +58,7 @@
 							<div class="challenge_picture">
 								<img src="{% thumbnail latest.photo 200x140 crop %}" alt="latest.titre" />
 							</div>
-							<h3><a href='challenges/display_challenge/{{ latest.id}}'>{{ latest.titre}}</a></h3>
+							<h3><a href='challenges/display_challenge/{{ latest.id}}'>{{ latest.titre|truncate_chars:22}}</a></h3>
 							<p><img src="../media/images/picto_chrono.png" alt="" /><span class="ct_challenge_data">{{ latest.timeleft}}</span> <img src="../media/images/picto_avatar.png" alt="" /><span class="ct_challenge_data">{{ latest.nbreleve }}</span> <img src="../media/images/picto_eclair.png" alt=""/><span class="ct_challenge_data">{{ latest.difficulte }}</span></p>
 						</div>
 					{% endif %}
@@ -66,7 +67,7 @@
 							<div class="challenge_picture">
 								<img src="{% thumbnail latest.photo 200x140 crop %}" alt="latest.titre" />
 							</div>
-							<h3><a href='challenges/display_challenge/{{ latest.id}}'>{{ latest.titre}}</a></h3>
+							<h3><a href='challenges/display_challenge/{{ latest.id}}'>{{ latest.titre|truncate_chars:22}}</a></h3>
 							<p><img src="../media/images/picto_chrono.png" alt="" /><span class="ct_challenge_data">{{ latest.timeleft}}</span> <img src="../media/images/picto_avatar.png" alt="" /><span class="ct_challenge_data">{{ latest.nbreleve }}</span> <img src="../media/images/picto_eclair.png" alt=""/><span class="ct_challenge_data">{{ latest.difficulte }}</span></p>
 						</div>
 					{% endif %}
@@ -75,7 +76,7 @@
 							<div class="challenge_picture">
 								<img src="{% thumbnail latest.photo 200x140 crop %}" alt="latest.titre" />
 							</div>
-							<h3><a href='challenges/display_challenge/{{ latest.id}}'>{{ latest.titre}}</a></h3>
+							<h3><a href='challenges/display_challenge/{{ latest.id}}'>{{ latest.titre|truncate_chars:22}}</a></h3>
 							<p><img src="../media/images/picto_chrono.png" alt="" /><span class="ct_challenge_data">{{ latest.timeleft}}</span> <img src="../media/images/picto_avatar.png" alt="" /><span class="ct_challenge_data">{{ latest.nbreleve }}</span> <img src="../media/images/picto_eclair.png" alt=""/><span class="ct_challenge_data">{{ latest.difficulte }}</span></p>
 						</div>
 						{% endif %}
@@ -95,7 +96,7 @@
 						<div class="challenge_picture">
 							<img src="{% thumbnail challenges.photo 200x140 crop %}" alt="challenges.titre" />
 						</div>
-						<h3><a href='challenges/display_challenge/{{ challenges.id}}'>{{ challenges.titre}}</a></h3>
+						<h3><a href='challenges/display_challenge/{{ challenges.id}}'>{{ challenges.titre|truncate_chars:22}}</a></h3>
 						<p><img src="../media/images/picto_chrono.png" alt="" /><span class="ct_challenge_data">{{ challenges.timeleft}}</span> <img src="../media/images/picto_avatar.png" alt="" /><span class="ct_challenge_data">{{ releves }}</span> <img src="../media/images/picto_eclair.png" alt=""/><span class="ct_challenge_data">{{ challenges.difficulte }}</span></p>
 					</div>
 					{% endif %}
@@ -104,7 +105,7 @@
 						<div class="challenge_picture">
 							<img src="{% thumbnail challenges.photo 200x140 crop %}" alt="challenges.titre" />
 						</div>
-						<h3><a href='challenges/display_challenge/{{ challenges.id}}'>{{ challenges.titre}}</a></h3>
+						<h3><a href='challenges/display_challenge/{{ challenges.id}}'>{{ challenges.titre|truncate_chars:22}}</a></h3>
 						<p><img src="../media/images/picto_chrono.png" alt="" /><span class="ct_challenge_data">{{ challenges.timeleft}}</span> <img src="../media/images/picto_avatar.png" alt="" /><span class="ct_challenge_data">{{ releves }}</span> <img src="../media/images/picto_eclair.png" alt=""/><span class="ct_challenge_data">{{ challenges.difficulte }}</span></p>
 					</div>
 					{% endif %}
@@ -113,7 +114,7 @@
 						<div class="challenge_picture">
 							<img src="{% thumbnail challenges.photo 200x140 crop %}" alt="challenges.titre" />
 						</div>
-						<h3><a href='challenges/display_challenge/{{ challenges.id}}'>{{ challenges.titre}}</a></h3>
+						<h3><a href='challenges/display_challenge/{{ challenges.id}}'>{{ challenges.titre|truncate_chars:22}}</a></h3>
 						<p><img src="../media/images/picto_chrono.png" alt="" /><span class="ct_challenge_data">{{ challenges.timeleft}}</span> <img src="../media/images/picto_avatar.png" alt="" /><span class="ct_challenge_data">{{ releves }}</span> <img src="../media/images/picto_eclair.png" alt=""/><span class="ct_challenge_data">{{ challenges.difficulte }}</span></p>
 					</div>
 					{% endif %}
@@ -122,7 +123,7 @@
 						<div class="challenge_picture">
 							<img src="{% thumbnail challenges.photo 200x140 crop %}" alt="challenges.titre" />
 						</div>
-						<h3><a href='challenges/display_challenge/{{ challenges.id}}'>{{ challenges.titre}}</a></h3>
+						<h3><a href='challenges/display_challenge/{{ challenges.id}}'>{{ challenges.titre|truncate_chars:22}}</a></h3>
 						<p><img src="../media/images/picto_chrono.png" alt="" /><span class="ct_challenge_data">{{ challenges.timeleft}}</span> <img src="../media/images/picto_avatar.png" alt="" /><span class="ct_challenge_data">{{ releves }}</span> <img src="../media/images/picto_eclair.png" alt=""/><span class="ct_challenge_data">{{ challenges.difficulte }}</span></p>
 					</div>
 					{% endif %}

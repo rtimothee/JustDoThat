@@ -15,7 +15,7 @@ from django.forms.widgets import RadioSelect, CheckboxSelectMultiple, Select
 class DefiForm(ModelForm):
     class Meta:
         model = Defi
-        exclude = ('slug','debut','createur',)
+        exclude = ('slug','debut','createur','fini',)
         
 		
     def __init__(self, *args, **kwargs):

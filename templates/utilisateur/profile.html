@@ -1,5 +1,6 @@
 {% extends "layout/base.html" %}
 {% load thumbnail %}
+{% load truncate_filters %}
 {% block content %}
 	
 	
@@ -134,7 +135,7 @@
 		    	<!-- Liste des defis releves -->
 			    {% for d_rel in defis_releves %}
 			    <div class="profile_challenge">
-			        {{ d_rel.titre }}
+			        {{ d_rel.titre|truncate_chars:22 }}
 					{{ d_rel.description }}
 					{{ d_rel.debut }}
 					{{ d_rel.fin }}
@@ -160,7 +161,7 @@
 				    		<a href="#"><img src="{{ MEDIA_URL }}images/profile_challenge_avatar.png" alt="" /></a>
 				    	</div>
 				    	<div class="profile_content_challenge">
-					        <h3 class="profile_titre_challenge"><a href="/challenges/display_challenge/{{d_cre.id}}/" title="{{d_cre.titre}}">{{ d_cre.titre }}</a></h3>
+					        <h3 class="profile_titre_challenge"><a href="/challenges/display_challenge/{{d_cre.id}}/" title="{{d_cre.titre}}">{{ d_cre.titre|truncate_chars:22 }}</a></h3>
 							<!--{{ d_cre.description }}-->
 							
 							<!--{{ d_cre.debut }}
