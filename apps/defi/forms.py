@@ -17,7 +17,7 @@ class DefiForm(ModelForm):
 	difficulte = forms.ChoiceField(label='Difficulty', choices=liste, required=True)
 	fin = forms.DateField(label='End',required=True)
 	titre = forms.CharField(label='Title', max_length=45, required=True)
-	# categorie = forms.IntegerField(label='Category', required=True)
+
 	
 	class Meta:
 		model = Defi

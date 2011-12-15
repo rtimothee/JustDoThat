@@ -72,14 +72,14 @@ def send_message_view(request, pseudo):
 			return HttpResponseRedirect("/")
 		if pseudo == user.username:
 			if request.method == 'POST':
-				#recupération des informations du formulaire
+				#recuperation des informations du formulaire
 				message_form = MessageForm(request.POST)
 				
 				#si les infos sont valides
 				if message_form.is_valid() :
 							#creation du nouveau message
 							new_message = MessagePrive(**message_form.cleaned_data)
-							#creation du nouveau message avec comme créateur l'utilisateur connecté
+							#creation du nouveau message avec comme createur l utilisateur connecté
 							new_message.emeteur = request.user
 							new_message.destinataire = User.objects.get(username = pseudo)
 							new_message.save()
@@ -144,14 +144,14 @@ def conversation_view(request, pseudo):
 		if pseudo == user.username:
 			
 			if request.method == 'POST':
-				#recupération des informations du formulaire
+				#recuperation des informations du formulaire
 				message_form = MessageForm(request.POST)
 				
 				#si les infos sont valides
 				if message_form.is_valid() :
 							#creation du nouveau message
 							new_message = MessagePrive(**message_form.cleaned_data)
-							#creation du nouveau message avec comme créateur l'utilisateur connecté
+							#creation du nouveau message avec comme createur l utilisateur connecté
 							new_message.emeteur = request.user
 							new_message.destinataire = User.objects.get(username = pseudo)
 							new_message.save()
@@ -196,7 +196,7 @@ def delete_account (request):
                 #MAJ des défis
                 defi = Defi.objects.filter(createur=user)
                 if defi.count() > 0 : defi.update(createur=User.objects.get(username='Anonymous'))
-                #suppression de l'utilisateur en Cascade
+                #suppression de l utilisateur en Cascade
                 user.delete()
             
                 #redirection vers l'accueil
@@ -221,13 +221,13 @@ def display_profile(request, pseudo):
     for g in tmp_gagner :
         badges.append(Badge.objects.get(id=g.badge.id))
         
-    # On recupere les défis releves par le user du profil
+    # On recupere les defis releves par le user du profil
     tmp_releves = Relever.objects.filter(utilisateur=user_to_display)
     defis_releves = []  
     for r in tmp_releves :
         defis_releves.append(Defi.objects.get(id=r.defi.id))
     
-    # On recupere les défis crees par le user du profil
+    # On recupere les defis crees par le user du profil
     defis_crees = Defi.objects.filter(createur=user_to_display)
     
     return render_to_response('utilisateur/profile.html', {'badges':badges, 'user_to_display':user_to_display, 'defis_releves':defis_releves, 'defis_crees':defis_crees}, context_instance=RequestContext(request))
@@ -239,7 +239,7 @@ def edit_profile(request):
     if request.user.is_authenticated(): 
     
         if request.method == 'POST':
-            #recupération des informations du formulaire
+            #recuperation des informations du formulaire
             user_form = EditUserForm(request.POST, instance=request.user)
             utilisateur_form = UtilisateurForm(request.POST, request.FILES, instance=request.user.get_profile())
             
