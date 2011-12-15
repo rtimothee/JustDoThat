@@ -80,7 +80,8 @@
 								</ul>-->
 								<ul>
 									<li><img style="vertical-align: -10px;" src="{% thumbnail user.get_profile.avatar 30x30 crop %}" /></li>
-									<li><a href="http://localhost:8000/user/profile/{{user.username}}">{{ user.username }}</a></li>
+									<li><a href="/user/profile/{{user.username}}">{{ user.username }}</a></li>
+									<li><a href="/user/inbox/">Inbox</a></li>
 									<li><a href='/user/logout/'>Log out</a></li>
 								</ul>
 							</div>
