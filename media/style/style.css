@@ -40,14 +40,14 @@ a img {
 	margin:auto;
 }
 #h_logo {
-    width:670px;
+    width:500px;
     float:left;
 }
 #h_connexion{
 	color:#CCCCCC;
 	font-size:13px;
 	margin-top:20px;
-    width:330px;
+    width:500px;
 	float:right;
 }
 #h_connexion a {
@@ -59,12 +59,14 @@ a img {
 }
 #h_connexion #member_non_logue {
 	font-size:13px;	
+	width:330px;
+	float:right;
 }
 }#h_connexion #member_non_logue li{
 	display:inline;
 }
 #h_connexion #member_logue {
-	width:270px;
+	width:500px;
 	float:right;
 	text-align:right;
 	margin-top:20px;
