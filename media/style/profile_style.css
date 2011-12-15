@@ -33,22 +33,22 @@
 	padding-left:13px;
 	padding-top:12px;
 }
-#profile_left .edit_profile_link {
+.edit_profile_link {
 	text-decoration:none;
 	font-weight: bold;
 	color:#444;
 }
-#profile_left .edit_profile_link:hover {
+.edit_profile_link:hover {
 	text-decoration:underline;
 	font-weight: bold;
 	color:#444;
 }
-#profile_left .delete_profile_link {
+.delete_profile_link {
 	text-decoration:none;
 	font-weight: bold;
 	color:#444;
 }
-#profile_left .delete_profile_link:hover {
+.delete_profile_link:hover {
 	text-decoration:underline;
 	font-weight: bold;
 	color:#444;
@@ -136,7 +136,7 @@
 #profile_challenges {
 	width:548px;
 }
-#challenges_created_all {
+.challenges_created_all {
 	margin-top:20px;
 }
 .challenges_headline {
@@ -158,7 +158,7 @@
 	margin-left:10px;
 	float:left;
 }
-.profile_challenge_picture {
+#profile #profile_center .profile_challenge_picture {
 	width:166px;
 	height:123px;
 	background-image:url(../images/pattern_back.png);
@@ -166,30 +166,30 @@
 	float:left;
 	margin-bottom:10px;
 }
-.profile_challenge_picture a img {
+#profile #profile_center .profile_challenge_picture a img {
 	border:1px #CCC solid;
 	padding:0;
 	margin:0;
 }
-.profile_challenge_picture a {
+#profile #profile_center .profile_challenge_picture a {
 	padding:9px;
 }
-.profile_challenge_picture a img {
+#profile #profile_center .profile_challenge_picture a img {
 	margin-top:9px;
 }
-.profile_titre_challenge {
+#profile #profile_center .profile_titre_challenge {
 	color:#515151;
 	font-size: 14px;
 	padding:0;
 	margin:0;
 	text-transform:uppercase;
 }
-.profile_content_challenge {
+#profile #profile_center .profile_content_challenge {
 	float:left;
 	width:80px;
 	margin-left:10px;
 }
-.profile_content_challenge p {
+#profile #profile_center .profile_content_challenge p {
 	font-size:12px;
 	font-weight:bold;
 	color:#515151;
@@ -203,7 +203,7 @@
 .profile_challenge_timer {
 	color:#cd2623;
 }
-.profile_category {
+#profile #profile_center .profile_category {
 	color:#808080;
 	background-image:url(../images/back_category.png);
 	padding:3px;
@@ -267,4 +267,9 @@
 	width:1000px;
 	height:10px;
 	clear:both;
+}
+
+
+#challenges_accepted {
+	min-height: 100px;
 }

@@ -132,28 +132,46 @@
 				<div class="challenges_headline">
 		    		<h2>TAKEN UP</h2>
 		    	</div>
-		    	<!-- Liste des defis releves -->
-			    {% for d_rel in defis_releves %}
-			    <div class="profile_challenge">
-			        {{ d_rel.titre|truncate_chars:22 }}
-					{{ d_rel.description }}
-					{{ d_rel.debut }}
-					{{ d_rel.fin }}
-				    {{ d_rel.photo }} 
-					{{ d_rel.difficulte }}
-					{{ d_rel.categorie }}
-					<div class="profile_challenge_info">
+
+				<div class="challenges_created_all">
+		    	
+				    {% for d_rel in defis_releves %}
+				    <div class="profile_challenge">
+				    	<div class="profile_challenge_picture">
+				    		<!--<img src="{{ d_cre.photo }}" />-->
+				    		<a href="#"><img src="{{ MEDIA_URL }}images/profile_challenge_avatar.png" alt="" /></a>
+				    	</div>
+				    	<div class="profile_content_challenge">
+					        <h3 class="profile_titre_challenge"><a href="/challenges/display_challenge/{{d_rel.id}}/" title="{{d_rel.titre}}">{{ d_rel.titre|truncate_chars:22 }}</a></h3>
+							<!--{{ d_cre.description }}-->
+							
+							<!--{{ d_cre.debut }}
+							{{ d_cre.fin }}-->
+						    
+							<!--{{ d_cre.liste }}  -->  
+							
+							<p><img src="{{ MEDIA_URL }}images/picto_chrono_challenge.png" alt="" /><span class="profile_challenge_timer"><!--03:04:05-->{{ d_rel.fin }}</span><br /> 
+							   <img src="{{ MEDIA_URL }}images/picto_avatar_challenge.png" alt="" /><span class="profile_challenge_members">22</span> <img src="{{ MEDIA_URL }}images/picto_eclair.png" alt=""/><span class="profile_challenge_difficulty">{{ d_rel.difficulte }}</span></p>
+							
+						</div>
+						<div class="clear"></div>
+						<div class="profile_challenge_info">
 							<span class="profile_challenge_author">By <a href='/user/profile/{{ d_rel.createur.username }}/' title='{{ d_rel.createur.username }}'> {{ d_rel.createur.username }}</a></span> <span class="profile_category">{{ d_rel.categorie }}</span>
 						</div>
-			    </div>
-			    {% endfor %}
+					</div>
+					{% endfor %}
+				</div>
+				
+				<div class="clear"></div>
+			    
 		    </div>
+		    
 		    <div id="challenges_created">
 		    	<div class="challenges_headline">
 		    		<h2>CREATED BY</h2>
 		    	</div>
 				<!-- Liste des defis crees -->
-				<div id="challenges_created_all">
+				<div class="challenges_created_all">
 				    {% for d_cre in defis_crees %}
 				    <div class="profile_challenge">
 				    	<div class="profile_challenge_picture">
@@ -181,6 +199,8 @@
 					{% endfor %}
 				</div>
 		    </div>
+		    
+		   	<div class="clear"></div>
 	    
 	    </div>
 	    
