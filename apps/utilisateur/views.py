@@ -185,8 +185,8 @@ def delete_account (request):
         if request.GET.get('confirm'):
             if request.GET['confirm'] == 'True':
                 #MAJ des défis
-                try : defi = Defi.objects.filter(createur=user).update(createur=User.objects.get(username='Anonymous'))
-                except Defi.DoesNotExist : pass
+                defi = Defi.objects.filter(createur=user)
+                if defi.count() > 0 : defi.update(createur=User.objects.get(username='Anonymous'))
                 #suppression de l'utilisateur en Cascade
                 user.delete()
             
