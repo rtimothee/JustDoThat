@@ -51,6 +51,7 @@
 				<p><span class="bold">Time Left:</span> {{ defi.timeleft }}</p>
 				<div id="take_up_div">
 					<p>Take up the challenge!</p>
+					<!-- la classe form LB take_up  met en place la lightbox en jquery -->
 					<p><a class="formLB take_up" href="/challenges/create_reponse/{{defi.id}}/" title="{{reponse.id}}"></a></p>
 				</div>
 
@@ -85,7 +86,7 @@
 			<div class="challenges_headline">
 		    	<h2>SUBMITTED</h2>
 		    </div>
-		 	
+		 	<!-- Parcours des réponses au defi -->
 		 	{% for reponse in reponses %}
 			<!--<a href="/challenges/display_challenge/{{defi.id}}/" title="{{defi.titre}}">{{ defi.titre }}</a> -->
 			
@@ -97,19 +98,23 @@
 					
 					<div class="one_challenge">
 						{% for user in users %}
+						<!-- recherche de l'utilisateur createur de la réponse-->
 							{% if reponse.utilisateur == user %}
 						<h3><a href="/user/profile/{{user.username}}"> {{ user}}</a></h3><span class="date_reponse">{{ reponse.date_reponse }} </span>
 							{% endif %}
 						{% endfor %}
 						<p>{{ reponse.message }} </p>
-						<p>note : <span class="note">{{ reponse.note }}</span>  
+						<p>Grade: <span class="note">{{ reponse.note }}</span></p>
+						
+						<p class="clear">
+							<!-- test si l'utilisateur est log -->	
 						{% if user.is_authenticated %}
-							<a href="http://localhost:8000/reponses/notation_ajax/{{ user.id }}/1/{{ reponse.id }}/" class="vote">+</a> 
-							<a href="http://localhost:8000/reponses/notation_ajax/{{ user.id }}/0/{{ reponse.id }}/" class="vote">-</a>
+							<a href="http://localhost:8000/reponses/notation_ajax/{{ user.id }}/1/{{ reponse.id }}/" class="vote votePlus"></a> <a href="http://localhost:8000/reponses/notation_ajax/{{ user.id }}/0/{{ reponse.id }}/" class="vote voteMoins"></a>
 						{% endif %}
 						</p>
+						<!-- test si l'utilisateur log est le createur de la réponse-->
 						{% if reponse.utilisateur == request.user %}
-						<p>
+						<p class="clear">
 							<a class="formLB edit_profile_link" href="/challenges/modif_reponse/{{reponse.id}}/{{defi.id}}/" title="{{reponse.id}}" class="delete_profile_link">> Modify</a> 
 							<a href="/challenges/delete_reponse/{{reponse.id}}/" title="{{reponse.id}}" class="edit_profile_link">> Delete</a> 
 						</p>
@@ -122,13 +127,14 @@
 				<br />
 			
 			<div id="all_comments">
+			<!-- chargement du module de commentaire-->
 			{% load comments %}
 				<h3>Commentaires</h3>
 
-				<div>
+				<div><!-- chargement de la liste de commentaires -->
 						{% render_comment_list for reponse %}
 				</div>
-
+					<!-- mise en place du formulaire de commentaire -->
 				<div class="form_answer">
 					{% render_comment_form for reponse %}
 				</div>

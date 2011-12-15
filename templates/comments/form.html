@@ -7,6 +7,7 @@
             {% if field.is_hidden %}
                 {{ field }}
             {% else %}
+            <!--test des champs qui ne doivent pas apparaitre -->
                 {% if field.name != "name" and field.name != "email" and field.name != "url" and field.name != "honeypot" %}
                     {% if field.errors %}{{ field.errors }}{% endif %}
                     {{ field }}
@@ -16,6 +17,7 @@
 {% else %}
     I'm sorry, but you must be <a href="/user/login/">logged in</a> to submit comments.
 {% endif %}
+<!-- redirection apres utilisation du formulaire -->
 	<input type="hidden" name="next" value="/challenges/display_challenge/{{defi.id}}" />
         <input class="submit-post" name="post" type="submit" value="Envoyer" />
    </form>

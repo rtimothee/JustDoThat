@@ -10,7 +10,7 @@ from datetime import date
 class ReponseForm(ModelForm):
     class Meta:
         model = Reponse
-
+        #on exclu les champs suivant du formulaire
         exclude = ('slug','date_reponse','utilisateur','defi','notification','classement',)
 
         
