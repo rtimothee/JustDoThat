@@ -230,7 +230,23 @@ def display_profile(request, pseudo):
     # On recupere les defis crees par le user du profil
     defis_crees = Defi.objects.filter(createur=user_to_display)
     
-    return render_to_response('utilisateur/profile.html', {'badges':badges, 'user_to_display':user_to_display, 'defis_releves':defis_releves, 'defis_crees':defis_crees}, context_instance=RequestContext(request))
+    #On recupere les trophees du user
+    trophees_or = Reponse.objects.filter(utilisateur = user_to_display, classement = 1).count()
+    trophees_ar = Reponse.objects.filter(utilisateur = user_to_display, classement = 2).count()
+    trophees_br = Reponse.objects.filter(utilisateur = user_to_display, classement = 3).count()
+    
+    #On compte le nombre de defi releve
+    taken = Relever.objects.filter(utilisateur = user_to_display).count()
+
+    return render_to_response('utilisateur/profile.html', {'badges':badges, 
+                                                           'user_to_display':user_to_display, 
+                                                           'defis_releves':defis_releves, 
+                                                           'defis_crees':defis_crees, 
+                                                           'trophee_or' : trophees_or,
+                                                           'trophee_ar' : trophees_ar,
+                                                           'trophee_br' : trophees_br,
+                                                           'taken' : taken,
+                                                           }, context_instance=RequestContext(request))
 
         
 #-----------------------EDITION PROFIL------------------------------------
