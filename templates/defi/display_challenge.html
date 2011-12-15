@@ -1,7 +1,7 @@
 {% extends "layout/base.html" %}
 {% load thumbnail %}
 {% block content %}
-	<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.js"></script>
+	
 	<script type="text/javascript">
 		$(document).ready(function () {
    			$(".vote").click(function (e) {
@@ -32,9 +32,11 @@
 		<div id="profile_left">
 			
 			<!-- l'url de l'img -->
-			<div id="profile_avatar">
+			<div id="challenge_avatar_back">
+				<div id="challenge_avatar">
 				<!--<img src="{% thumbnail defi.photo 145x145 crop %}" alt="{{defi.titre}}" />-->
-				<img src="{{MEDIA_URL}}/images/defi_test.png" />
+					<img src="{{MEDIA_URL}}images/defi_test.png" />
+				</div>
 			</div>
 			
 			<h3 class="profile_pseudo">{{ defi.titre }}</h3>
@@ -45,19 +47,22 @@
 				<p><span class="bold">Beginning :</span> {{ defi.debut }}</p>	
 				{% if end %}
 				<p>Time Left: {{ time_left }}</p>
-				<p><a href='#'>Take up the challenge</a></p>
+				<p><a class="formLB" href="/challenges/create_reponse/{{defi.id}}/" title="{{reponse.id}}">Take up the challenge</a></p>
 				{% else %}
 					<p>Challenge over</p>
 				{% endif %}		
+				<p><a class="formLB" href="/challenges/create_reponse/{{defi.id}}/" title="{{reponse.id}}">Take up the challenge</a></p>
 				
 				<div class="fb-like" data-href="http://justdothat.alwaysdata.net/challenges/display_challenge/{{defi.id}}/" data-send="true" data-layout="button_count" data-width="450" data-show-faces="true" data-font="trebuchet ms"></div>
 				
 				{% if createur %}
 				<p>
-					<a id="edit_profile_link" href="/challenges/modif_challenge/{{defi.id}}/" title="{{defi.titre}}">> Modify</a><br/> 
-					<a id="delete_profile_link" href="/challenges/delete_challenge/{{defi.id}}/confirm/" title="{{defi.titre}}">> Delete</a> 
+					<a class="edit_profile_link" href="/challenges/modif_challenge/{{defi.id}}/" title="{{defi.titre}}">> Modify</a><br/> 
+					<a class="delete_profile_link" href="/challenges/delete_challenge/{{defi.id}}/confirm/" title="{{defi.titre}}">> Delete</a> 
 				</p>
 				{% endif %}
+				
+		
 			</ul>
 			
 			<h3>Challengers</h3>	
@@ -70,58 +75,49 @@
 				{% endfor %}
 			</ul>
 			
-			<h3>Repondre à un défi</h3>
-		  	<form action="" method="post" enctype="multipart/form-data"> {% csrf_token %}
-		    	{{ Reponse_form.as_p }}
-		     	<input type="submit" value="Repondre à un défi">
-		 	</form>
+		
 			
 		</div>
 		<div id="profile_center">
 			<div class="challenges_headline">
-		    	<h2>TAKEN UP</h2>
+		    	<h2>SUBMITTED</h2>
 		    </div>
-		 	<div id="profile_trophies_back">
+		 	
+		 	{% for reponse in reponses %}
+			<!--<a href="/challenges/display_challenge/{{defi.id}}/" title="{{defi.titre}}">{{ defi.titre }}</a> -->
+			
+		 	
+		 	<div id="challenge_submitted_back">
    
-			    <div id="profile_trophies">
-					<img src="" />
+			    <div id="challenge_submitted">
+					<img src="{% thumbnail reponse.photo 145x145 crop %}" />
+					
+					<div class="one_challenge">
+						{% for user in users %}
+							{% if reponse.utilisateur == user %}
+						<h3>{{ user}}</h3><span class="date_reponse">{{ reponse.date_reponse }} </span>
+							{% endif %}
+						{% endfor %}
+						<p>{{ reponse.message }} </p>
+						<p>note : <span class="note">{{ reponse.note }}</span>  
+						{% if user.is_authenticated %}
+							<a href="http://localhost:8000/reponses/notation_ajax/{{ user.id }}/1/{{ reponse.id }}/" class="vote">+</a> 
+							<a href="http://localhost:8000/reponses/notation_ajax/{{ user.id }}/0/{{ reponse.id }}/" class="vote">-</a>
+						{% endif %}
+						</p>
+						{% if reponse.utilisateur == request.user %}
+						<p>
+							<a class="formLB" href="/challenges/modif_reponse/{{reponse.id}}/{{defi.id}}/" title="{{reponse.id}}" class="delete_profile_link">> Modify</a> 
+							<a href="/challenges/delete_reponse/{{reponse.id}}/" title="{{reponse.id}}" class="edit_profile_link">> Delete</a> 
+						</p>
+						{% endif %}
+					</div>
 				</div>
 			</div>
 		    
 			
-			{% for reponse in reponses %}
-			<!--<a href="/challenges/display_challenge/{{defi.id}}/" title="{{defi.titre}}">{{ defi.titre }}</a> -->
 			
 			
-		<li class="challenge">
-			
-			<ul>
-				<p>{{ reponse.message }} </p>
-			</ul>
-			
-			<ul>
-				<p>Date réponse : {{ reponse.date_reponse }} </p>
-			</ul>
-			
-			<ul>
-				<p>note : <span class="note">{{ reponse.note }}</span>  
-					{% if user.is_authenticated %}
-						<a href="http://localhost:8000/reponses/notation_ajax/{{ user.id }}/1/{{ reponse.id }}/" class="vote">+</a> 
-						<a href="http://localhost:8000/reponses/notation_ajax/{{ user.id }}/0/{{ reponse.id }}/" class="vote">-</a>
-					{% endif %}
-				</p>
-			</ul>
-	
-			<ul class="modif_challenge">
-				<a class="test" href="/challenges/modif_reponse/{{reponse.id}}/" title="{{reponse.id}}">Modify</a> 
-				<script>
-	            	jQuery('a.test').colorbox();
-	        	</script>
-			</ul>
-			<ul class="delete_challenge">
-				<a  href="/challenges/delete_reponse/{{reponse.id}}/" title="{{reponse.id}}">Delete</a> 
-			</ul>
-		</li>
 		
 		<br />
 			

@@ -2,7 +2,7 @@
 {% if user.is_authenticated %}
    <form action="{% comment_form_target %}" method="post">
         {% csrf_token %}
-        {% if next %}<input name="next" type="hidden" value="{{ next }}" />{% endif %}
+        {% if next %}<input name="next" height="200px" type="hidden" value="{{ next }}" />{% endif %}
         {% for field in form %}
             {% if field.is_hidden %}
                 {{ field }}
@@ -16,6 +16,7 @@
 {% else %}
     I'm sorry, but you must be <a href="/user/login/">logged in</a> to submit comments.
 {% endif %}
+	<input type="hidden" name="next" value="/challenges/display_challenge/{{defi.id}}" />
         <input class="submit-post" name="post" type="submit" value="Envoyer" />
    </form>
 

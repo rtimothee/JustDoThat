@@ -65,93 +65,117 @@ def register_view(request):
 
 #------------------------ENVOI DE MESSAGE---------------------------------------------------------------------
 def send_message_view(request, pseudo):
-	if request.method == 'POST':
-        #recupération des informations du formulaire
-		message_form = MessageForm(request.POST)
-        
-        #si les infos sont valides
-		if message_form.is_valid() :
-					#creation du nouveau message
-					new_message = MessagePrive(**message_form.cleaned_data)
-					#creation du nouveau message avec comme créateur l'utilisateur connecté
-					new_message.emeteur = request.user
-					new_message.destinataire = User.objects.get(username = pseudo)
-					new_message.save()
-					
-					return HttpResponseRedirect("/user/inbox/")
+	if request.user.is_authenticated(): 
+	 # On verifie si le user existe
+		try: user = User.objects.get(username = pseudo)
+		except User.DoesNotExist:
+			return HttpResponseRedirect("/")
+		if pseudo == user.username:
+			if request.method == 'POST':
+				#recupération des informations du formulaire
+				message_form = MessageForm(request.POST)
+				
+				#si les infos sont valides
+				if message_form.is_valid() :
+							#creation du nouveau message
+							new_message = MessagePrive(**message_form.cleaned_data)
+							#creation du nouveau message avec comme créateur l'utilisateur connecté
+							new_message.emeteur = request.user
+							new_message.destinataire = User.objects.get(username = pseudo)
+							new_message.save()
+							
+							return HttpResponseRedirect("/user/inbox/")
+			else:
+				message_form = MessageForm()
+				message_form.destinataire = User.objects.get(username = pseudo)
+		else:
+			return HttpResponseRedirect("/")
 	else:
-		message_form = MessageForm()
-		message_form.destinataire = User.objects.get(username = pseudo)
+		return HttpResponseRedirect("/")
         
 	return render_to_response("utilisateur/send_message.html", {'message_form': message_form,}, context_instance=RequestContext(request))
 
 #------------------------BOITE DE RECEPTION---------------------------------------------------------------------
 def inbox_view(request):
+	if request.user.is_authenticated(): 
+		messages = MessagePrive.objects.filter(destinataire = request.user).order_by("-id")
 
-	messages = MessagePrive.objects.filter(destinataire = request.user).order_by("-id")
-
-	nb = MessagePrive.objects.filter(destinataire = request.user).count()
-	users = []
-	last_messages = []
-	if nb > 1 :
-		for m in messages :
-			user = User.objects.get(id= m.emeteur.id)
-			if user not in users:
-				last_messages.append(MessagePrive.objects.filter(emeteur = m.emeteur.id).order_by("-id")[0])
-				users.append(user)
-	else:
-		last_messages = messages
-		
-	#Recuperation du numero de la page 
-	messagesP = Paginator(last_messages, 10)
-	try: pageM = int(request.GET.get('pageM', '1'))
-	except ValueError : pageM = 1
-                
-	#pagination
-	try: pageMessage = messagesP.page(pageM)
-	except PageNotAnInteger: pageMessage = messagesP.page(1)
-	except EmptyPage: pageMessage = messagesP.page(messagesP.num_pages)
-	return render_to_response("utilisateur/inbox.html", {'last_messages': pageMessage,},context_instance=RequestContext(request))
-
-#------------------------CONVERSATION---------------------------------------------------------------------
-def conversation_view(request, pseudo):
-	if request.method == 'POST':
-        #recupération des informations du formulaire
-		message_form = MessageForm(request.POST)
-        
-        #si les infos sont valides
-		if message_form.is_valid() :
-					#creation du nouveau message
-					new_message = MessagePrive(**message_form.cleaned_data)
-					#creation du nouveau message avec comme créateur l'utilisateur connecté
-					new_message.emeteur = request.user
-					new_message.destinataire = User.objects.get(username = pseudo)
-					new_message.save()
-					
-					return HttpResponseRedirect("/user/conversation/"+pseudo)
-	else:
-		message_form = MessageForm()
-		message_form.destinataire = User.objects.get(username = pseudo)
-		
-		messages1 = MessagePrive.objects.filter(destinataire = request.user, emeteur=User.objects.get(username = pseudo)).order_by("id")
-		messages2 = MessagePrive.objects.filter(emeteur = request.user, destinataire=User.objects.get(username = pseudo)).order_by("id")
-		messages = messages1 | messages2
-		
-		for m in messages:
-			if m.lu == 0 :
-				if m.destinataire == request.user :
-					m.lu=1
-					m.save()
-        
+		nb = MessagePrive.objects.filter(destinataire = request.user).count()
+		users = []
+		last_messages = []
+		if nb > 1 :
+			for m in messages :
+				user = User.objects.get(id= m.emeteur.id)
+				if user not in users:
+					last_messages.append(MessagePrive.objects.filter(emeteur = m.emeteur.id).order_by("-id")[0])
+					users.append(user)
+		else:
+			last_messages = messages
+			
 		#Recuperation du numero de la page 
-		messagesP = Paginator(messages, 10)
+		messagesP = Paginator(last_messages, 10)
 		try: pageM = int(request.GET.get('pageM', '1'))
 		except ValueError : pageM = 1
-                
+					
 		#pagination
 		try: pageMessage = messagesP.page(pageM)
 		except PageNotAnInteger: pageMessage = messagesP.page(1)
 		except EmptyPage: pageMessage = messagesP.page(messagesP.num_pages)
+	else:
+		return HttpResponseRedirect('/')
+	return render_to_response("utilisateur/inbox.html", {'last_messages': pageMessage,},context_instance=RequestContext(request))
+
+#------------------------CONVERSATION---------------------------------------------------------------------
+def conversation_view(request, pseudo):
+
+	if request.user.is_authenticated(): 
+	 # On verifie si le user existe
+		try: user = User.objects.get(username = pseudo)
+		except User.DoesNotExist:
+			return HttpResponseRedirect("/")
+		if pseudo == user.username:
+			
+			if request.method == 'POST':
+				#recupération des informations du formulaire
+				message_form = MessageForm(request.POST)
+				
+				#si les infos sont valides
+				if message_form.is_valid() :
+							#creation du nouveau message
+							new_message = MessagePrive(**message_form.cleaned_data)
+							#creation du nouveau message avec comme créateur l'utilisateur connecté
+							new_message.emeteur = request.user
+							new_message.destinataire = User.objects.get(username = pseudo)
+							new_message.save()
+							
+							return HttpResponseRedirect("/user/conversation/"+pseudo)
+			else:
+				message_form = MessageForm()
+				message_form.destinataire = User.objects.get(username = pseudo)
+				
+				messages1 = MessagePrive.objects.filter(destinataire = request.user, emeteur=User.objects.get(username = pseudo)).order_by("id")
+				messages2 = MessagePrive.objects.filter(emeteur = request.user, destinataire=User.objects.get(username = pseudo)).order_by("id")
+				messages = messages1 | messages2
+				
+				for m in messages:
+					if m.lu == 0 :
+						if m.destinataire == request.user :
+							m.lu=1
+							m.save()
+				
+				#Recuperation du numero de la page 
+				messagesP = Paginator(messages, 10)
+				try: pageM = int(request.GET.get('pageM', '1'))
+				except ValueError : pageM = 1
+						
+				#pagination
+				try: pageMessage = messagesP.page(pageM)
+				except PageNotAnInteger: pageMessage = messagesP.page(1)
+				except EmptyPage: pageMessage = messagesP.page(messagesP.num_pages)
+		else:
+			return HttpResponseRedirect("/user/inbox/")
+	else : 
+		return HttpResponseRedirect("/")
 	return render_to_response("utilisateur/conversation.html", {'messages': pageMessage, 'message_form': message_form,}, context_instance=RequestContext(request))
 
 #----------------------- SUPPRESSION COMPTE --------------------
@@ -161,8 +185,8 @@ def delete_account (request):
         if request.GET.get('confirm'):
             if request.GET['confirm'] == 'True':
                 #MAJ des défis
-                try : defi = Defi.objects.filter(createur=user).update(createur=User.objects.get(username='Anonymous'))
-                except Defi.DoesNotExist : pass
+                defi = Defi.objects.filter(createur=user)
+                if defi.count() > 0 : defi.update(createur=User.objects.get(username='Anonymous'))
                 #suppression de l'utilisateur en Cascade
                 user.delete()
             

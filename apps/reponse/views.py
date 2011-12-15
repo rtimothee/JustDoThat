@@ -86,3 +86,41 @@ def notation_view(request, userNotation, note_user, rep):
     #recuperation de la nouvelle note
     note = model_reponse.note
     return render_to_response("reponse/ajax.html", {'note': note,'statut': statut})
+
+def compfreq(elem1,elem2):
+    if elem1[1]<elem2[1]:
+        return -1
+    if elem1[1]>elem2[1]:
+        return 1
+    return 0
+
+
+def update_users_view(request):
+	# en cours de dev pas beau ne pas faire attention
+	challenges= Defi.objects.all()
+	notes = []
+	for c in challenges :
+		if c.timeleft == 'Challenge over':
+			if c.nbreleve != 0:
+				reponses = Reponse.objects.filter(defi=c)
+				for r in reponses :
+					notes.append(r.note)
+				reponses_notes = sorted(zip(reponses, notes))
+				reponses_notes.sort(lambda x,y: cmp(x[1],y[1]), reverse=True)
+				reponses_notes.sort(compfreq, reverse=True)
+				reponses_notes[0:2]
+				for reponses, notes in reponses_notes :
+					if reponses_notes[0]:
+						user1 = Utilisateur.objects.get(user= reponses.utilisateur)
+					if reponses_notes[1]:
+						user2 = Utilisateur.objects.get(user = reponses.utilisateur)
+					if reponses_notes[2]:
+						user3 = Utilisateur.objects.get(user = reponses.utilisateur)
+				user1.points = 150
+				user2.points = 100
+				user3.points = 50
+				user1.save()
+				user2.save()
+				user3.save()
+
+	return render_to_response("reponse/test.html", {'user1': user1,'user2': user2,'user3': user3, 'reponses_notes': reponses_notes, 'notes':notes, 'reponses':reponses})

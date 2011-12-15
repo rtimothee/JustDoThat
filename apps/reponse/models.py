@@ -9,8 +9,8 @@ class Reponse(models.Model):
     slug = models.SlugField(max_length=100,null=False)
     message = models.TextField()
     date_reponse = models.DateField(null=False, default=date.today())
-    photo = models.ImageField(upload_to=settings.IMAGE_UPLOAD_PATH, null=False)
-    notification = models.BooleanField(null=False)
+    photo = models.ImageField(upload_to=settings.IMAGE_UPLOAD_PATH_REPONSE, default='reponse_pics/defaut.jpg', null=False)
+    notification = models.BooleanField(default=True)
     defi = models.ForeignKey(Defi)
     utilisateur = models.ForeignKey(User)
     

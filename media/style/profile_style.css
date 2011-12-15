@@ -33,22 +33,22 @@
 	padding-left:13px;
 	padding-top:12px;
 }
-#profile_left #edit_profile_link {
+#profile_left .edit_profile_link {
 	text-decoration:none;
 	font-weight: bold;
 	color:#444;
 }
-#profile_left #edit_profile_link:hover {
+#profile_left .edit_profile_link:hover {
 	text-decoration:underline;
 	font-weight: bold;
 	color:#444;
 }
-#profile_left #delete_profile_link {
+#profile_left .delete_profile_link {
 	text-decoration:none;
 	font-weight: bold;
 	color:#444;
 }
-#profile_left #delete_profile_link:hover {
+#profile_left .delete_profile_link:hover {
 	text-decoration:underline;
 	font-weight: bold;
 	color:#444;
@@ -212,6 +212,14 @@
 }
 .profile_challenge_author {
 	color:#444444;
+}
+.profile_challenge_author a {
+	color:#444444;
+	text-decoration:none;
+}
+.profile_challenge_author a:hover {
+	color:#444444;
+	text-decoration:underline;
 }
 .profile_challenge_info {
 	width:166px;

@@ -51,19 +51,23 @@ def challenges_view(request):
 	return render_to_response('defi/challenges.html', {'defis': defis}, context_instance=RequestContext(request))'''
 	
 def modif_challenge_view(request, int):
-	defi  = Defi.objects.get(id=int)
-	if request.method == 'POST':   
-		defi_form = DefiForm(request.POST, instance = defi)  
-		if defi_form.is_valid(): 
-			defi_form.save()
-			return HttpResponseRedirect('/challenges/list_challenges/') 
+	if request.user.is_authenticated():
+		try: defi = Defi.objects.get(id=int)
+		except Defi.DoesNotExist:
+			return HttpResponseRedirect("/")
+		if request.method == 'POST':   
+			defi_form = DefiForm(request.POST, instance = defi)  
+			if defi_form.is_valid(): 
+				defi_form.save()
+				return HttpResponseRedirect('/challenges/list_challenges/') 
 
+		else:
+			if defi.createur == request.user :
+				defi_form = DefiForm(instance = defi) 
+			else :
+				return HttpResponseRedirect('/') 
 	else:
-		if defi.createur == request.user :
-			defi_form = DefiForm(instance = defi) 
-		else :
-			return HttpResponseRedirect('/') 
-	
+		return HttpResponseRedirect('/')
 	modif = True
 	return render_to_response('defi/create_challenge.html', {'defi_form': defi_form, 'modif': modif,'defi':int}, context_instance=RequestContext(request))
   
@@ -71,104 +75,126 @@ def modif_challenge_view(request, int):
 
   
 def delete_challenge_view(request, int, delete):
-	defi = Defi.objects.get(id=int)
-	if delete=='sup':
-		if defi.createur == request.user :
-			defi.delete()
-			return HttpResponseRedirect('/challenges/list_challenges/') 
-		else :
-			return HttpResponseRedirect('/') 
+	if request.user.is_authenticated():
+		try: defi = Defi.objects.get(id=int)
+		except Defi.DoesNotExist:
+			return HttpResponseRedirect("/")
+		if delete=='sup':
+			if defi.createur == request.user :
+				defi.delete()
+				return HttpResponseRedirect('/challenges/list_challenges/') 
+			else :
+				return HttpResponseRedirect('/') 
+	else:
+		return HttpResponseRedirect('/') 
 
 	return render_to_response('defi/delete_challenge.html', {'defi':int}, context_instance=RequestContext(request)) 
 
 def create_challenge_view(request):
-    if request.method == 'POST':
-        #recup�ration des informations du formulaire
-        defi_form = DefiForm(request.POST, request.FILES)
+	if request.user.is_authenticated():
+		if request.method == 'POST':
+			#recup�ration des informations du formulaire
+			defi_form = DefiForm(request.POST, request.FILES)
+			
+			#si les infos sont valides
+			if defi_form.is_valid() :
+				  #fonction g�rant l'upload de la photo du d�fi
+						handle_uploaded_file(request.FILES['photo'])
+						#creation du nouveau d�fi
+						new_defi = Defi(**defi_form.cleaned_data)
+						new_defi.slug = slugify(new_defi.titre)
+						#creation du nouveau d�fi avec comme cr�ateur l'utilisateur connect�
+						new_defi.createur = request.user
+						new_defi.save()
+						
+						return HttpResponseRedirect("/challenges/list_challenges/")
+		else:
+			defi_form = DefiForm()
+	else:
+		return HttpResponseRedirect('/') 
         
-        #si les infos sont valides
-        if defi_form.is_valid() :
-              #fonction g�rant l'upload de la photo du d�fi
-					handle_uploaded_file(request.FILES['photo'])
-					#creation du nouveau d�fi
-					new_defi = Defi(**defi_form.cleaned_data)
-					new_defi.slug = slugify(new_defi.titre)
-					#creation du nouveau d�fi avec comme cr�ateur l'utilisateur connect�
-					new_defi.createur = request.user
-					new_defi.save()
-					
-					return HttpResponseRedirect("/challenges/list_challenges/")
-    else:
-        defi_form = DefiForm()
-        
-    return render_to_response("defi/create_challenge.html", {'defi_form': defi_form,}, context_instance=RequestContext(request))
+	return render_to_response("defi/create_challenge.html", {'defi_form': defi_form,}, context_instance=RequestContext(request))
    
    
 def create_reponse_view(request, int):
-	if request.method == 'POST':
-		
-	
-		Reponse_form = ReponseForm(request.POST, request.FILES)
-		
-		#si les infos sont valides
-		if Reponse_form.is_valid():
-			handle_uploaded_file(request.FILES['photo'])
-			new_reponse = Reponse(**Reponse_form.cleaned_data)
-		  #  new_reponse.slug = slugify(new_reponse.titre)
-			new_reponse.utilisateur_id = request.user.id
-			new_reponse.defi_id = int
-			new_reponse.save()
-			return HttpResponseRedirect("/challenges/display_challenge/1/")
-	else:
-		 Reponse_form = ReponseForm()
-	
-	return render_to_reponse("defi/create_reponse.html", {'Reponse_form': Reponse_form}, context_instance=RequestContext(request))
+    if request.method == 'POST':
+        #recup�ration des informations du formulaire
+        reponse_form = ReponseForm(request.POST, request.FILES)
+        
+        #si les infos sont valides
+        if reponse_form.is_valid() :
+              #fonction g�rant l'upload de la photo du d�fi
+					#handle_uploaded_file(request.FILES['photo'])
+					#creation du nouveau d�fi
+					
+					new_releve = Relever()
+					new_releve.utilisateur = request.user
+					new_releve.defi = Defi.objects.get(id = int)
+					new_releve.save()
+					new_reponse = Reponse(**reponse_form.cleaned_data)
+					#creation du nouveau d�fi avec comme cr�ateur l'utilisateur connect�
+					new_reponse.utilisateur_id = request.user.id
+					new_reponse.defi_id = int
+					
+					
+					new_reponse.save()
+					
+					return HttpResponseRedirect('/challenges/display_challenge/'+int+'/')
+    else:
+        reponse_form = ReponseForm()
+        
+    return render_to_response("defi/create_reponse.html", {'reponse_form': reponse_form,}, context_instance=RequestContext(request))   
+
 
 def delete_reponse_view(request, int):
 	reponse = Reponse.objects.get(id=int)
 	reponse.delete()
 	return HttpResponseRedirect('/challenges/display_challenge/1/')
 
-def modif_reponse_view(request, int):
+def modif_reponse_view(request, int, intDefi):
+	
 	reponse  = Reponse.objects.get(id=int)
+	defi = reponse.defi
 	if request.method == 'POST':   
 		reponse_form = ReponseForm(request.POST, instance = reponse)  
 		if reponse_form.is_valid(): 
 			reponse_form.save()
-			return HttpResponseRedirect('/challenges/display_challenge/1/') 
+			return HttpResponseRedirect('/challenges/display_challenge/'+intDefi+'/') 
 
-	else: 
-		reponse_form = ReponseForm(instance = reponse) 
+	else:
+		if reponse.utilisateur == request.user :
+			reponse_form = ReponseForm(instance = reponse) 
+		else :
+			return HttpResponseRedirect('/challenges/display_challenge/'+intDefi+'/') 
 	
 	modif = True
-	return render_to_response('defi/create_reponse.html', {'reponse_form': reponse_form, 'modif': modif}, context_instance=RequestContext(request))
-
+	return render_to_response('defi/create_reponse.html', {'reponse_form': reponse_form, 'modif': modif,'reponse':int}, context_instance=RequestContext(request))
 
 def display_challenge_view(request, int):
-	defi = Defi.objects.get(id=int)
-		
+	try: defi = Defi.objects.get(id=int)
+	except Defi.DoesNotExist:
+		return HttpResponseRedirect("/")
 	releves = Relever.objects.filter(defi = defi.id)
 	users = []
 	createur =0
 	if defi.createur == request.user :
 		createur=1
-	
+
 	for r in releves :
 		users.append(User.objects.get(id = r.utilisateur.id))
-			
-	
-		
+
+
 	time_left = defi.fin - defi.debut
-		
+
 	if defi.fin <= date.today() :
 		End = False
 	else:
 		End = True
-			
-	
+
+
 	category = Categorie.objects.get(id=defi.categorie_id)
-		
-	
+
+
 	if defi.difficulte == 1:
 		difficulte = 'Easy'
 	if defi.difficulte == 2:
@@ -188,16 +214,20 @@ def display_challenge_view(request, int):
 		
 		#si les infos sont valides
 		if Reponse_form.is_valid():
-			handle_uploaded_file(request.FILES['photo'])
+			new_releve = Relever()
+			new_releve.utilisateur = request.user
+			new_releve.defi = Defi.objects.get(id = int)
+			new_releve.save()
 			new_reponse = Reponse(**Reponse_form.cleaned_data)
 		  #  new_reponse.slug = slugify(new_reponse.titre)
 			new_reponse.utilisateur_id = request.user.id
 			new_reponse.defi_id = int
 			new_reponse.save()
-			return HttpResponseRedirect("/challenges/display_challenge/1/")
+			return HttpResponseRedirect("/challenges/display_challenge/"+int+"/")
 	else:
 		 Reponse_form = ReponseForm()
-	 
+	
+
 	
 		
-	return render_to_response("defi/display_challenge.html", {'Reponse_form': Reponse_form,'reponses': reponses, 'defi': defi, 'difficulty': difficulte, 'category':category.nom, 'users':users, 'createur':createur}, context_instance=RequestContext(request))
+	return render_to_response("defi/display_challenge.html", {'reponses': reponses, 'defi': defi, 'difficulty': difficulte, 'category':category.nom, 'users':users, 'createur':createur}, context_instance=RequestContext(request))
