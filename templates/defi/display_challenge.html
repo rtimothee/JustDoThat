@@ -1,9 +1,9 @@
 {% extends "layout/base.html" %}
-
+{% load thumbnail %}
 {% block content %}
 	<p><a href="/challenges/list_challenges/" title="Voir tous les challenges"> Retour aux challenges </a></p>
 	<h2>{{ defi.titre }}</h2>
-	<img src='{{ defi.photo }}' alt='picture' />
+	<img src="{% thumbnail defi.photo 140x140 crop %}" alt="defi.titre" />
 	<ul>
 		<li>Category : {{ category }}</li>
 		<li>Description : {{ defi.description }}</li>

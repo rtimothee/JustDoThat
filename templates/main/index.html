@@ -1,5 +1,5 @@
 {% extends "layout/base.html" %}
-
+{% load thumbnail %}
 {% block content %}
 
 <div id="home_content">
@@ -20,29 +20,40 @@
 		            	
 		<div id="ct_best_challenges">
 			<div id="ct_best_challenges_headline">
-				<h2>BEST CHALLENGES</h2>
+				<h2>LATEST CHALLENGES</h2>
 			</div>
 			<div id="ct_challenges_challenges">
-				<div class="ct_challenges_challenge marginRight">
-					<img src="../media/images/challenge_avatar.png" alt="" />
-					<h3>MANGER DU CHOCOLAT ...</h3>
-					<p><img src="../media/images/picto_chrono.png" alt="" /><span class="ct_challenge_data">03:04:05</span> <img src="../media/images/picto_avatar.png" alt="" /><span class="ct_challenge_data">22</span> <img src="../media/images/picto_eclair.png" alt=""/><span class="ct_challenge_data">4</span></p>
-				</div>
-				<div class="ct_challenges_challenge">
-					<img src="../media/images/challenge_avatar.png" alt="" />
-					<h3>MANGER DU CHOCOLAT ...</h3>
-					<p><img src="../media/images/picto_chrono.png" alt="" /><span class="ct_challenge_data">03:04:05</span> <img src="../media/images/picto_avatar.png" alt="" /><span class="ct_challenge_data">22</span> <img src="../media/images/picto_eclair.png" alt=""/><span class="ct_challenge_data">4</span></p>
-				</div>
-				<div class="ct_challenges_challenge marginRight">
-					<img src="../media/images/challenge_avatar.png" alt="" />
-					<h3>MANGER DU CHOCOLAT ...</h3>
-					<p><img src="../media/images/picto_chrono.png" alt="" /><span class="ct_challenge_data">03:04:05</span> <img src="../media/images/picto_avatar.png" alt="" /><span class="ct_challenge_data">22</span> <img src="../media/images/picto_eclair.png" alt=""/><span class="ct_challenge_data">4</span></p>
-				</div>
-				<div class="ct_challenges_challenge">
-					<img src="../media/images/challenge_avatar.png" alt="" />
-					<h3>MANGER DU CHOCOLAT ...</h3>
-					<p><img src="../media/images/picto_chrono.png" alt="" /><span class="ct_challenge_data">03:04:05</span> <img src="../media/images/picto_avatar.png" alt="" /><span class="ct_challenge_data">22</span> <img src="../media/images/picto_eclair.png" alt=""/><span class="ct_challenge_data">4</span></p>
-				</div>
+				{% for latest in latest %}
+					
+					{%if forloop.counter == 1 %}
+						<div class="ct_challenges_challenge">
+							<img src="{% thumbnail latest.photo 200x140 crop %}" alt="latest.titre" />
+							<h3><a href='challenges/display_challenge/{{ latest.id}}'>{{ latest.titre}}</a></h3>
+							<p><img src="../media/images/picto_chrono.png" alt="" /><span class="ct_challenge_data">{{ latest.timeleft}}</span> <img src="../media/images/picto_avatar.png" alt="" /><span class="ct_challenge_data">{{ latest.nbreleve }}</span> <img src="../media/images/picto_eclair.png" alt=""/><span class="ct_challenge_data">{{ latest.difficulte }}</span></p>
+						</div>
+					{% endif %}
+					{%if forloop.counter == 2 %}
+					<div class="ct_challenges_challenge marginRight">
+							<img src="{% thumbnail latest.photo 200x140 crop %}" alt="latest.titre" />
+							<h3><a href='challenges/display_challenge/{{ latest.id}}'>{{ latest.titre}}</a></h3>
+							<p><img src="../media/images/picto_chrono.png" alt="" /><span class="ct_challenge_data">{{ latest.timeleft}}</span> <img src="../media/images/picto_avatar.png" alt="" /><span class="ct_challenge_data">{{ latest.nbreleve }}</span> <img src="../media/images/picto_eclair.png" alt=""/><span class="ct_challenge_data">{{ latest.difficulte }}</span></p>
+						</div>
+						{% endif %}
+					{%if forloop.counter == 3 %}
+						<div class="ct_challenges_challenge">
+							<img src="{% thumbnail latest.photo 200x140 crop %}" alt="latest.titre" />
+							<h3><a href='challenges/display_challenge/{{ latest.id}}'>{{ latest.titre}}</a></h3>
+							<p><img src="../media/images/picto_chrono.png" alt="" /><span class="ct_challenge_data">{{ latest.timeleft}}</span> <img src="../media/images/picto_avatar.png" alt="" /><span class="ct_challenge_data">{{ latest.nbreleve }}</span> <img src="../media/images/picto_eclair.png" alt=""/><span class="ct_challenge_data">{{ latest.difficulte }}</span></p>
+						</div>
+					{% endif %}
+					{%if forloop.counter == 4 %}
+					<div class="ct_challenges_challenge marginRight">
+							<img src="{% thumbnail latest.photo 200x140 crop %}" alt="latest.titre" />
+							<h3><a href='challenges/display_challenge/{{ latest.id}}'>{{ latest.titre}}</a></h3>
+							<p><img src="../media/images/picto_chrono.png" alt="" /><span class="ct_challenge_data">{{ latest.timeleft}}</span> <img src="../media/images/picto_avatar.png" alt="" /><span class="ct_challenge_data">{{ latest.nbreleve }}</span> <img src="../media/images/picto_eclair.png" alt=""/><span class="ct_challenge_data">{{ latest.difficulte }}</span></p>
+						</div>
+						{% endif %}
+			{% endfor %}
 			</div>	            
 		</div>
 	        
@@ -51,26 +62,37 @@
 				<h2>THE MOST POPULAR</h2>
 			</div>
 	    	<div id="ct_challenges_challenges">
-				<div class="ct_challenges_challenge marginRight">
-					<img src="../media/images/challenge_avatar.png" alt="" />
-					<h3>MANGER DU CHOCOLAT ...</h3>
-					<p><img src="../media/images/picto_chrono.png" alt="" /><span class="ct_challenge_data">03:04:05</span> <img src="../media/images/picto_avatar.png" alt="" /><span class="ct_challenge_data">22</span> <img src="../media/images/picto_eclair.png" alt=""/><span class="ct_challenge_data">4</span></p>
-				</div>
-				<div class="ct_challenges_challenge">
-					<img src="../media/images/challenge_avatar.png" alt="" />
-					<h3>MANGER DU CHOCOLAT ...</h3>
-					<p><img src="../media/images/picto_chrono.png" alt="" /><span class="ct_challenge_data">03:04:05</span> <img src="../media/images/picto_avatar.png" alt="" /><span class="ct_challenge_data">22</span> <img src="../media/images/picto_eclair.png" alt=""/><span class="ct_challenge_data">4</span></p>
-				</div>
-				<div class="ct_challenges_challenge marginRight">
-					<img src="../media/images/challenge_avatar.png" alt="" />
-					<h3>MANGER DU CHOCOLAT ...</h3>
-					<p><img src="../media/images/picto_chrono.png" alt="" /><span class="ct_challenge_data">03:04:05</span> <img src="../media/images/picto_avatar.png" alt="" /><span class="ct_challenge_data">22</span> <img src="../media/images/picto_eclair.png" alt=""/><span class="ct_challenge_data">4</span></p>
-				</div>
-				<div class="ct_challenges_challenge">
-					<img src="../media/images/challenge_avatar.png" alt="" />
-					<h3>MANGER DU CHOCOLAT ...</h3>
-					<p><img src="../media/images/picto_chrono.png" alt="" /><span class="ct_challenge_data">03:04:05</span> <img src="../media/images/picto_avatar.png" alt="" /><span class="ct_challenge_data">22</span> <img src="../media/images/picto_eclair.png" alt=""/><span class="ct_challenge_data">4</span></p>
-				</div>
+			
+				{% for challenges, releves in best_challenges %}
+					{%if forloop.counter == 1 %}
+					<div class="ct_challenges_challenge">
+						<img src="{% thumbnail challenges.photo 200x140 crop %}" alt="challenges.titre" />
+						<h3><a href='challenges/display_challenge/{{ challenges.id}}'>{{ challenges.titre}}</a></h3>
+						<p><img src="../media/images/picto_chrono.png" alt="" /><span class="ct_challenge_data">{{ challenges.timeleft}}</span> <img src="../media/images/picto_avatar.png" alt="" /><span class="ct_challenge_data">{{ releves }}</span> <img src="../media/images/picto_eclair.png" alt=""/><span class="ct_challenge_data">{{ challenges.difficulte }}</span></p>
+					</div>
+					{% endif %}
+					{%if forloop.counter == 2 %}
+					<div class="ct_challenges_challenge marginRight">
+						<img src="{% thumbnail challenges.photo 200x140 crop %}" alt="challenges.titre" />
+						<h3><a href='challenges/display_challenge/{{ challenges.id}}'>{{ challenges.titre}}</a></h3>
+						<p><img src="../media/images/picto_chrono.png" alt="" /><span class="ct_challenge_data">{{ challenges.timeleft}}</span> <img src="../media/images/picto_avatar.png" alt="" /><span class="ct_challenge_data">{{ releves }}</span> <img src="../media/images/picto_eclair.png" alt=""/><span class="ct_challenge_data">{{ challenges.difficulte }}</span></p>
+					</div>
+					{% endif %}
+					{%if forloop.counter == 3 %}
+					<div class="ct_challenges_challenge">
+						<img src="{% thumbnail challenges.photo 200x140 crop %}" alt="challenges.titre" />
+						<h3><a href='challenges/display_challenge/{{ challenges.id}}'>{{ challenges.titre}}</a></h3>
+						<p><img src="../media/images/picto_chrono.png" alt="" /><span class="ct_challenge_data">{{ challenges.timeleft}}</span> <img src="../media/images/picto_avatar.png" alt="" /><span class="ct_challenge_data">{{ releves }}</span> <img src="../media/images/picto_eclair.png" alt=""/><span class="ct_challenge_data">{{ challenges.difficulte }}</span></p>
+					</div>
+					{% endif %}
+					{%if forloop.counter == 4 %}
+					<div class="ct_challenges_challenge marginRight">
+						<img src="{% thumbnail challenges.photo 200x140 crop %}" alt="challenges.titre" />
+						<h3><a href='challenges/display_challenge/{{ challenges.id}}'>{{ challenges.titre}}</a></h3>
+						<p><img src="../media/images/picto_chrono.png" alt="" /><span class="ct_challenge_data">{{ challenges.timeleft}}</span> <img src="../media/images/picto_avatar.png" alt="" /><span class="ct_challenge_data">{{ releves }}</span> <img src="../media/images/picto_eclair.png" alt=""/><span class="ct_challenge_data">{{ challenges.difficulte }}</span></p>
+					</div>
+					{% endif %}
+			{% endfor %}
 			</div>
 	    </div>
 	        
@@ -83,46 +105,14 @@
 				<h2>BEST CHALLENGERS</h2>
 			</div>
 			<div id="ct_challengers_users">
-				<div class="ct_challengers_user">
-					<img src="../media/images/avatar.png" alt="" />
-					<h3>LOLA46</h3>
-					<p>34 000 points</p>
-				</div>
-				<div class="ct_challengers_user">
-					<img src="../media/images/avatar.png" alt="" />
-					<h3>LOLA46</h3>
-					<p>34 000 points</p>
-				</div>
-				<div class="ct_challengers_user">
-					<img src="../media/images/avatar.png" alt="" />
-					<h3>LOLA46</h3>
-					<p>34 000 points</p>
-				</div>
-				<div class="ct_challengers_user">
-					<img src="../media/images/avatar.png" alt="" />
-					<h3>LOLA46</h3>
-					<p>34 000 points</p>
-				</div>
-				<div class="ct_challengers_user">
-					<img src="../media/images/avatar.png" alt="" />
-					<h3>LOLA46</h3>
-					<p>34 000 points</p>
-				</div>
-				<div class="ct_challengers_user">
-					<img src="../media/images/avatar.png" alt="" />
-					<h3>LOLA46</h3>
-					<p>34 000 points</p>
-				</div>
-				<div class="ct_challengers_user">
-					<img src="../media/images/avatar.png" alt="" />
-					<h3>LOLA46</h3>
-					<p>34 000 points</p>
-				</div>
-				<div class="ct_challengers_user">
-					<img src="../media/images/avatar.png" alt="" />
-					<h3>LOLA46</h3>
-					<p>34 000 points</p>
-				</div>
+				{% for best_challenger in best_challengers %}
+				
+					<div class="ct_challengers_user">
+						<img src="{% thumbnail best_challenger.avatar 120x120 crop %}" alt="{{ best_challenger.user.username}}" />
+						<h3><a href='user/profile/{{ best_challenger.user.username}}'>{{ best_challenger.user.username}}</a></h3>
+						<p>{{ best_challenger.points }}</p>
+					</div>
+			{% endfor %}
 			</div>
 	    </div>
 	        

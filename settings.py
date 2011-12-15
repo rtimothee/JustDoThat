@@ -110,6 +110,7 @@ MEDIA_ROOT = os.path.join(PROJECT_PATH, 'media/')
 MEDIA_URL = '/media/'
 
 IMAGE_UPLOAD_PATH = 'profile_pics'
+IMAGE_UPLOAD_PATH_CHALLENGE = 'challenge_pics'
 
 
 #PROD !!!

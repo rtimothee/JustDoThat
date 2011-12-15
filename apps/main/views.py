@@ -18,34 +18,34 @@ def compfreq(elem1,elem2):
     return 0
 
 def index (request):
-	# best_challengers = []
-	# i = 0
-	# for i in range(8): 
-		# best_challengers.append(Utilisateur.objects.all().order_by("-points")[i])
-		# i += 1
 
+	# les 8 meilleurs challengers avec le plus de points
+	best_challengers = Utilisateur.objects.all().order_by("-points")
+	best_challengers[0:8]
+	
+	# les 4 derniers challenges crees
+	latest = Defi.objects.all().order_by("-id")
+	latest[0:4]
 
-	# challenges = Defi.objects.all()
-	# releves = []
-	# best_challenges = []
-	# best_challenges_final = []
-	# populars = []
-	# for c in challenges:
-		# releves.append(c.nbreleve)
-	# best_challenges = sorted(zip(challenges, releves))
-	# best_challenges.sort(lambda x,y: cmp(x[1],y[1]), reverse=True)
+	# les 4 challenges non finis ayant le plus de releves
+	challenges = Defi.objects.all()
+	releves = []
+	best_challenges = []
+	challenges_not_over = []
+	for c in challenges:
+		if c.timeleft != 'Challenge over' :
+			challenges_not_over.append(c);
+			releves.append(c.nbreleve)
+	best_challenges = sorted(zip(challenges_not_over, releves))
+	best_challenges.sort(lambda x,y: cmp(x[1],y[1]), reverse=True)
 
 
 
  
-	# best_challenges.sort(compfreq, reverse=True)
+	best_challenges.sort(compfreq, reverse=True)
+	best_challenges[0:4]
 
-	# j = 0
-	# for j in range(4): 
-		# best_challenges_final.append(best_challenges[j])
-		# j += 4
-
-	return render_to_response('main/index.html', context_instance=RequestContext(request))# Create your views here.
+	return render_to_response('main/index.html', {'best_challengers': best_challengers, 'best_challenges':best_challenges, 'latest':latest}, context_instance=RequestContext(request))# Create your views here.
 
 def recherche (request):
     if request.method == 'GET':
