@@ -4,23 +4,23 @@
  * 
  */
 
-#page_search .ct_challenges_challenge .challenge_picture, #list_challenges .ct_challenges_challenge .challenge_picture {
+.ct_challenges_challenge .challenge_picture {
 	width:200px;
 	height:140px;
 	margin-left:10px;
 	margin-top:10px;
 	padding:0;
 }
-#page_search .ct_challenges_challenge .challenge_picture img, #list_challenges .ct_challenges_challenge .challenge_picture img {
+.ct_challenges_challenge .challenge_picture img {
 	margin:0;
 }
-#page_search .ct_challengers_user .challenger_picture {
+.ct_challengers_user .challenger_picture {
 	width:120px;
 	height:120px;
 	margin-left:10px;
 	margin-top:10px;
 }
-#page_search .ct_challengers_user .challenger_picture img{
+.ct_challengers_user .challenger_picture img{
 	margin:0;
 }
 
@@ -116,11 +116,19 @@
 	
 }
 
-#page_search h3 a, #list_challenges h3 a, #profile h3 a {
+#page_search h3 a, #list_challenges h3 a, #profile h3 a, #ct_challenges h3 a, #ct_challengers_users h3 a {
 	text-decoration:none;
 	color:#444;
 }
-#page_search h3 a:hover, #list_challenges h3 a:hover, #profile h3 a:hover {
+#page_search h3 a:hover, #list_challenges h3 a:hover, #profile h3 a:hover, #ct_challenges h3 a:hover, #ct_challengers_users h3 a:hover {
 	text-decoration:underline;
 	color:#444;
+}
+#page_search .ct_challengers_user p {
+	padding:0;
+	margin:0;
+	font-size:12px;
+	color:#a0b919;
+	font-weight:bold;
+	margin-left:1px;
 }
