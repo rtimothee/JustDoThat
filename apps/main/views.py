@@ -20,7 +20,7 @@ def compfreq(elem1,elem2):
 def index (request):
 
 	# les 8 meilleurs challengers avec le plus de points
-	best_challengers = Utilisateur.objects.all().order_by("-points")
+	best_challengers = Utilisateur.objects.all().order_by("-points")[:8]
 	best_challengers[0:8]
 	
 	# les 4 derniers challenges crees
