@@ -84,7 +84,7 @@ def send_message_view(request, pseudo):
 							new_message.destinataire = User.objects.get(username = pseudo)
 							new_message.save()
 							
-							return HttpResponseRedirect("/user/inbox/")
+							HttpResponseRedirect("/user/profile/"+pseudo+"/")
 			else:
 				message_form = MessageForm()
 				message_form.destinataire = User.objects.get(username = pseudo)

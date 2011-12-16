@@ -38,7 +38,7 @@
 			{% for defi in defis.object_list %}
 			<div class="ct_challenges_challenge marginLR">
 				<div class="challenge_picture">
-					<img src="{{defi.photo}}" alt="{{defi.titre}}" />
+					<img src="{% thumbnail defi.photo 200x140 crop %}" alt="{{defi.titre}}" />
 				</div>
 				<h3><a href="/challenges/display_challenge/{{defi.id}}/" title="{{defi.titre}}">{{defi.titre}}</a></h3>
 				<p><img src="{{MEDIA_URL}}/images/picto_chrono.png" alt="" /><span class="ct_challenge_data">{{defi.timeleft}}</span> <img src="{{MEDIA_URL}}/images/picto_avatar.png" alt="" /><span class="ct_challenge_data">{{defi.nbreleve}}</span> <img src="{{MEDIA_URL}}/images/picto_eclair.png" alt=""/><span class="ct_challenge_data">{{defi.difficulte}}</span></p>
@@ -88,7 +88,7 @@
 				<div class="challenger_picture">
 					<img src="{% thumbnail utilisateur.get_profile.avatar 120x120 crop %}" alt="{{utilisateur.username}}" />
 				</div>
-				<h3>{{utilisateur.username}}</h3>
+				<h3><a href='/user/profile/{{utilisateur.username}}/'>{{utilisateur.username}}</a></h3>
 				<p>{{utilisateur.get_profile.points}} points</p>
 			</div>
 			{% endfor %}

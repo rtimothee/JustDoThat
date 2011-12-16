@@ -3,7 +3,7 @@
 import os.path
 PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -60,8 +60,8 @@ DATABASES = {
         'PASSWORD': 'djangoforever',
         'HOST': 'mysql.alwaysdata.com',
     }
-}
-'''
+}'''
+
 
 #ajoute votre config BDD
 '''DATABASES = {
@@ -100,7 +100,7 @@ USE_I18N = True
 
 # If you set this to False, Django will not format dates, numbers and
 # calendars according to the current locale
-USE_L10N = True
+USE_L10N = False
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
@@ -110,14 +110,15 @@ MEDIA_ROOT = os.path.join(PROJECT_PATH, 'media/')
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
 MEDIA_URL = '/media/'
+#PROD !!!
+#MEDIA_URL = 'http://justdothat.alwaysdata.net/media/'
 
 IMAGE_UPLOAD_PATH = 'profile_pics'
 IMAGE_UPLOAD_PATH_CHALLENGE = 'challenge_pics'
 IMAGE_UPLOAD_PATH_REPONSE = 'reponse_pics'
 
 
-#PROD !!!
-#MEDIA_URL = 'http://justdothat.alwaysdata.net/media/'
+
 
 
 # Absolute path to the directory static files should be collected to.
@@ -134,6 +135,8 @@ STATIC_URL = '/static/'
 # Make sure to use a trailing slash.
 # Examples: "http://foo.com/static/admin/", "/static/admin/".
 ADMIN_MEDIA_PREFIX = '/media/admin/'
+#PROD !!!!!
+#ADMIN_MEDIA_PREFIX = 'http://justdothat.alwaysdata.net/media/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (

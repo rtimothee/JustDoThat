@@ -75,7 +75,7 @@ def notation_view(request, userNotation, note_user, rep):
     #si il n'a pas encore vote
     if(notationExist == 0):
         #choix de la note
-        if(note_user > 0):
+        if note_user == '42' :
             noteF = Noter(note = True, utilisateur = model_user, reponse = model_reponse)
         else:
             noteF = Noter(note = False, utilisateur = model_user, reponse = model_reponse)
@@ -88,12 +88,6 @@ def notation_view(request, userNotation, note_user, rep):
     note = model_reponse.note
     return render_to_response("reponse/ajax.html", {'note': note,'statut': statut})
 
-def compfreq(elem1,elem2):
-    if elem1[1]<elem2[1]:
-        return -1
-    if elem1[1]>elem2[1]:
-        return 1
-    return 0
 
 
 #KRON POUR LA MAJ DU CLASSEMENT DES REPONSES

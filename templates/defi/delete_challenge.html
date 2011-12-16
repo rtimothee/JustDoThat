@@ -1,6 +1,8 @@
 {% extends "layout/base.html" %}
 
 {% block content %}
+<div id="inbox_div">
 	<p><a href="/challenges/display_challenge/{{ defi }}/" title="Back to the challenge"> Back to the challenge </a></p>
-	<p>Are you sure to delete this challenge ? <a href='/challenges/delete_challenge/{{ defi }}/sup/'>Yes</a>  / <a href='/challenges/display_challenge/{{ defi }}/'>No</a></p>
+	<p>Are you sure you want to delete this challenge ? <a href='/challenges/delete_challenge/{{ defi }}/sup/'>Yes</a>  / <a href='/challenges/display_challenge/{{ defi }}/'>No</a></p>
+</div>
 {% endblock %}

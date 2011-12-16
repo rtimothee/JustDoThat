@@ -7,7 +7,7 @@
 		$(document).ready(function () {
    			$(".vote").click(function (e) {
      			adresse=($(this).attr("href")); // on recuperer l' adresse du lien
-     			spanNote = $(this).parent().children().first();
+     			spanNote = $(this).parent().parent().children().first().children().first();
 				$.ajax({ // ajax
 					url: adresse, // url de la page à charger
 					cache: false, // pas de mise en cache
@@ -104,14 +104,16 @@
 							{% endif %}
 						{% endfor %}
 						<p>{{ reponse.message }} </p>
+						<div>
 						<p>Grade: <span class="note">{{ reponse.note }}</span></p>
 						
 						<p class="clear">
 							<!-- test si l'utilisateur est log -->	
 						{% if user.is_authenticated %}
-							<a href="http://localhost:8000/reponses/notation_ajax/{{ user.id }}/1/{{ reponse.id }}/" class="vote votePlus"></a> <a href="http://localhost:8000/reponses/notation_ajax/{{ user.id }}/0/{{ reponse.id }}/" class="vote voteMoins"></a>
+							<a href="http://justdothat.alwaysdata.net/reponses/notation_ajax/{{ user.id }}/42/{{ reponse.id }}/" class="vote votePlus"></a> <a href="http://justdothat.alwaysdata.net/reponses/notation_ajax/{{ user.id }}/1/{{ reponse.id }}/" class="vote voteMoins"></a>
 						{% endif %}
 						</p>
+						</div>
 						<!-- test si l'utilisateur log est le createur de la réponse-->
 						{% if reponse.utilisateur == request.user %}
 						<p class="clear">
